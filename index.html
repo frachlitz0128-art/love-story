@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>如果故事有下一頁</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #26344d 0%,
+            #111827 35%,
+            #080b12 75%
+        );
+
+    color: #f5f5f5;
+
+    font-family:
+        "Noto Serif TC",
+        "Microsoft JhengHei",
+        serif;
+
+    overflow: hidden;
+}
+
+
+/* ============================= */
+/* 星星 */
+/* ============================= */
+
+.stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .6;
+
+    background-image:
+
+        radial-gradient(
+            2px 2px at 20% 30%,
+            white,
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 70% 20%,
+            white,
+            transparent
+        ),
+
+        radial-gradient(
+            2px 2px at 80% 70%,
+            white,
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 30% 80%,
+            white,
+            transparent
+        ),
+
+        radial-gradient(
+            1px 1px at 55% 55%,
+            white,
+            transparent
+        );
+
+    background-size: 300px 300px;
+}
+
+
+.container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    height: 100vh;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* ============================= */
+/* 頁面 */
+/* ============================= */
+
+.page {
+
+    width: 100%;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition: all .7s ease;
+
+    display: none;
+}
+
+
+.page.active {
+
+    display: block;
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* ============================= */
+/* 章節 */
+/* ============================= */
+
+.chapter {
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    color: #aebbd0;
+
+    margin-bottom: 25px;
+}
+
+
+h1 {
+
+    font-size:
+        clamp(32px, 8vw, 55px);
+
+    font-weight: 400;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 35px;
+}
+
+
+h2 {
+
+    font-size:
+        clamp(25px, 6vw, 38px);
+
+    font-weight: 400;
+
+    margin-bottom: 30px;
+}
+
+
+/* ============================= */
+/* 故事 */
+/* ============================= */
+
+.story {
+
+    font-size: 17px;
+
+    line-height: 2.2;
+
+    color: #d9dee8;
+
+    white-space: pre-line;
+
+    margin-bottom: 40px;
+}
+
+
+.story p {
+
+    margin: 0;
+}
+
+
+/* ============================= */
+/* 按鈕 */
+/* ============================= */
+
+button {
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.06);
+
+    color: white;
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    margin: 6px;
+}
+
+
+button:hover {
+
+    background:
+        rgba(255,255,255,.16);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.choice-area {
+
+    margin-top: 30px;
+}
+
+
+/* ============================= */
+/* 輸入區 */
+/* ============================= */
+
+.question {
+
+    margin-top: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.question-line {
+
+    font-size: 22px;
+
+    color: #ffffff;
+}
+
+
+.question-sub {
+
+    margin-top: 8px;
+
+    font-size: 14px;
+
+    color: #aebbd0;
+}
+
+
+.input-area {
+
+    margin-top: 10px;
+}
+
+
+.input-area input {
+
+    width: 90%;
+
+    max-width: 450px;
+
+    padding: 13px 20px;
+
+    border-radius: 30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.06);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    text-align: center;
+}
+
+
+.input-area input::placeholder {
+
+    color: #8993a5;
+}
+
+
+.input-area input:focus {
+
+    border-color:
+        rgba(255,255,255,.55);
+}
+
+
+/* ============================= */
+/* 對方寫下的回憶 */
+/* ============================= */
+
+.user-memory {
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    padding: 20px;
+
+    margin: 20px auto;
+
+    max-width: 500px;
+
+    border-left:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.35);
+}
+
+
+/* ============================= */
+/* 結尾 */
+/* ============================= */
+
+.ending {
+
+    font-size: 20px;
+
+    line-height: 2;
+
+    color: #f5f5f5;
+}
+
+
+.heart {
+
+    font-size: 35px;
+
+    margin: 25px;
+
+    animation:
+        heartbeat 1.5s infinite;
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.15);
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="stars"></div>
+
+
+<div class="container">
+
+
+<!-- ============================= -->
+<!-- 序章 -->
+<!-- ============================= -->
+
+<section class="page active">
+
+    <div class="chapter">
+        PROLOGUE
+    </div>
+
+    <h1>
+        如果故事有下一頁
+    </h1>
+
+    <div class="story">
+有些故事，
+一開始並不知道它會走多遠。
+
+可能只是一次普通的遇見，
+一段普通的對話。
+
+可是不知道從什麼時候開始，
+妳開始慢慢變得不普通了。
+
+而這個故事，
+是從妳開始的。
+    </div>
+
+    <button onclick="nextPage()">
+        按我一下! →
+    </button>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 初遇 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        CHAPTER 01
+    </div>
+
+    <h2>
+        初遇
+    </h2>
+
+    <div class="story">
+我還記得第一次遇見妳的時候。
+
+那時候的我們，
+應該都沒有想過，
+
+有一天會一起走過這麼多事情。
+
+如果把時間拉回開始的那一天，
+妳覺得那時候的我們是什麼？
+    </div>
+
+    <div class="choice-area">
+
+        <button onclick="choose('第一次')">
+            只是聊天
+        </button>
+
+        <button onclick="choose('特別')">
+            有一點特別
+        </button>
+
+        <button onclick="choose('不知道')">
+            誰知道呢
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 熟悉 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        CHAPTER 02
+    </div>
+
+    <h2>
+        熟悉
+    </h2>
+
+    <div class="story">
+後來，
+我們開始慢慢熟悉。
+
+從不知道聊什麼，
+到什麼都可以聊。
+
+從一句「晚安」，
+變成一天裡習慣等待的訊息。
+
+很奇怪。
+
+好像沒有哪一天特別宣布過
+「我們變熟了」。
+
+但某天回頭看，
+
+妳卻已經變成我生活中，
+無法缺少的一部分。
+    </div>
+
+    <div class="choice-area">
+
+        <button onclick="choose('聊天')">
+            第一次聊很久的那天
+        </button>
+
+        <button onclick="choose('出去')">
+            某一次一起出去之後
+        </button>
+
+        <button onclick="choose('不知道')">
+            其實我也不知道(妳不想承認的依賴)
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 期待的見面 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        CHAPTER 03
+    </div>
+
+    <h2>
+        下來台中
+    </h2>
+
+    <div class="story">
+
+        <p>
+            知道妳能下來台中後，
+            其實我超開心。
+            但後來又取消了。
+            其實我那時候真的超委屈，
+            但我不太敢表現，
+            因為我很怕情緒影響妳。
+            不過後來又聽說妳要下來一個月。
+            老實說，
+            我回家作夢都是有關妳要下來，
+            我們要去哪裡玩哈哈
+            直到那天，
+            妳真的下來了。
+            其實那天我超級緊張，
+            甚至都不太敢正眼看妳，
+            因為很害羞哈哈。
+            還記得那天我真的騎超級快回家換衣服，
+            趕快跑回來，
+            還噴香水哈哈。
+        </p>
+
+    </div>
+
+
+    <div class="question">
+
+        <div class="question-line">
+            那對妳來說呢？
+        </div>
+
+        <div class="question-sub">
+            記憶最深
+        </div>
+
+    </div>
+
+
+    <div class="input-area">
+
+        <input
+            type="text"
+            id="memoryInput"
+            placeholder="寫下妳記得的那一天..."
+        >
+
+        <br>
+
+        <button
+            type="button"
+            onclick="submitMemory()"
+        >
+            寫好了 →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 顯示她的回憶 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        A MEMORY
+    </div>
+
+    <h2>
+        妳寫下的是
+    </h2>
+
+    <div class="user-memory">
+
+        <span id="memoryResult"></span>
+
+    </div>
+
+    <div class="story">
+
+        <p>
+            我也記得。
+        </p>
+
+        <p>
+            原來有些事情，
+            我們都沒有忘記。
+        </p>
+
+    </div>
+
+    <button onclick="nextPage()">
+        繼續 →
+    </button>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 說好的未來 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        CHAPTER 04
+    </div>
+
+    <h2>
+        說好的未來
+    </h2>
+
+    <div class="story">
+我們好像說過很多個「以後」。
+
+以後要去哪裡。
+
+以後要一起做什麼。
+
+以後有機會的話，
+一定要……
+
+有些只是隨口說說，
+有些我們真的記得。
+
+但我很喜歡那些「以後」。
+
+因為那代表妳的未來裡一直都有我
+現在也在一步一步完成，
+想都不敢想那些期待，真的慢慢實現
+但最重要的東西是妳在我身邊，因為有妳
+賦予了這些所有的事情意義。
+    </div>
+
+
+    <div class="choice-area">
+
+        <button onclick="choose('未來一')">
+            【說好買狗勾】
+        </button>
+
+        <button onclick="choose('未來二')">
+            【一起為了租房子討論到早上】
+        </button>
+
+        <button onclick="choose('未來三')">
+            【妳有邏輯 我有責任】
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 回頭看 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        CHAPTER 05
+    </div>
+
+    <h2>
+        回頭看
+    </h2>
+
+    <div class="story">
+其實現在回頭看，
+
+才發現我們已經走了這麼遠。
+
+從第一次見面，
+到慢慢熟悉，
+
+從妳下來台中到妳回去，
+從第一次吃飯到看過妳落淚
+從討論買車租房到現在真的擁有了一台車
+從以前常常讓妳生氣，
+不懂事一直跟妳頂嘴，
+雖然到現在還是常常惹妳生氣
+
+可是不管發生了什麼。
+我都很喜歡也很不後悔
+是每一頁回憶裡面，
+
+都是因為有妳 蔡宛蓁。
+    </div>
+
+    <button onclick="nextPage()">
+        下一頁 →
+    </button>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 最後選擇 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        THE LAST PAGE
+    </div>
+
+    <h2>
+        最後一頁
+    </h2>
+
+    <div class="story">
+如果這本故事現在停在這裡，
+
+你會覺得它已經完整了嗎？
+    </div>
+
+    <div class="choice-area">
+
+        <button onclick="finalAnswer('完整')">
+            嗯，已經很好了
+        </button>
+
+        <button onclick="finalAnswer('少一點')">
+            好像還少了一點什麼
+        </button>
+
+        <button onclick="finalAnswer('繼續')">
+            我想繼續看
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 告白 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="chapter">
+        NEXT PAGE
+    </div>
+
+    <div class="heart">
+        ♡
+    </div>
+
+    <div class="ending">
+
+那我們不要停在這裡。
+
+<br><br>
+
+前面的故事，
+是我們一起走過的。
+
+但下一頁開始，
+
+我想讓它變成
+我們一起寫的。
+
+<br><br>
+
+<strong>
+你願意陪我寫下去嗎？
+</strong>
+
+    </div>
+
+    <div class="choice-area">
+
+        <button onclick="yesAnswer()">
+            ♡ 那必須阿
+        </button>
+
+        <button onclick="thinkAnswer()">
+            ♡ 讓我想一下
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 那必須阿 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="heart">
+        ♥
+    </div>
+
+    <div class="ending">
+
+那就說好了。
+
+<br><br>
+
+從今天開始，
+
+我們的故事還有下一頁。
+
+<br><br>
+
+而且這次，
+
+我想和你一起寫。
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================= -->
+<!-- 想一下 -->
+<!-- ============================= -->
+
+<section class="page">
+
+    <div class="heart">
+        ♡
+    </div>
+
+    <div class="ending">
+
+沒關係。
+
+<br><br>
+
+我只是想讓你知道，
+
+<br><br>
+
+不管你的答案是什麼，
+
+<br><br>
+
+這段故事對我來說，
+
+都是真的。
+
+<br><br>
+
+我也不會逼妳，
+畢竟我還欠妳97次拒絕。
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+/* ============================= */
+/* 頁面控制 */
+/* ============================= */
+
+let currentPage = 0;
+
+const pages = document.querySelectorAll(".page");
+
+
+/* ============================= */
+/* 顯示頁面 */
+/* ============================= */
+
+function showPage(index) {
+
+    if (index < 0 || index >= pages.length) {
+        return;
+    }
+
+    pages[currentPage].classList.remove("active");
+
+    currentPage = index;
+
+    pages[currentPage].classList.add("active");
+
+}
+
+
+/* ============================= */
+/* 下一頁 */
+/* ============================= */
+
+function nextPage() {
+
+    if (currentPage < pages.length - 1) {
+
+        showPage(currentPage + 1);
+
+    }
+
+}
+
+
+/* ============================= */
+/* 選項 */
+/* ============================= */
+
+function choose(answer) {
+
+    console.log("選擇：", answer);
+
+    nextPage();
+
+}
+
+
+/* ============================= */
+/* 回憶輸入 */
+/* ============================= */
+
+function submitMemory() {
+
+    const input =
+        document.getElementById("memoryInput");
+
+    const result =
+        document.getElementById("memoryResult");
+
+
+    if (!input || !result) {
+
+        console.error(
+            "找不到 memoryInput 或 memoryResult"
+        );
+
+        return;
+
+    }
+
+
+    const memory =
+        input.value.trim();
+
+
+    if (memory === "") {
+
+        alert("寫一點嘛 ♡");
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    result.textContent = memory;
+
+
+    nextPage();
+
+}
+
+
+/* ============================= */
+/* 最後選擇 */
+/* ============================= */
+
+function finalAnswer(answer) {
+
+    console.log("最後選擇：", answer);
+
+    nextPage();
+
+}
+
+
+/* ============================= */
+/* 我願意 */
+/* ============================= */
+
+function yesAnswer() {
+
+    nextPage();
+
+}
+
+
+/* ============================= */
+/* 讓我想一下 */
+/* ============================= */
+
+function thinkAnswer() {
+
+    /*
+     * 最後一頁的位置
+     * 不再寫死 page 8，
+     * 避免之後增加頁面造成錯誤。
+     */
+
+    showPage(pages.length - 1);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
