@@ -943,6 +943,56 @@ button:hover {
 <script>
 
 /* ============================= */
+/* 回傳選擇到 Google 試算表 */
+/* ============================= */
+
+/*
+ * 1. 建立 Google 試算表
+ * 2. 用「擴充功能 → Apps Script」建立後端
+ * 3. 把 Apps Script 部署後得到的 Web App URL 貼到下面。
+ */
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNJRCa6o5GI-_lES0frYR7mtsZ9PkFv-IUGQpiPg014UhGCtPtF8Utzivx-OldXQXzmQ/exec";
+
+const answers = {
+    chapter01: "",
+    chapter02: "",
+    memory: "",
+    chapter04: "",
+    final: "",
+    confession: ""
+};
+
+function sendAnswer(type, answer) {
+    answers[type] = answer;
+
+    // 尚未設定網址時，仍可正常瀏覽網站
+    if (
+        !GOOGLE_SCRIPT_URL ||
+        GOOGLE_SCRIPT_URL.includes("請把你的")
+    ) {
+        console.log("尚未設定 Google 試算表網址：", type, answer);
+        return;
+    }
+
+    const payload = {
+        time: new Date().toISOString(),
+        ...answers
+    };
+
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+    }).catch(error => {
+        console.error("回傳選擇失敗：", error);
+    });
+}
+
+
+/* ============================= */
 /* 頁面控制 */
 /* ============================= */
 
@@ -991,7 +1041,16 @@ function nextPage() {
 
 function choose(answer) {
 
-    console.log("選擇：", answer);
+    // 第 1、2 題依目前頁面記錄
+    if (currentPage === 1) {
+        sendAnswer("chapter01", answer);
+    } else if (currentPage === 2) {
+        sendAnswer("chapter02", answer);
+    } else if (currentPage === 5) {
+        sendAnswer("chapter04", answer);
+    } else {
+        console.log("選擇：", answer);
+    }
 
     nextPage();
 
@@ -1051,7 +1110,7 @@ function submitMemory() {
 
 function finalAnswer(answer) {
 
-    console.log("最後選擇：", answer);
+    sendAnswer("final", answer);
 
     nextPage();
 
@@ -1064,6 +1123,8 @@ function finalAnswer(answer) {
 
 function yesAnswer() {
 
+    sendAnswer("confession", "♡ 那必須阿");
+
     nextPage();
 
 }
@@ -1074,6 +1135,8 @@ function yesAnswer() {
 /* ============================= */
 
 function thinkAnswer() {
+
+    sendAnswer("confession", "♡ 讓我想一下");
 
     /*
      * 最後一頁的位置
