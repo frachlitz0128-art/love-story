@@ -3,19 +3,37 @@
 <html lang="zh-TW">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>如果故事有下一頁</title>
 
+
 <style>
+
+/* ================================================= */
+/* 基本設定 */
+/* ================================================= */
 
 * {
     box-sizing: border-box;
 }
 
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
+
     margin: 0;
+
+    width: 100%;
     min-height: 100vh;
 
     background:
@@ -33,15 +51,22 @@ body {
         "Microsoft JhengHei",
         serif;
 
-    overflow: hidden;
+    /* 允許手機上下滑動 */
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 星星 */
-/* ============================= */
+/* ================================================= */
 
 .stars {
+
     position: fixed;
+
     inset: 0;
 
     pointer-events: none;
@@ -80,64 +105,84 @@ body {
             transparent
         );
 
-    background-size: 300px 300px;
+    background-size:
+        300px 300px;
+
+    z-index: 0;
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 容器 */
-/* ============================= */
+/* ================================================= */
 
 .container {
+
     position: relative;
 
     width: 100%;
+
     max-width: 700px;
 
-    height: 100vh;
+    min-height: 100vh;
 
     margin: auto;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    padding: 30px;
+    padding:
+        40px 20px;
 
-    overflow-y: auto;
+    overflow: visible;
+
+    z-index: 1;
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 頁面 */
-/* ============================= */
+/* ================================================= */
 
 .page {
+
     width: 100%;
 
     text-align: center;
 
     opacity: 0;
 
-    transform: translateY(20px);
+    transform:
+        translateY(20px);
 
-    transition: all .7s ease;
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
 
     display: none;
 }
 
+
 .page.active {
+
     display: block;
 
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 章節 */
-/* ============================= */
+/* ================================================= */
 
 .chapter {
+
     font-size: 14px;
 
     letter-spacing: 4px;
@@ -147,31 +192,49 @@ body {
     margin-bottom: 25px;
 }
 
+
 h1 {
+
     font-size:
-        clamp(32px, 8vw, 55px);
+        clamp(
+            32px,
+            8vw,
+            55px
+        );
 
     font-weight: 400;
 
     letter-spacing: 5px;
 
+    margin-top: 0;
+
     margin-bottom: 35px;
 }
 
+
 h2 {
+
     font-size:
-        clamp(25px, 6vw, 38px);
+        clamp(
+            25px,
+            6vw,
+            38px
+        );
 
     font-weight: 400;
+
+    margin-top: 0;
 
     margin-bottom: 30px;
 }
 
-/* ============================= */
-/* 故事 */
-/* ============================= */
+
+/* ================================================= */
+/* 故事文字 */
+/* ================================================= */
 
 .story {
+
     font-size: 17px;
 
     line-height: 2.2;
@@ -183,25 +246,41 @@ h2 {
     margin-bottom: 40px;
 }
 
+
 .story p {
-    margin: 0 0 18px 0;
+
+    margin:
+        0 0 18px 0;
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 按鈕 */
-/* ============================= */
+/* ================================================= */
 
 button {
+
     border:
         1px solid
-        rgba(255,255,255,.25);
+        rgba(
+            255,
+            255,
+            255,
+            .25
+        );
 
     background:
-        rgba(255,255,255,.06);
+        rgba(
+            255,
+            255,
+            255,
+            .06
+        );
 
     color: white;
 
-    padding: 13px 25px;
+    padding:
+        13px 25px;
 
     border-radius: 30px;
 
@@ -211,51 +290,90 @@ button {
 
     cursor: pointer;
 
-    transition: .3s;
+    transition:
+        background .3s ease,
+        transform .2s ease;
 
     margin: 6px;
 
-    -webkit-tap-highlight-color: transparent;
+    min-height: 46px;
 
-    touch-action: manipulation;
+    /*
+        手機觸控最佳化
+    */
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    touch-action:
+        manipulation;
+
+    user-select:
+        none;
+
+    -webkit-user-select:
+        none;
 }
 
+
 button:hover {
+
     background:
-        rgba(255,255,255,.16);
+        rgba(
+            255,
+            255,
+            255,
+            .16
+        );
 
     transform:
         translateY(-2px);
 }
 
+
 button:active {
-    transform: scale(.97);
+
+    transform:
+        scale(.97);
 
     background:
-        rgba(255,255,255,.20);
+        rgba(
+            255,
+            255,
+            255,
+            .20
+        );
 }
 
+
 .choice-area {
+
     margin-top: 30px;
 }
 
-/* ============================= */
-/* 輸入區 */
-/* ============================= */
+
+/* ================================================= */
+/* 問題 */
+/* ================================================= */
 
 .question {
+
     margin-top: 10px;
 
     margin-bottom: 20px;
 }
 
+
 .question-line {
+
     font-size: 22px;
 
     color: #ffffff;
 }
 
+
 .question-sub {
+
     margin-top: 8px;
 
     font-size: 14px;
@@ -263,25 +381,46 @@ button:active {
     color: #aebbd0;
 }
 
+
+/* ================================================= */
+/* 輸入 */
+/* ================================================= */
+
 .input-area {
+
     margin-top: 10px;
 }
 
+
 .input-area input {
+
     width: 90%;
 
     max-width: 450px;
 
-    padding: 13px 20px;
+    min-height: 46px;
+
+    padding:
+        13px 20px;
 
     border-radius: 30px;
 
     border:
         1px solid
-        rgba(255,255,255,.25);
+        rgba(
+            255,
+            255,
+            255,
+            .25
+        );
 
     background:
-        rgba(255,255,255,.06);
+        rgba(
+            255,
+            255,
+            255,
+            .06
+        );
 
     color: white;
 
@@ -294,20 +433,31 @@ button:active {
     text-align: center;
 }
 
+
 .input-area input::placeholder {
+
     color: #8993a5;
 }
 
+
 .input-area input:focus {
+
     border-color:
-        rgba(255,255,255,.55);
+        rgba(
+            255,
+            255,
+            255,
+            .55
+        );
 }
 
-/* ============================= */
-/* 對方寫下的回憶 */
-/* ============================= */
+
+/* ================================================= */
+/* 回憶 */
+/* ================================================= */
 
 .user-memory {
+
     color: #ffffff;
 
     font-size: 20px;
@@ -316,24 +466,40 @@ button:active {
 
     padding: 20px;
 
-    margin: 20px auto;
+    margin:
+        20px auto;
 
     max-width: 500px;
 
     border-left:
         1px solid
-        rgba(255,255,255,.35);
+        rgba(
+            255,
+            255,
+            255,
+            .35
+        );
 
     border-right:
         1px solid
-        rgba(255,255,255,.35);
+        rgba(
+            255,
+            255,
+            255,
+            .35
+        );
+
+    word-break:
+        break-word;
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 結尾 */
-/* ============================= */
+/* ================================================= */
 
 .ending {
+
     font-size: 20px;
 
     line-height: 2;
@@ -341,7 +507,9 @@ button:active {
     color: #f5f5f5;
 }
 
+
 .heart {
+
     font-size: 35px;
 
     margin: 25px;
@@ -350,79 +518,227 @@ button:active {
         heartbeat 1.5s infinite;
 }
 
+
 @keyframes heartbeat {
 
     0%,
     100% {
+
         transform:
             scale(1);
+
     }
 
     50% {
+
         transform:
             scale(1.15);
+
     }
+
 }
 
-/* ============================= */
+
+/* ================================================= */
 /* 手機版 */
-/* ============================= */
+/* ================================================= */
 
 @media (max-width: 600px) {
 
     body {
-        overflow: hidden;
+
+        /*
+            千萬不要使用
+            overflow: hidden
+
+            否則手機無法上下滑動。
+        */
+
+        overflow-x: hidden;
+
+        overflow-y: auto;
+
+        min-height: 100vh;
     }
+
 
     .container {
-        padding: 25px 18px;
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        padding:
+            35px 18px;
+
+        /*
+            不鎖高度
+        */
+
+        height: auto;
+
+        overflow: visible;
     }
 
+
+    .page {
+
+        width: 100%;
+    }
+
+
+    .chapter {
+
+        font-size: 12px;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 20px;
+    }
+
+
+    h1 {
+
+        font-size:
+            clamp(
+                30px,
+                10vw,
+                44px
+            );
+
+        letter-spacing: 3px;
+
+        line-height: 1.4;
+    }
+
+
+    h2 {
+
+        font-size:
+            clamp(
+                25px,
+                8vw,
+                34px
+            );
+
+        line-height: 1.4;
+    }
+
+
     .story {
+
         font-size: 16px;
+
+        line-height: 2;
+
+        margin-bottom: 30px;
+    }
+
+
+    .ending {
+
+        font-size: 18px;
+
         line-height: 2;
     }
 
-    h1 {
-        letter-spacing: 3px;
-    }
-
-    h2 {
-        letter-spacing: 2px;
-    }
 
     button {
-        padding: 13px 22px;
-        min-height: 46px;
+
+        min-height: 48px;
+
+        padding:
+            12px 22px;
+
+        font-size: 15px;
     }
+
+
+    .choice-area {
+
+        margin-top: 25px;
+    }
+
 
     .choice-area button {
+
         display: block;
+
         width: 90%;
+
         max-width: 360px;
-        margin: 10px auto;
+
+        margin:
+            10px auto;
     }
 
+
     .input-area input {
+
         width: 95%;
-        min-height: 46px;
+
+        min-height: 48px;
+    }
+
+
+    .user-memory {
+
+        font-size: 18px;
+
+        padding: 18px;
+    }
+
+}
+
+
+/* ================================================= */
+/* 超小手機 */
+/* ================================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+
+        padding:
+            30px 14px;
+    }
+
+
+    .story {
+
+        font-size: 15px;
+
+        line-height: 1.9;
+    }
+
+
+    button {
+
+        font-size: 14px;
+
+        padding:
+            11px 18px;
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="stars"></div>
+
 
 <div class="container">
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 序章 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page active">
 
@@ -430,11 +746,14 @@ button:active {
         PROLOGUE
     </div>
 
+
     <h1>
         如果故事有下一頁
     </h1>
 
+
     <div class="story">
+
 有些故事，
 一開始並不知道它會走多遠。
 
@@ -446,18 +765,24 @@ button:active {
 
 而這個故事，
 是從妳開始的。
+
     </div>
 
-    <button type="button" id="startButton">
+
+    <button
+        type="button"
+        id="startButton"
+    >
         按我一下! →
     </button>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 初遇 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -465,11 +790,14 @@ button:active {
         CHAPTER 01
     </div>
 
+
     <h2>
         初遇
     </h2>
 
+
     <div class="story">
+
 我還記得第一次遇見妳的時候。
 
 那時候的我們，
@@ -479,30 +807,46 @@ button:active {
 
 如果把時間拉回開始的那一天，
 妳覺得那時候的我們是什麼？
+
     </div>
+
 
     <div class="choice-area">
 
-        <button type="button" data-choice="第一次">
+
+        <button
+            type="button"
+            data-choice="第一次"
+        >
             只是聊天
         </button>
 
-        <button type="button" data-choice="特別">
+
+        <button
+            type="button"
+            data-choice="特別"
+        >
             有一點特別
         </button>
 
-        <button type="button" data-choice="不知道">
+
+        <button
+            type="button"
+            data-choice="不知道"
+        >
             誰知道呢
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 熟悉 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -510,11 +854,14 @@ button:active {
         CHAPTER 02
     </div>
 
+
     <h2>
         熟悉
     </h2>
 
+
     <div class="story">
+
 後來，
 我們開始慢慢熟悉。
 
@@ -533,30 +880,46 @@ button:active {
 
 妳卻已經變成我生活中，
 無法缺少的一部分。
+
     </div>
+
 
     <div class="choice-area">
 
-        <button type="button" data-choice="聊天">
+
+        <button
+            type="button"
+            data-choice="聊天"
+        >
             第一次聊很久的那天
         </button>
 
-        <button type="button" data-choice="出去">
+
+        <button
+            type="button"
+            data-choice="出去"
+        >
             某一次一起出去之後
         </button>
 
-        <button type="button" data-choice="不知道">
+
+        <button
+            type="button"
+            data-choice="不知道"
+        >
             其實我也不知道(妳不想承認的依賴)
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- ============================= -->
-<!-- 期待的見面 -->
-<!-- ============================= -->
+
+<!-- ================================================= -->
+<!-- 下來台中 -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -564,34 +927,46 @@ button:active {
         CHAPTER 03
     </div>
 
+
     <h2>
         下來台中
     </h2>
 
+
     <div class="story">
 
         <p>
-            知道妳能下來台中後，
-            其實我超開心。
-            但後來又取消了。
-            其實我那時候真的超委屈，
-            但我不太敢表現，
-            因為我很怕情緒影響妳。
-            不過後來又聽說妳要下來一個月。
-            老實說，
-            我回家作夢都是有關妳要下來，
-            我們要去哪裡玩哈哈。
-            直到那天，
-            妳真的下來了。
-            其實那天我超級緊張，
-            甚至都不太敢正眼看妳，
-            因為很害羞哈哈。
-            還記得那天我真的騎超級快回家換衣服，
-            趕快跑回來，
-            還噴香水哈哈。
+
+知道妳能下來台中後，
+其實我超開心。
+
+但後來又取消了。
+
+其實我那時候真的超委屈，
+但我不太敢表現，
+因為我很怕情緒影響妳。
+
+不過後來又聽說妳要下來一個月。
+
+老實說，
+我回家作夢都是有關妳要下來，
+我們要去哪裡玩哈哈。
+
+直到那天，
+妳真的下來了。
+
+其實那天我超級緊張，
+甚至都不太敢正眼看妳，
+因為很害羞哈哈。
+
+還記得那天我真的騎超級快回家換衣服，
+趕快跑回來，
+還噴香水哈哈。
+
         </p>
 
     </div>
+
 
     <div class="question">
 
@@ -599,13 +974,16 @@ button:active {
             那對妳來說呢？
         </div>
 
+
         <div class="question-sub">
             記憶最深
         </div>
 
     </div>
 
+
     <div class="input-area">
+
 
         <input
             type="text"
@@ -613,7 +991,9 @@ button:active {
             placeholder="寫下妳記得的那一天..."
         >
 
+
         <br>
+
 
         <button
             type="button"
@@ -622,14 +1002,16 @@ button:active {
             寫好了 →
         </button>
 
+
     </div>
 
 </section>
 
 
-<!-- ============================= -->
-<!-- 顯示她的回憶 -->
-<!-- ============================= -->
+
+<!-- ================================================= -->
+<!-- 顯示回憶 -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -637,9 +1019,11 @@ button:active {
         A MEMORY
     </div>
 
+
     <h2>
         妳寫下的是
     </h2>
+
 
     <div class="user-memory">
 
@@ -647,11 +1031,13 @@ button:active {
 
     </div>
 
+
     <div class="story">
 
         <p>
             我也記得。
         </p>
+
 
         <p>
             原來有些事情，
@@ -660,16 +1046,21 @@ button:active {
 
     </div>
 
-    <button type="button" id="memoryContinue">
+
+    <button
+        type="button"
+        id="memoryContinue"
+    >
         繼續 →
     </button>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 說好的未來 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -677,11 +1068,14 @@ button:active {
         CHAPTER 04
     </div>
 
+
     <h2>
         說好的未來
     </h2>
 
+
     <div class="story">
+
 我們好像說過很多個「以後」。
 
 以後要去哪裡。
@@ -697,34 +1091,55 @@ button:active {
 但我很喜歡那些「以後」。
 
 因為那代表妳的未來裡一直都有我
+
 現在也在一步一步完成，
-想都不敢想那些期待，真的慢慢實現
-但最重要的東西是妳在我身邊，因為有妳
+
+想都不敢想那些期待，
+真的慢慢實現。
+
+但最重要的東西是妳在我身邊，
+因為有妳，
 賦予了這些所有的事情意義。
+
     </div>
+
 
     <div class="choice-area">
 
-        <button type="button" data-choice="未來一">
+
+        <button
+            type="button"
+            data-choice="未來一"
+        >
             【說好買狗勾】
         </button>
 
-        <button type="button" data-choice="未來二">
+
+        <button
+            type="button"
+            data-choice="未來二"
+        >
             【一起為了租房子討論到早上】
         </button>
 
-        <button type="button" data-choice="未來三">
+
+        <button
+            type="button"
+            data-choice="未來三"
+        >
             【妳有邏輯 我有責任】
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 回頭看 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -732,11 +1147,14 @@ button:active {
         CHAPTER 05
     </div>
 
+
     <h2>
         回頭看
     </h2>
 
+
     <div class="story">
+
 其實現在回頭看，
 
 才發現我們已經走了這麼遠。
@@ -745,29 +1163,41 @@ button:active {
 到慢慢熟悉，
 
 從妳下來台中到妳回去，
+
 從第一次吃飯到看過妳落淚
+
 從討論買車租房到現在真的擁有了一台車
+
 從以前常常讓妳生氣，
 不懂事一直跟妳頂嘴，
+
 雖然到現在還是常常惹妳生氣
 
 可是不管發生了什麼。
+
 我都很喜歡也很不後悔
+
 是每一頁回憶裡面，
 
 都是因為有妳 蔡宛蓁。
+
     </div>
 
-    <button type="button" id="backContinue">
+
+    <button
+        type="button"
+        id="backContinue"
+    >
         下一頁 →
     </button>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 最後選擇 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -775,38 +1205,57 @@ button:active {
         THE LAST PAGE
     </div>
 
+
     <h2>
         最後一頁
     </h2>
 
+
     <div class="story">
+
 如果這本故事現在停在這裡，
 
 你會覺得它已經完整了嗎？
+
     </div>
+
 
     <div class="choice-area">
 
-        <button type="button" data-final="完整">
+
+        <button
+            type="button"
+            data-final="完整"
+        >
             嗯，已經很好了
         </button>
 
-        <button type="button" data-final="少一點">
+
+        <button
+            type="button"
+            data-final="少一點"
+        >
             好像還少了一點什麼
         </button>
 
-        <button type="button" data-final="繼續">
+
+        <button
+            type="button"
+            data-final="繼續"
+        >
             我想繼續看
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 告白 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
@@ -814,9 +1263,11 @@ button:active {
         NEXT PAGE
     </div>
 
+
     <div class="heart">
         ♡
     </div>
+
 
     <div class="ending">
 
@@ -844,30 +1295,42 @@ button:active {
 
     </div>
 
+
     <div class="choice-area">
 
-        <button type="button" id="yesButton">
+
+        <button
+            type="button"
+            id="yesButton"
+        >
             ♡ 那必須阿
         </button>
 
-        <button type="button" id="thinkButton">
+
+        <button
+            type="button"
+            id="thinkButton"
+        >
             ♡ 讓我想一下
         </button>
+
 
     </div>
 
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 那必須阿 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
     <div class="heart">
         ♥
     </div>
+
 
     <div class="ending">
 
@@ -894,15 +1357,17 @@ button:active {
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- 想一下 -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="page">
 
     <div class="heart">
         ♡
     </div>
+
 
     <div class="ending">
 
@@ -933,21 +1398,23 @@ button:active {
 
 </section>
 
+
 </div>
 
 
+
 <script>
+
 
 /* ================================================= */
 /* Google Apps Script */
 /* ================================================= */
 
 /*
-    這裡已經修正：
-    原本網址少了引號，會造成整支 JavaScript 無法執行。
+    這裡的網址已經加上引號。
 
-    現在即使 Google 試算表暫時有問題，
-    網頁本身也不會因此停止。
+    即使 Google Script 暫時無法回傳，
+    也不會影響故事頁面的切換。
 */
 
 const GOOGLE_SCRIPT_URL =
@@ -955,68 +1422,102 @@ const GOOGLE_SCRIPT_URL =
 
 
 /* ================================================= */
-/* 儲存答案 */
+/* 答案 */
 /* ================================================= */
 
 const answers = {
+
     chapter01: "",
+
     chapter02: "",
+
     memory: "",
+
     chapter04: "",
+
     final: "",
+
     confession: ""
+
 };
 
 
 /* ================================================= */
-/* 回傳 Google 試算表 */
+/* 傳送答案 */
 /* ================================================= */
 
-function sendAnswer(type, answer) {
+function sendAnswer(
+    type,
+    answer
+) {
 
     answers[type] = answer;
 
+
     if (!GOOGLE_SCRIPT_URL) {
+
         return;
+
     }
 
+
     const payload = {
-        time: new Date().toISOString(),
+
+        time:
+            new Date()
+                .toISOString(),
+
         ...answers
+
     };
 
-    /*
-        這裡故意不阻塞頁面。
 
-        就算 Google Script 回傳失敗，
-        故事仍然可以繼續。
+    /*
+        不阻塞故事頁面。
     */
 
     try {
 
         fetch(
+
             GOOGLE_SCRIPT_URL,
+
             {
+
                 method: "POST",
+
                 mode: "no-cors",
 
                 headers: {
+
                     "Content-Type":
                         "text/plain;charset=utf-8"
+
                 },
 
-                body: JSON.stringify(payload)
+                body:
+                    JSON.stringify(
+                        payload
+                    )
+
             }
-        ).catch(function(error) {
 
-            console.error(
-                "Google 試算表回傳失敗：",
-                error
-            );
+        ).catch(
 
-        });
+            function(error) {
 
-    } catch (error) {
+                console.error(
+                    "Google 試算表回傳失敗：",
+                    error
+                );
+
+            }
+
+        );
+
+    }
+
+    catch (error) {
 
         console.error(
             "Google Script 發生錯誤：",
@@ -1029,13 +1530,16 @@ function sendAnswer(type, answer) {
 
 
 /* ================================================= */
-/* 頁面 */
+/* 頁面控制 */
 /* ================================================= */
 
 let currentPage = 0;
 
+
 const pages =
-    document.querySelectorAll(".page");
+    document.querySelectorAll(
+        ".page"
+    );
 
 
 /* ================================================= */
@@ -1044,33 +1548,44 @@ const pages =
 
 function showPage(index) {
 
+
     if (
+
         index < 0 ||
+
         index >= pages.length
+
     ) {
+
         return;
+
     }
+
 
     pages[currentPage]
         .classList
         .remove("active");
 
+
     currentPage = index;
+
 
     pages[currentPage]
         .classList
         .add("active");
 
+
     /*
-        每次換頁都回到最上方
+        換頁後回到頁面頂端
     */
 
-    const container =
-        document.querySelector(".container");
+    window.scrollTo(
+        {
+            top: 0,
+            behavior: "smooth"
+        }
+    );
 
-    if (container) {
-        container.scrollTop = 0;
-    }
 
 }
 
@@ -1081,9 +1596,12 @@ function showPage(index) {
 
 function nextPage() {
 
+
     if (
+
         currentPage <
         pages.length - 1
+
     ) {
 
         showPage(
@@ -1096,10 +1614,11 @@ function nextPage() {
 
 
 /* ================================================= */
-/* 一般選項 */
+/* 選項 */
 /* ================================================= */
 
 function choose(answer) {
+
 
     if (currentPage === 1) {
 
@@ -1110,6 +1629,7 @@ function choose(answer) {
 
     }
 
+
     else if (currentPage === 2) {
 
         sendAnswer(
@@ -1119,6 +1639,7 @@ function choose(answer) {
 
     }
 
+
     else if (currentPage === 5) {
 
         sendAnswer(
@@ -1127,6 +1648,7 @@ function choose(answer) {
         );
 
     }
+
 
     nextPage();
 
@@ -1139,51 +1661,57 @@ function choose(answer) {
 
 function submitMemory() {
 
+
     const input =
         document.getElementById(
             "memoryInput"
         );
+
 
     const result =
         document.getElementById(
             "memoryResult"
         );
 
-    if (!input || !result) {
+
+    if (
+        !input ||
+        !result
+    ) {
+
         return;
+
     }
+
 
     const memory =
         input.value.trim();
 
-    if (memory === "") {
 
-        alert("寫一點嘛 ♡");
+    if (
+        memory === ""
+    ) {
+
+        alert(
+            "寫一點嘛 ♡"
+        );
 
         input.focus();
 
         return;
+
     }
 
-    /*
-        顯示回憶
-    */
 
     result.textContent =
         memory;
 
-    /*
-        儲存回憶
-    */
 
     sendAnswer(
         "memory",
         memory
     );
 
-    /*
-        下一頁
-    */
 
     nextPage();
 
@@ -1196,10 +1724,12 @@ function submitMemory() {
 
 function finalAnswer(answer) {
 
+
     sendAnswer(
         "final",
         answer
     );
+
 
     nextPage();
 
@@ -1212,10 +1742,12 @@ function finalAnswer(answer) {
 
 function yesAnswer() {
 
+
     sendAnswer(
         "confession",
         "♡ 那必須阿"
     );
+
 
     nextPage();
 
@@ -1228,14 +1760,12 @@ function yesAnswer() {
 
 function thinkAnswer() {
 
+
     sendAnswer(
         "confession",
         "♡ 讓我想一下"
     );
 
-    /*
-        直接前往最後一頁
-    */
 
     showPage(
         pages.length - 1
@@ -1245,19 +1775,13 @@ function thinkAnswer() {
 
 
 /* ================================================= */
-/* 綁定所有按鈕 */
+/* 按鈕事件 */
 /* ================================================= */
-
-/*
-    不再依賴 HTML 裡的 onclick。
-
-    這樣手機瀏覽器與電腦瀏覽器
-    都會使用同一套事件處理。
-*/
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
+
 
         /* ============================= */
         /* 開始 */
@@ -1267,6 +1791,7 @@ document.addEventListener(
             document.getElementById(
                 "startButton"
             );
+
 
         if (startButton) {
 
@@ -1282,6 +1807,7 @@ document.addEventListener(
         }
 
 
+
         /* ============================= */
         /* 一般選項 */
         /* ============================= */
@@ -1291,23 +1817,28 @@ document.addEventListener(
                 "[data-choice]"
             );
 
+
         choiceButtons.forEach(
             function(button) {
+
 
                 button.addEventListener(
                     "click",
                     function() {
 
-                        const answer =
-                            button.dataset.choice;
 
-                        choose(answer);
+                        choose(
+                            button.dataset.choice
+                        );
+
 
                     }
                 );
 
+
             }
         );
+
 
 
         /* ============================= */
@@ -1318,6 +1849,7 @@ document.addEventListener(
             document.getElementById(
                 "memoryButton"
             );
+
 
         if (memoryButton) {
 
@@ -1333,6 +1865,7 @@ document.addEventListener(
         }
 
 
+
         /* ============================= */
         /* 回憶繼續 */
         /* ============================= */
@@ -1341,6 +1874,7 @@ document.addEventListener(
             document.getElementById(
                 "memoryContinue"
             );
+
 
         if (memoryContinue) {
 
@@ -1356,6 +1890,7 @@ document.addEventListener(
         }
 
 
+
         /* ============================= */
         /* 回頭看 */
         /* ============================= */
@@ -1364,6 +1899,7 @@ document.addEventListener(
             document.getElementById(
                 "backContinue"
             );
+
 
         if (backContinue) {
 
@@ -1379,6 +1915,7 @@ document.addEventListener(
         }
 
 
+
         /* ============================= */
         /* 最後選擇 */
         /* ============================= */
@@ -1388,23 +1925,28 @@ document.addEventListener(
                 "[data-final]"
             );
 
+
         finalButtons.forEach(
             function(button) {
+
 
                 button.addEventListener(
                     "click",
                     function() {
 
-                        const answer =
-                            button.dataset.final;
 
-                        finalAnswer(answer);
+                        finalAnswer(
+                            button.dataset.final
+                        );
+
 
                     }
                 );
 
+
             }
         );
+
 
 
         /* ============================= */
@@ -1415,6 +1957,7 @@ document.addEventListener(
             document.getElementById(
                 "yesButton"
             );
+
 
         if (yesButton) {
 
@@ -1430,6 +1973,7 @@ document.addEventListener(
         }
 
 
+
         /* ============================= */
         /* 讓我想一下 */
         /* ============================= */
@@ -1438,6 +1982,7 @@ document.addEventListener(
             document.getElementById(
                 "thinkButton"
             );
+
 
         if (thinkButton) {
 
@@ -1453,6 +1998,7 @@ document.addEventListener(
         }
 
 
+
         /* ============================= */
         /* Enter 送出回憶 */
         /* ============================= */
@@ -1462,11 +2008,14 @@ document.addEventListener(
                 "memoryInput"
             );
 
+
         if (memoryInput) {
+
 
             memoryInput.addEventListener(
                 "keydown",
                 function(event) {
+
 
                     if (
                         event.key === "Enter"
@@ -1478,30 +2027,21 @@ document.addEventListener(
 
                     }
 
+
                 }
             );
 
+
         }
+
 
     }
 );
 
 </script>
 
+
 </body>
+
 </html>
 ```
-
-這份是依照你剛剛上傳的原始 `index.html` 完整整理的；原本的故事內容、章節順序和選項都保留了。
-
-**你現在不要一段一段改。**
-
-直接：
-
-**GitHub → `love-story` → `index.html` → 全選原本內容 → 刪除 → 貼上我上面這整份 → Commit changes。**
-
-然後重新開：
-
-`https://frachlitz0128-art.github.io/love-story/`
-
-第一個「**按我一下! →**」應該就可以正常進下一頁。
