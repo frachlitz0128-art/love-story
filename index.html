@@ -2,16 +2,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>我們的故事</title>
 
+
 <style>
 
-/* =========================
+/* =====================================================
    基本設定
-========================= */
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -27,112 +33,258 @@ body {
 body {
     background: #05070c;
     color: #fff;
+
     font-family:
         "Noto Sans TC",
         "PingFang TC",
         "Microsoft JhengHei",
         sans-serif;
+
     overflow-x: hidden;
 }
 
 
-/* =========================
+/* =====================================================
    星空背景
-========================= */
+===================================================== */
 
 .stars {
     position: fixed;
     inset: 0;
+
     z-index: 0;
+
     pointer-events: none;
 
     background:
-        radial-gradient(2px 2px at 5% 12%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(1px 1px at 10% 42%, rgba(255,255,255,.65), transparent 60%),
-        radial-gradient(2px 2px at 15% 78%, rgba(255,255,255,.8), transparent 60%),
-        radial-gradient(1px 1px at 21% 22%, rgba(255,255,255,.55), transparent 60%),
-        radial-gradient(2px 2px at 27% 55%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(1px 1px at 32% 87%, rgba(255,255,255,.7), transparent 60%),
-        radial-gradient(2px 2px at 38% 30%, rgba(255,255,255,.85), transparent 60%),
-        radial-gradient(1px 1px at 43% 68%, rgba(255,255,255,.65), transparent 60%),
-        radial-gradient(2px 2px at 49% 10%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(1px 1px at 54% 46%, rgba(255,255,255,.6), transparent 60%),
-        radial-gradient(2px 2px at 59% 82%, rgba(255,255,255,.85), transparent 60%),
-        radial-gradient(1px 1px at 64% 25%, rgba(255,255,255,.7), transparent 60%),
-        radial-gradient(2px 2px at 69% 59%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(1px 1px at 74% 91%, rgba(255,255,255,.6), transparent 60%),
-        radial-gradient(2px 2px at 80% 18%, rgba(255,255,255,.85), transparent 60%),
-        radial-gradient(1px 1px at 85% 43%, rgba(255,255,255,.65), transparent 60%),
-        radial-gradient(2px 2px at 90% 73%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(1px 1px at 96% 32%, rgba(255,255,255,.65), transparent 60%),
-        radial-gradient(1px 1px at 8% 92%, rgba(255,255,255,.5), transparent 60%),
-        radial-gradient(1px 1px at 24% 8%, rgba(255,255,255,.55), transparent 60%),
-        radial-gradient(1px 1px at 47% 58%, rgba(255,255,255,.5), transparent 60%),
-        radial-gradient(1px 1px at 71% 8%, rgba(255,255,255,.55), transparent 60%),
-        radial-gradient(1px 1px at 93% 52%, rgba(255,255,255,.55), transparent 60%);
+
+        radial-gradient(
+            2px 2px at 5% 12%,
+            rgba(255,255,255,.9),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 10% 42%,
+            rgba(255,255,255,.65),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 15% 78%,
+            rgba(255,255,255,.8),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 21% 22%,
+            rgba(255,255,255,.55),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 27% 55%,
+            rgba(255,255,255,.9),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 32% 87%,
+            rgba(255,255,255,.7),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 38% 30%,
+            rgba(255,255,255,.85),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 43% 68%,
+            rgba(255,255,255,.65),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 49% 10%,
+            rgba(255,255,255,.9),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 54% 46%,
+            rgba(255,255,255,.6),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 59% 82%,
+            rgba(255,255,255,.85),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 64% 25%,
+            rgba(255,255,255,.7),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 69% 59%,
+            rgba(255,255,255,.9),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 74% 91%,
+            rgba(255,255,255,.6),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 80% 18%,
+            rgba(255,255,255,.85),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 85% 43%,
+            rgba(255,255,255,.65),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            2px 2px at 90% 73%,
+            rgba(255,255,255,.9),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 96% 32%,
+            rgba(255,255,255,.65),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 8% 92%,
+            rgba(255,255,255,.5),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 24% 8%,
+            rgba(255,255,255,.55),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 47% 58%,
+            rgba(255,255,255,.5),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 71% 8%,
+            rgba(255,255,255,.55),
+            transparent 60%
+        ),
+
+        radial-gradient(
+            1px 1px at 93% 52%,
+            rgba(255,255,255,.55),
+            transparent 60%
+        );
 
     animation: starMove 20s ease-in-out infinite;
 }
 
 @keyframes starMove {
+
     0% {
-        transform: translate3d(0, 0, 0) scale(1);
+        transform:
+            translate3d(0,0,0)
+            scale(1);
     }
 
     50% {
-        transform: translate3d(-8px, -5px, 0) scale(1.015);
+        transform:
+            translate3d(-8px,-5px,0)
+            scale(1.015);
     }
 
     100% {
-        transform: translate3d(0, 0, 0) scale(1);
+        transform:
+            translate3d(0,0,0)
+            scale(1);
     }
 }
 
 
-/* =========================
+/* =====================================================
    開場黑幕
-========================= */
+===================================================== */
 
 .intro {
     position: fixed;
     inset: 0;
+
     z-index: 10000;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     background: #000;
 
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
 
-    animation: introAutoHide 4.5s ease forwards;
+    animation:
+        introAutoHide
+        4.5s
+        ease
+        forwards;
 }
 
 .intro-content {
     text-align: center;
+
     padding: 30px;
 }
 
 .intro-title {
+
     font-size: 13px;
+
     letter-spacing: 6px;
+
     opacity: .55;
+
     margin-bottom: 24px;
 }
 
 .intro-main {
+
     font-size: 28px;
+
     letter-spacing: 4px;
+
     font-weight: 300;
 }
 
 .intro-sub {
+
     margin-top: 18px;
+
     font-size: 13px;
+
     letter-spacing: 3px;
+
     opacity: .5;
 }
 
@@ -140,42 +292,58 @@ body {
 
     0%,
     62% {
+
         opacity: 1;
+
         visibility: visible;
     }
 
     100% {
+
         opacity: 0;
+
         visibility: hidden;
+
         pointer-events: none;
     }
 }
 
 .intro.hide {
+
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
+
     animation: none;
 }
 
 
-/* =========================
+/* =====================================================
    黑幕電影轉場
-========================= */
+===================================================== */
 
 .page-transition {
+
     position: fixed;
+
     inset: 0;
+
     z-index: 9990;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     background: #000;
 
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 
     transition:
@@ -184,60 +352,78 @@ body {
 }
 
 .page-transition.show {
+
     opacity: 1;
+
     visibility: visible;
 }
 
 .transition-text {
+
     width: min(90%, 700px);
 
     text-align: center;
 
     font-size: 20px;
+
     line-height: 2;
+
     letter-spacing: 3px;
 
     font-weight: 300;
 }
 
 .transition-text span {
+
     display: inline-block;
 
     opacity: 0;
+
     transform: translateY(10px);
 
-    animation: transitionChar .65s ease forwards;
+    animation:
+        transitionChar
+        .65s
+        ease
+        forwards;
 }
 
 @keyframes transitionChar {
 
     0% {
+
         opacity: 0;
+
         transform: translateY(10px);
     }
 
     100% {
+
         opacity: 1;
+
         transform: translateY(0);
     }
 }
 
 
-/* =========================
+/* =====================================================
    頁面
-========================= */
+===================================================== */
 
 .page {
+
     position: relative;
 
     z-index: 2;
 
     width: 100%;
+
     min-height: 100vh;
 
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
     padding: 70px 24px;
@@ -246,89 +432,129 @@ body {
 }
 
 .page.active {
+
     display: flex;
 }
 
 .page-enter {
-    animation: pageEnter .9s ease both;
+
+    animation:
+        pageEnter
+        .9s
+        ease
+        both;
 }
 
 @keyframes pageEnter {
 
     from {
+
         opacity: 0;
-        transform: translateY(18px);
+
+        transform:
+            translateY(18px);
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 }
 
 
-/* =========================
-   內容
-========================= */
+/* =====================================================
+   故事內容
+===================================================== */
 
 .story {
+
     width: min(680px, 100%);
+
     text-align: center;
 }
 
 .chapter {
+
     margin-bottom: 22px;
 
     font-size: 11px;
+
     letter-spacing: 5px;
 
-    color: rgba(255,255,255,.45);
+    color:
+        rgba(255,255,255,.45);
 }
 
 .title {
+
     margin-bottom: 34px;
 
-    font-size: clamp(28px, 6vw, 42px);
+    font-size:
+        clamp(
+            28px,
+            6vw,
+            42px
+        );
+
     font-weight: 300;
 
     letter-spacing: 4px;
 }
 
 .story-text {
+
     font-size: 16px;
+
     line-height: 2.3;
 
     letter-spacing: 1.5px;
 
-    color: rgba(255,255,255,.82);
+    color:
+        rgba(255,255,255,.82);
 
     white-space: pre-line;
 }
 
 .story-text strong {
+
     color: #fff;
+
     font-weight: 400;
 }
 
 
-/* =========================
+/* =====================================================
    按鈕
-========================= */
+===================================================== */
 
 button {
+
     appearance: none;
 
     margin-top: 42px;
-    padding: 13px 28px;
 
-    border: 1px solid rgba(255,255,255,.28);
+    padding:
+        13px
+        28px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.28);
+
     border-radius: 999px;
 
-    background: rgba(255,255,255,.04);
+    background:
+        rgba(255,255,255,.04);
+
     color: #fff;
 
     font-family: inherit;
+
     font-size: 14px;
+
     letter-spacing: 2px;
 
     cursor: pointer;
@@ -340,24 +566,34 @@ button {
 }
 
 button:hover {
-    background: rgba(255,255,255,.12);
-    border-color: rgba(255,255,255,.55);
-    transform: translateY(-2px);
+
+    background:
+        rgba(255,255,255,.12);
+
+    border-color:
+        rgba(255,255,255,.55);
+
+    transform:
+        translateY(-2px);
 }
 
 button:active {
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
 
-/* =========================
+/* =====================================================
    選項
-========================= */
+===================================================== */
 
 .choices {
+
     display: flex;
 
     flex-direction: column;
+
     align-items: center;
 
     gap: 14px;
@@ -366,138 +602,178 @@ button:active {
 }
 
 .choices button {
-    width: min(420px, 100%);
+
+    width: min(420px,100%);
+
     margin-top: 0;
 }
 
 
-/* =========================
-   回憶輸入
-========================= */
+/* =====================================================
+   回憶
+===================================================== */
 
 .memory-box {
+
     margin-top: 36px;
 }
 
 textarea {
+
     display: block;
 
     width: 100%;
+
     min-height: 150px;
 
     padding: 20px;
 
-    border: 1px solid rgba(255,255,255,.2);
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
     border-radius: 16px;
 
     outline: none;
 
     resize: vertical;
 
-    background: rgba(255,255,255,.04);
+    background:
+        rgba(255,255,255,.04);
+
     color: #fff;
 
     font-family: inherit;
+
     font-size: 15px;
+
     line-height: 1.9;
 
-    transition: border-color .3s ease;
+    transition:
+        border-color .3s ease;
 }
 
 textarea:focus {
-    border-color: rgba(255,255,255,.5);
+
+    border-color:
+        rgba(255,255,255,.5);
 }
 
 textarea::placeholder {
-    color: rgba(255,255,255,.35);
+
+    color:
+        rgba(255,255,255,.35);
 }
 
 .memory-result {
+
     margin-top: 38px;
 
     padding: 25px;
 
-    border-top: 1px solid rgba(255,255,255,.12);
-    border-bottom: 1px solid rgba(255,255,255,.12);
+    border-top:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
 
     font-size: 17px;
+
     line-height: 2;
 
-    color: rgba(255,255,255,.85);
+    color:
+        rgba(255,255,255,.85);
 
     white-space: pre-line;
 }
 
 
-/* =========================
-   黑幕／柔和／浪漫
-========================= */
-
-.page.soft {
-    background: transparent;
-}
-
-.page.romance {
-    background: transparent;
-}
+/* =====================================================
+   結尾
+===================================================== */
 
 .ending {
+
     text-align: center;
 }
 
 .ending strong {
+
     display: block;
 
     margin-top: 30px;
 
     font-size: 23px;
+
     font-weight: 300;
 
     letter-spacing: 3px;
 }
 
 
-/* =========================
-   ❤️ 愛心
-========================= */
+/* =====================================================
+   愛心
+===================================================== */
 
 .heart {
+
     position: relative;
 
     width: 58px;
+
     height: 58px;
 
-    margin: 0 auto 42px;
+    margin:
+        0
+        auto
+        42px;
 
-    background: rgba(255,255,255,.15);
+    background:
+        rgba(255,255,255,.15);
 
-    transform: rotate(-45deg);
-    transform-origin: center center;
+    transform:
+        rotate(-45deg);
 
-    animation: heartBeat 2s ease-in-out infinite;
+    transform-origin:
+        center center;
+
+    animation:
+        heartBeat
+        2s
+        ease-in-out
+        infinite;
 }
 
 .heart::before,
 .heart::after {
+
     content: "";
 
     position: absolute;
 
     width: 58px;
+
     height: 58px;
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.15);
+    background:
+        rgba(255,255,255,.15);
 }
 
 .heart::before {
+
     left: 0;
+
     top: -29px;
 }
 
 .heart::after {
+
     left: 29px;
+
     top: 0;
 }
 
@@ -505,115 +781,138 @@ textarea::placeholder {
 
     0%,
     100% {
-        transform: rotate(-45deg) scale(.92);
+
+        transform:
+            rotate(-45deg)
+            scale(.92);
     }
 
     50% {
-        transform: rotate(-45deg) scale(1.05);
+
+        transform:
+            rotate(-45deg)
+            scale(1.05);
     }
 }
 
 
-/* =========================
-   小字
-========================= */
-
-.muted {
-    margin-top: 22px;
-
-    font-size: 12px;
-
-    color: rgba(255,255,255,.4);
-
-    letter-spacing: 2px;
-}
-
-
-/* =========================
+/* =====================================================
    手機版
-========================= */
+===================================================== */
 
 @media (max-width: 600px) {
 
     .page {
-        padding: 55px 20px;
+
+        padding:
+            55px
+            20px;
     }
 
     .intro-main {
+
         font-size: 23px;
     }
 
     .transition-text {
+
         font-size: 17px;
+
         line-height: 2;
+
         letter-spacing: 2px;
     }
 
     .story-text {
+
         font-size: 15px;
+
         line-height: 2.15;
     }
 
     .title {
+
         margin-bottom: 28px;
     }
 
     .heart {
+
         width: 50px;
+
         height: 50px;
+
         margin-bottom: 38px;
     }
 
     .heart::before,
     .heart::after {
+
         width: 50px;
+
         height: 50px;
     }
 
     .heart::before {
+
         top: -25px;
     }
 
     .heart::after {
+
         left: 25px;
     }
 
     textarea {
+
         min-height: 140px;
     }
 }
 
 
-/* =========================
+/* =====================================================
    減少動畫
-========================= */
+===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
     }
 }
 
 </style>
+
 </head>
 
 
 <body>
 
-<!-- 星空 -->
+
+<!-- =====================================================
+     星空
+===================================================== -->
+
 <div class="stars"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      開場
-========================= -->
+===================================================== -->
 
-<div class="intro" id="intro">
+<div
+    class="intro"
+    id="intro"
+>
 
     <div class="intro-content">
 
@@ -634,22 +933,31 @@ textarea::placeholder {
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      黑幕轉場
-========================= -->
+===================================================== -->
 
-<div class="page-transition" id="pageTransition">
+<div
+    class="page-transition"
+    id="pageTransition"
+>
 
-    <div class="transition-text" id="transitionText"></div>
+    <div
+        class="transition-text"
+        id="transitionText"
+    ></div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 0
-========================= -->
+===================================================== -->
 
-<section class="page active" data-page="0">
+<section
+    class="page active"
+    data-page="0"
+>
 
     <div class="story">
 
@@ -678,11 +986,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 1
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="1">
+<section
+    class="page"
+    data-page="1"
+>
 
     <div class="story">
 
@@ -702,15 +1013,21 @@ textarea::placeholder {
 
         <div class="choices">
 
-            <button onclick="choose('第一次')">
+            <button
+                onclick="choose('第一次')"
+            >
                 只是聊天
             </button>
 
-            <button onclick="choose('特別')">
+            <button
+                onclick="choose('特別')"
+            >
                 有一點特別
             </button>
 
-            <button onclick="choose('不知道')">
+            <button
+                onclick="choose('不知道')"
+            >
                 誰知道呢
             </button>
 
@@ -721,11 +1038,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 2
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="2">
+<section
+    class="page"
+    data-page="2"
+>
 
     <div class="story">
 
@@ -745,15 +1065,21 @@ textarea::placeholder {
 
         <div class="choices">
 
-            <button onclick="choose('聊天')">
+            <button
+                onclick="choose('聊天')"
+            >
                 第一次聊很久的那天
             </button>
 
-            <button onclick="choose('蘆竹')">
+            <button
+                onclick="choose('蘆竹')"
+            >
                 第一次去蘆竹見到面
             </button>
 
-            <button onclick="choose('不知道')">
+            <button
+                onclick="choose('不知道')"
+            >
                 其實我也不知道
             </button>
 
@@ -764,11 +1090,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 3
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="3">
+<section
+    class="page"
+    data-page="3"
+>
 
     <div class="story">
 
@@ -795,7 +1124,9 @@ textarea::placeholder {
                 placeholder="寫下妳記得的那一天..."
             ></textarea>
 
-            <button onclick="submitMemory()">
+            <button
+                onclick="submitMemory()"
+            >
                 寫好了 →
             </button>
 
@@ -811,11 +1142,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 4
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="4">
+<section
+    class="page"
+    data-page="4"
+>
 
     <div class="story">
 
@@ -832,7 +1166,9 @@ textarea::placeholder {
             id="memoryDisplay"
         ></div>
 
-        <button onclick="nextPage()">
+        <button
+            onclick="nextPage()"
+        >
             繼續 →
         </button>
 
@@ -841,11 +1177,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 5
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="5">
+<section
+    class="page"
+    data-page="5"
+>
 
     <div class="story">
 
@@ -865,15 +1204,21 @@ textarea::placeholder {
 
         <div class="choices">
 
-            <button onclick="choose('未來一')">
+            <button
+                onclick="choose('未來一')"
+            >
                 【說好買狗勾】
             </button>
 
-            <button onclick="choose('未來二')">
+            <button
+                onclick="choose('未來二')"
+            >
                 【一起為了租房子討論到早上】
             </button>
 
-            <button onclick="choose('未來三')">
+            <button
+                onclick="choose('未來三')"
+            >
                 【妳有邏輯 我有責任】
             </button>
 
@@ -884,11 +1229,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 6
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="6">
+<section
+    class="page"
+    data-page="6"
+>
 
     <div class="story">
 
@@ -910,7 +1258,9 @@ textarea::placeholder {
 但那些都是真的發生過。
         </div>
 
-        <button onclick="nextPage()">
+        <button
+            onclick="nextPage()"
+        >
             繼續
         </button>
 
@@ -919,11 +1269,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 7
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="7">
+<section
+    class="page"
+    data-page="7"
+>
 
     <div class="story">
 
@@ -943,15 +1296,21 @@ textarea::placeholder {
 
         <div class="choices">
 
-            <button onclick="finalAnswer('完整')">
+            <button
+                onclick="finalAnswer('完整')"
+            >
                 我想把它寫完整
             </button>
 
-            <button onclick="finalAnswer('少一點')">
+            <button
+                onclick="finalAnswer('少一點')"
+            >
                 我覺得這樣就很好
             </button>
 
-            <button onclick="finalAnswer('繼續')">
+            <button
+                onclick="finalAnswer('繼續')"
+            >
                 我想繼續
             </button>
 
@@ -962,11 +1321,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 8
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="8">
+<section
+    class="page"
+    data-page="8"
+>
 
     <div class="story ending">
 
@@ -990,11 +1352,15 @@ textarea::placeholder {
 
         <div class="choices">
 
-            <button onclick="yesAnswer()">
+            <button
+                onclick="yesAnswer()"
+            >
                 ♡ 那必須阿
             </button>
 
-            <button onclick="thinkAnswer()">
+            <button
+                onclick="thinkAnswer()"
+            >
                 ♡ 讓我想一下
             </button>
 
@@ -1005,11 +1371,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 9
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="9">
+<section
+    class="page"
+    data-page="9"
+>
 
     <div class="story ending">
 
@@ -1036,11 +1405,14 @@ textarea::placeholder {
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PAGE 10
-========================= -->
+===================================================== -->
 
-<section class="page" data-page="10">
+<section
+    class="page"
+    data-page="10"
+>
 
     <div class="story ending">
 
@@ -1067,41 +1439,52 @@ textarea::placeholder {
 </section>
 
 
+
 <script>
 
-/* =========================
+/* =====================================================
    Google Apps Script
-========================= */
+===================================================== */
 
 const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwNJRCa6o5GI-_lES0frYR7mtsZ9PkFv-IUGQpiPg014UhGCtPtF8Utzivx-OldXQXzmQ/exec";
 
 
-/* =========================
-   答案資料
-========================= */
+/* =====================================================
+   所有答案
+===================================================== */
 
 const answers = {
 
     chapter01: "",
+
     chapter02: "",
+
     memory: "",
+
     chapter04: "",
+
     final: "",
+
     confession: ""
 
 };
 
 
-/* =========================
+/* =====================================================
    頁面
-========================= */
+===================================================== */
 
 const pages = [
     ...document.querySelectorAll(".page")
 ];
 
 let currentPage = 0;
+
+
+/* =====================================================
+   防止重複點擊
+===================================================== */
 
 let isTransitioning = false;
 
@@ -1110,9 +1493,9 @@ let transitionTimer = null;
 let hideTransitionTimer = null;
 
 
-/* =========================
+/* =====================================================
    黑幕標題
-========================= */
+===================================================== */
 
 const transitionTitles = {
 
@@ -1141,21 +1524,25 @@ const transitionTitles = {
 };
 
 
-/* =========================
-   每個選項的專屬回話
-========================= */
+/* =====================================================
+   每個選項專屬回話
+===================================================== */
 
 const choiceResponses = {
 
+
     chapter01: {
 
-        "第一次": `所以對妳來說，
+        "第一次":
+`所以對妳來說，
 那時候真的只是聊天。`,
 
-        "特別": `原來那個時候，
+        "特別":
+`原來那個時候，
 妳也有覺得我有一點特別。`,
 
-        "不知道": `妳還是這樣，
+        "不知道":
+`妳還是這樣，
 什麼都不肯好好承認！嘴硬！`
 
     },
@@ -1163,17 +1550,20 @@ const choiceResponses = {
 
     chapter02: {
 
-        "聊天": `原來妳也記得，
+        "聊天":
+`原來妳也記得，
 那些聊到捨不得睡的晚上。
 那時候的我們，
 好像就已經慢慢習慣彼此了。`,
 
-        "蘆竹": `原來那一次去蘆竹見到妳，
+        "蘆竹":
+`原來那一次去蘆竹見到妳，
 不只是第一次見面。
 好像也是從那一天開始，
 妳慢慢走進了我的生活。`,
 
-        "不知道": `不知道也沒關係。
+        "不知道":
+`不知道也沒關係。
 有些依賴，本來就不是自己發現的。
 只是妳啊……
 又嘴硬了。 😏`
@@ -1183,7 +1573,8 @@ const choiceResponses = {
 
     chapter04: {
 
-        "未來一": `妳看，
+        "未來一":
+`妳看，
 我們連還沒發生的生活，
 都已經偷偷計畫好了。
 
@@ -1191,12 +1582,14 @@ const choiceResponses = {
 我陪妳一起養，
 因為我需要妳陪著我走下去。`,
 
-        "未來二": `連還沒發生的生活，
+        "未來二":
+`連還沒發生的生活，
 我們都可以討論到天亮。
 原來所謂的以後，
 不是想像而已。`,
 
-        "未來三": `妳負責想清楚，
+        "未來三":
+`妳負責想清楚，
 我負責把我們說過的事情，
 一件一件做到。`
 
@@ -1205,14 +1598,17 @@ const choiceResponses = {
 
     final: {
 
-        "完整": `我知道。
+        "完整":
+`我知道。
 只是如果故事停在這裡，
 我總覺得還有一點可惜。`,
 
-        "少一點": `我也是這麼想的，
+        "少一點":
+`我也是這麼想的，
 所以我才把這一頁留給妳。`,
 
-        "繼續": `那就繼續吧。
+        "繼續":
+`那就繼續吧。
 但下一頁開始，
 我不想再一個人寫了。`
 
@@ -1221,74 +1617,101 @@ const choiceResponses = {
 };
 
 
-/* =========================
-   轉場文字動畫
-========================= */
+/* =====================================================
+   字幕逐字動畫
+===================================================== */
 
 function animateTransitionText(text) {
 
     const container =
-        document.getElementById("transitionText");
+        document.getElementById(
+            "transitionText"
+        );
 
     container.innerHTML = "";
 
+
     if (!text) {
+
         return 700;
+
     }
+
 
     const chars = [...text];
 
+
     let delayPerChar;
+
 
     if (chars.length <= 20) {
 
         delayPerChar = 65;
 
-    } else if (chars.length <= 35) {
+    }
+
+    else if (chars.length <= 35) {
 
         delayPerChar = 55;
 
-    } else if (chars.length <= 50) {
+    }
+
+    else if (chars.length <= 50) {
 
         delayPerChar = 45;
 
-    } else if (chars.length <= 80) {
+    }
+
+    else if (chars.length <= 80) {
 
         delayPerChar = 34;
 
-    } else {
+    }
+
+    else {
 
         delayPerChar = 28;
 
     }
 
 
-    chars.forEach((char, index) => {
+    chars.forEach(
+        (char, index) => {
 
-        const span =
-            document.createElement("span");
+            const span =
+                document.createElement(
+                    "span"
+                );
 
-        span.textContent =
-            char === "\n" ? " " : char;
+            span.textContent =
+                char === "\n"
+                    ? " "
+                    : char;
 
-        span.style.animationDelay =
-            `${index * delayPerChar}ms`;
+            span.style.animationDelay =
+                `${index * delayPerChar}ms`;
 
-        container.appendChild(span);
+            container.appendChild(
+                span
+            );
 
-    });
+        }
+    );
 
 
     return Math.min(
-        (chars.length - 1) * delayPerChar + 750,
+        (chars.length - 1)
+            * delayPerChar
+            + 750,
+
         6500
     );
 }
 
 
-/* =========================
+/* =====================================================
    轉場類型
-========================= */
+===================================================== */
 
 function getTransitionType(index) {
 
@@ -1298,11 +1721,13 @@ function getTransitionType(index) {
 
     }
 
+
     if (index >= 8) {
 
         return "romance";
 
     }
+
 
     if (index === 7) {
 
@@ -1310,45 +1735,59 @@ function getTransitionType(index) {
 
     }
 
+
     return "";
 
 }
 
 
-/* =========================
+/* =====================================================
    顯示頁面
-========================= */
+===================================================== */
 
 function showPage(index) {
 
-    pages.forEach(page => {
+    pages.forEach(
+        page => {
 
-        page.classList.remove(
-            "active",
-            "page-enter"
-        );
+            page.classList.remove(
+                "active",
+                "page-enter"
+            );
 
-    });
+        }
+    );
 
 
-    const page = pages[index];
+    const page =
+        pages[index];
+
 
     if (!page) {
+
         return;
+
     }
 
 
-    page.classList.add("active");
+    page.classList.add(
+        "active"
+    );
 
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(
+        () => {
 
-        page.classList.add("page-enter");
+            page.classList.add(
+                "page-enter"
+            );
 
-    });
+        }
+    );
 
 
-    currentPage = index;
+    currentPage =
+        index;
 
 
     /* 回憶頁 */
@@ -1356,7 +1795,10 @@ function showPage(index) {
     if (index === 4) {
 
         const display =
-            document.getElementById("memoryDisplay");
+            document.getElementById(
+                "memoryDisplay"
+            );
+
 
         if (display) {
 
@@ -1368,14 +1810,14 @@ function showPage(index) {
     }
 
 
-    isTransitioning = false;
-
+    isTransitioning =
+        false;
 }
 
 
-/* =========================
+/* =====================================================
    黑幕轉場
-========================= */
+===================================================== */
 
 function transitionToPage(
     index,
@@ -1387,30 +1829,45 @@ function transitionToPage(
         index < 0 ||
         index >= pages.length
     ) {
+
         return;
+
     }
 
 
-    if (index === currentPage) {
+    if (
+        index === currentPage
+    ) {
+
         return;
+
     }
 
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
-    isTransitioning = true;
+    isTransitioning =
+        true;
 
 
-    clearTimeout(transitionTimer);
+    clearTimeout(
+        transitionTimer
+    );
 
-    clearTimeout(hideTransitionTimer);
+    clearTimeout(
+        hideTransitionTimer
+    );
 
 
     const overlay =
-        document.getElementById("pageTransition");
+        document.getElementById(
+            "pageTransition"
+        );
 
 
     const text =
@@ -1430,20 +1887,28 @@ function transitionToPage(
 
     if (type) {
 
-        overlay.classList.add(type);
+        overlay.classList.add(
+            type
+        );
 
     }
 
 
     const animationTime =
-        animateTransitionText(text);
+        animateTransitionText(
+            text
+        );
 
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(
+        () => {
 
-        overlay.classList.add("show");
+            overlay.classList.add(
+                "show"
+            );
 
-    });
+        }
+    );
 
 
     const showTime =
@@ -1453,36 +1918,51 @@ function transitionToPage(
         );
 
 
-    transitionTimer = setTimeout(() => {
+    transitionTimer =
+        setTimeout(
+            () => {
 
-        showPage(index);
-
-
-        hideTransitionTimer =
-            setTimeout(() => {
-
-                overlay.classList.remove("show");
-
-            }, 900);
+                showPage(index);
 
 
-    }, showTime);
+                hideTransitionTimer =
+                    setTimeout(
+                        () => {
+
+                            overlay.classList.remove(
+                                "show"
+                            );
+
+                        },
+
+                        900
+                    );
+
+            },
+
+            showTime
+        );
 
 }
 
 
-/* =========================
+/* =====================================================
    下一頁
-========================= */
+===================================================== */
 
 function nextPage() {
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
-    if (currentPage < pages.length - 1) {
+    if (
+        currentPage <
+        pages.length - 1
+    ) {
 
         transitionToPage(
             currentPage + 1
@@ -1493,92 +1973,107 @@ function nextPage() {
 }
 
 
-/* =========================
+/* =====================================================
    選擇
-========================= */
+===================================================== */
 
 function choose(choice) {
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
     let response = "";
 
 
+    /* CHAPTER 01 */
+
     if (currentPage === 1) {
 
         answers.chapter01 =
             choice;
 
+
         response =
-            choiceResponses.chapter01[choice];
+            choiceResponses
+                .chapter01[choice];
 
     }
 
 
-    else if (currentPage === 2) {
+    /* CHAPTER 02 */
+
+    else if (
+        currentPage === 2
+    ) {
 
         answers.chapter02 =
             choice;
 
+
         response =
-            choiceResponses.chapter02[choice];
+            choiceResponses
+                .chapter02[choice];
 
     }
 
 
-    else if (currentPage === 5) {
+    /* CHAPTER 04 */
+
+    else if (
+        currentPage === 5
+    ) {
 
         answers.chapter04 =
             choice;
 
+
         response =
-            choiceResponses.chapter04[choice];
+            choiceResponses
+                .chapter04[choice];
 
     }
-
-
-    else {
-
-        console.log(
-            "未定義選項：",
-            choice
-        );
-
-    }
-
-
-    sendAnswer();
 
 
     transitionToPage(
+
         currentPage + 1,
+
         null,
+
         response
+
     );
 
 }
 
 
-/* =========================
+/* =====================================================
    回憶
-========================= */
+===================================================== */
 
 function submitMemory() {
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
     const input =
-        document.getElementById("memoryInput");
+        document.getElementById(
+            "memoryInput"
+        );
 
 
     const result =
-        document.getElementById("memoryResult");
+        document.getElementById(
+            "memoryResult"
+        );
 
 
     const value =
@@ -1587,7 +2082,9 @@ function submitMemory() {
 
     if (!value) {
 
-        alert("寫一點妳記得的事情吧。");
+        alert(
+            "寫一點妳記得的事情吧。"
+        );
 
         input.focus();
 
@@ -1604,26 +2101,29 @@ function submitMemory() {
         value;
 
 
-    sendAnswer();
-
-
     transitionToPage(
+
         4,
+
         "soft",
+
         "有些回憶，我們都記得"
+
     );
 
 }
 
 
-/* =========================
-   最後一頁選擇
-========================= */
+/* =====================================================
+   最後一頁
+===================================================== */
 
 function finalAnswer(choice) {
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
@@ -1632,29 +2132,33 @@ function finalAnswer(choice) {
 
 
     const response =
-        choiceResponses.final[choice];
-
-
-    sendAnswer();
+        choiceResponses
+            .final[choice];
 
 
     transitionToPage(
+
         8,
+
         "dark",
+
         response
+
     );
 
 }
 
 
-/* =========================
-   告白 YES
-========================= */
+/* =====================================================
+   那必須阿
+===================================================== */
 
 function yesAnswer() {
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
@@ -1662,26 +2166,37 @@ function yesAnswer() {
         "那必須阿";
 
 
+    /*
+       到最後才真正送出
+       一整份完整答案
+    */
+
     sendAnswer();
 
 
     transitionToPage(
+
         9,
+
         "romance",
+
         "那就說好了"
+
     );
 
 }
 
 
-/* =========================
-   告白 THINK
-========================= */
+/* =====================================================
+   讓我想一下
+===================================================== */
 
 function thinkAnswer() {
 
     if (isTransitioning) {
+
         return;
+
     }
 
 
@@ -1689,98 +2204,160 @@ function thinkAnswer() {
         "讓我想一下";
 
 
+    /*
+       到最後才真正送出
+       一整份完整答案
+    */
+
     sendAnswer();
 
 
     transitionToPage(
+
         10,
+
         "romance",
+
         "沒關係，我會等妳"
+
     );
 
 }
 
 
-/* =========================
-   傳送答案
-========================= */
+/* =====================================================
+   傳送完整資料到 Google 試算表
+===================================================== */
 
 function sendAnswer() {
 
-    try {
+    const payload = {
 
-        fetch(
-            GOOGLE_SCRIPT_URL,
-            {
-                method: "POST",
+        time:
+            new Date().toISOString(),
 
-                mode: "no-cors",
+        chapter01:
+            answers.chapter01 || "",
 
-                headers: {
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
-                },
+        chapter02:
+            answers.chapter02 || "",
 
-                body: JSON.stringify({
+        memory:
+            answers.memory || "",
 
-                    time:
-                        new Date().toISOString(),
+        chapter04:
+            answers.chapter04 || "",
 
-                    ...answers
+        final:
+            answers.final || "",
 
-                })
+        confession:
+            answers.confession || ""
 
-            }
-        );
+    };
 
-    } catch (error) {
 
-        console.error(
-            "資料傳送失敗：",
-            error
-        );
+    console.log(
+        "準備送出資料：",
+        payload
+    );
 
-    }
+
+    fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+
+            },
+
+            body:
+                JSON.stringify(
+                    payload
+                )
+
+        }
+
+    )
+
+    .then(
+        () => {
+
+            console.log(
+                "愛情故事資料已送出",
+                payload
+            );
+
+        }
+    )
+
+    .catch(
+        error => {
+
+            console.error(
+                "Google 試算表資料傳送失敗：",
+                error
+            );
+
+        }
+    );
 
 }
 
 
-/* =========================
+/* =====================================================
    開場黑幕
-========================= */
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
         const intro =
-            document.getElementById("intro");
+            document.getElementById(
+                "intro"
+            );
 
 
         if (!intro) {
+
             return;
+
         }
 
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            intro.classList.add("hide");
+                intro.classList.add(
+                    "hide"
+                );
 
-        }, 3000);
+            },
+
+            3000
+        );
 
     }
 );
 
 
-/* =========================
-   確保第一頁正常顯示
-========================= */
+/* =====================================================
+   確保第一頁顯示
+===================================================== */
 
 showPage(0);
 
 </script>
 
+
 </body>
 </html>
 ```
-
