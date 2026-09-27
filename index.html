@@ -1,12 +1,24 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>我們的故事</title>
 
+
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 * {
     box-sizing: border-box;
@@ -14,19 +26,25 @@
 
 html,
 body {
+
     margin: 0;
     padding: 0;
+
     width: 100%;
     min-height: 100%;
+
 }
 
 body {
+
     background:
+
         radial-gradient(
             circle at 50% 20%,
             rgba(255,255,255,.035),
             transparent 40%
         ),
+
         #05070c;
 
     color: #fff;
@@ -39,6 +57,7 @@ body {
         sans-serif;
 
     overflow-x: hidden;
+
 }
 
 
@@ -47,20 +66,28 @@ body {
 ========================= */
 
 .stars {
+
     position: fixed;
+
     inset: 0;
+
     pointer-events: none;
+
     z-index: 0;
 
     background-image:
+
         radial-gradient(
             circle,
             rgba(255,255,255,.45) 1px,
             transparent 1px
         );
 
-    background-size: 80px 80px;
+    background-size:
+        80px 80px;
+
     opacity: .12;
+
 }
 
 
@@ -69,35 +96,95 @@ body {
 ========================= */
 
 .intro {
+
     position: fixed;
+
     inset: 0;
+
     z-index: 10000;
 
     background: #000;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    /*
+     * 重要：
+     * 即使 JavaScript 沒有正常執行，
+     * 4.5 秒後也會自己消失。
+     */
+
+    animation:
+        introAutoHide 4.5s ease forwards;
+
     transition:
+
         opacity 1.5s ease,
+
         visibility 1.5s ease;
+
 }
 
 .intro.hide {
+
     opacity: 0;
+
     visibility: hidden;
+
+    pointer-events: none;
+
 }
 
+
+@keyframes introAutoHide {
+
+    0%,
+    65% {
+
+        opacity: 1;
+
+        visibility: visible;
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+    }
+
+}
+
+
+/* =========================
+   INTRO HEART
+========================= */
+
 .intro-heart {
+
     position: absolute;
 
     width: 120px;
+
     height: 120px;
 
     border-radius: 50%;
 
     background:
+
         radial-gradient(
             circle,
             rgba(255,255,255,.08),
@@ -105,43 +192,76 @@ body {
         );
 
     animation:
-        introHeart 3s ease-in-out infinite;
+
+        introHeart
+        3s
+        ease-in-out
+        infinite;
+
 }
+
 
 @keyframes introHeart {
 
     0%,
     100% {
-        transform: scale(.9);
+
+        transform:
+            scale(.9);
+
         opacity: .4;
+
     }
 
     50% {
-        transform: scale(1.1);
+
+        transform:
+            scale(1.1);
+
         opacity: .8;
+
     }
+
 }
 
+
+/* =========================
+   INTRO TEXT
+========================= */
+
 .intro-text {
+
     position: relative;
+
     z-index: 2;
 
     text-align: center;
 
     letter-spacing: .35em;
+
 }
 
 .intro-title {
+
     font-size: 25px;
+
     margin-bottom: 22px;
+
     opacity: 0;
 
     animation:
-        introText 1.5s ease forwards .5s;
+        introText
+        1.5s
+        ease
+        forwards
+        .5s;
+
 }
 
 .intro-subtitle {
+
     font-size: 13px;
+
     opacity: 0;
 
     letter-spacing: .2em;
@@ -150,22 +270,41 @@ body {
         rgba(255,255,255,.65);
 
     animation:
-        introText 1.5s ease forwards 1s;
+        introText
+        1.5s
+        ease
+        forwards
+        1s;
+
 }
+
 
 @keyframes introText {
 
     from {
+
         opacity: 0;
-        transform: translateY(15px);
-        filter: blur(6px);
+
+        transform:
+            translateY(15px);
+
+        filter:
+            blur(6px);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+
     }
+
 }
 
 
@@ -174,7 +313,9 @@ body {
 ========================= */
 
 .page-transition {
+
     position: fixed;
+
     inset: 0;
 
     z-index: 9990;
@@ -183,34 +324,66 @@ body {
 
     opacity: 0;
 
+    visibility: hidden;
+
     background:
+
         radial-gradient(
             circle at 50% 50%,
             rgba(5,7,12,.035),
             rgba(0,0,0,.998) 58%
         ),
+
         #000;
 
     transition:
-        opacity 1s cubic-bezier(
+
+        opacity 1s
+        cubic-bezier(
+            .65,
+            0,
+            .35,
+            1
+        ),
+
+        visibility 0s linear 1s;
+
+}
+
+
+.page-transition.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+
+        opacity 1s
+        cubic-bezier(
             .65,
             0,
             .35,
             1
         );
+
 }
 
-.page-transition.show {
-    opacity: 1;
-}
+
+/* =========================
+   TRANSITION TEXT
+========================= */
 
 .transition-text {
+
     position: absolute;
 
     left: 50%;
+
     top: 50%;
 
     transform:
+
         translate(-50%, -50%)
         translateY(18px);
 
@@ -228,42 +401,60 @@ body {
         rgba(255,255,255,.97);
 
     text-shadow:
-        0 0 18px rgba(255,255,255,.10),
-        0 0 35px rgba(255,255,255,.05);
+
+        0 0 18px
+        rgba(255,255,255,.10),
+
+        0 0 35px
+        rgba(255,255,255,.05);
 
     opacity: 0;
 
     transition:
+
         opacity .8s ease,
-        transform 1s cubic-bezier(
+
+        transform 1s
+        cubic-bezier(
             .22,
             1,
             .36,
             1
         );
+
 }
 
+
 .transition-text span {
+
     display: inline-block;
 
     opacity: 0;
 
     transform:
+
         translateY(14px)
         scale(.96);
 
-    filter: blur(5px);
+    filter:
+        blur(5px);
 
     transition:
+
         opacity .65s ease,
-        transform .75s cubic-bezier(
+
+        transform .75s
+        cubic-bezier(
             .22,
             1,
             .36,
             1
         ),
+
         filter .75s ease;
+
 }
+
 
 .page-transition.show
 .transition-text {
@@ -271,9 +462,12 @@ body {
     opacity: 1;
 
     transform:
+
         translate(-50%, -50%)
         translateY(0);
+
 }
+
 
 .page-transition.show
 .transition-text span {
@@ -281,10 +475,13 @@ body {
     opacity: 1;
 
     transform:
+
         translateY(0)
         scale(1);
 
-    filter: blur(0);
+    filter:
+        blur(0);
+
 }
 
 
@@ -293,30 +490,42 @@ body {
 ========================= */
 
 .page {
+
     position: relative;
 
     z-index: 2;
 
     width: 100%;
+
     min-height: 100vh;
 
-    padding: 70px 24px;
+    padding:
+        70px 24px;
 
     display: none;
 
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
+
 }
+
 
 .page.active {
+
     display: flex;
+
 }
 
+
 .page-inner {
+
     width: 100%;
+
     max-width: 680px;
+
 }
 
 
@@ -325,28 +534,47 @@ body {
 ========================= */
 
 .page-enter {
+
     animation:
-        pageEnter 1.2s cubic-bezier(
+
+        pageEnter
+        1.2s
+        cubic-bezier(
             .22,
             1,
             .36,
             1
         );
+
 }
+
 
 @keyframes pageEnter {
 
     from {
+
         opacity: 0;
-        transform: translateY(25px);
-        filter: blur(6px);
+
+        transform:
+            translateY(25px);
+
+        filter:
+            blur(6px);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+
     }
+
 }
 
 
@@ -355,6 +583,7 @@ body {
 ========================= */
 
 .chapter {
+
     font-size: 12px;
 
     letter-spacing: .35em;
@@ -363,9 +592,12 @@ body {
         rgba(255,255,255,.42);
 
     margin-bottom: 18px;
+
 }
 
+
 h1 {
+
     font-size: 28px;
 
     font-weight: 400;
@@ -374,9 +606,12 @@ h1 {
 
     margin:
         0 0 30px;
+
 }
 
+
 h2 {
+
     font-size: 20px;
 
     font-weight: 400;
@@ -385,6 +620,7 @@ h2 {
 
     margin:
         0 0 24px;
+
 }
 
 
@@ -393,6 +629,7 @@ h2 {
 ========================= */
 
 .story {
+
     font-size: 15px;
 
     line-height: 2.3;
@@ -403,11 +640,15 @@ h2 {
         rgba(255,255,255,.82);
 
     margin-bottom: 42px;
+
 }
 
+
 .story p {
+
     margin:
         0 0 22px;
+
 }
 
 
@@ -416,6 +657,7 @@ h2 {
 ========================= */
 
 .choices {
+
     display: flex;
 
     flex-direction: column;
@@ -423,12 +665,16 @@ h2 {
     gap: 14px;
 
     width: 100%;
+
 }
 
+
 button {
+
     appearance: none;
 
-    border: 1px solid
+    border:
+        1px solid
         rgba(255,255,255,.16);
 
     background:
@@ -448,13 +694,20 @@ button {
     cursor: pointer;
 
     transition:
+
         background .3s ease,
+
         border-color .3s ease,
+
         transform .3s ease,
+
         box-shadow .3s ease;
+
 }
 
+
 button:hover {
+
     background:
         rgba(255,255,255,.09);
 
@@ -465,13 +718,18 @@ button:hover {
         translateY(-2px);
 
     box-shadow:
+
         0 10px 35px
         rgba(0,0,0,.25);
+
 }
 
+
 button:active {
+
     transform:
         translateY(0);
+
 }
 
 
@@ -480,10 +738,14 @@ button:active {
 ========================= */
 
 .memory-box {
+
     width: 100%;
+
 }
 
+
 textarea {
+
     width: 100%;
 
     min-height: 170px;
@@ -512,21 +774,30 @@ textarea {
     letter-spacing: .06em;
 
     transition:
+
         border-color .3s ease,
+
         background .3s ease;
+
 }
 
+
 textarea:focus {
+
     border-color:
         rgba(255,255,255,.35);
 
     background:
         rgba(255,255,255,.055);
+
 }
 
+
 textarea::placeholder {
+
     color:
         rgba(255,255,255,.28);
+
 }
 
 
@@ -535,37 +806,54 @@ textarea::placeholder {
 ========================= */
 
 .memory-enter {
+
     animation:
-        memoryEnter 1.3s cubic-bezier(
+
+        memoryEnter
+        1.3s
+        cubic-bezier(
             .22,
             1,
             .36,
             1
         );
+
 }
+
 
 @keyframes memoryEnter {
 
     from {
+
         opacity: 0;
+
         transform:
             translateY(35px)
             scale(.98);
 
-        filter: blur(7px);
+        filter:
+            blur(7px);
+
     }
 
     to {
+
         opacity: 1;
+
         transform:
             translateY(0)
             scale(1);
 
-        filter: blur(0);
+        filter:
+            blur(0);
+
     }
+
 }
 
+
 .memory-result {
+
     margin-top: 35px;
 
     font-size: 16px;
@@ -578,6 +866,14 @@ textarea::placeholder {
         rgba(255,255,255,.9);
 
     white-space: pre-wrap;
+
+}
+
+
+.memory-continue {
+
+    margin-top: 38px;
+
 }
 
 
@@ -586,32 +882,47 @@ textarea::placeholder {
 ========================= */
 
 .romance-enter {
+
     animation:
-        romanceEnter 1.6s cubic-bezier(
+
+        romanceEnter
+        1.6s
+        cubic-bezier(
             .22,
             1,
             .36,
             1
         );
+
 }
+
 
 @keyframes romanceEnter {
 
     from {
+
         opacity: 0;
+
         transform:
             scale(.94);
 
-        filter: blur(8px);
+        filter:
+            blur(8px);
+
     }
 
     to {
+
         opacity: 1;
+
         transform:
             scale(1);
 
-        filter: blur(0);
+        filter:
+            blur(0);
+
     }
+
 }
 
 
@@ -620,6 +931,7 @@ textarea::placeholder {
 ========================= */
 
 .ending {
+
     font-size: 16px;
 
     line-height: 2.5;
@@ -628,9 +940,12 @@ textarea::placeholder {
 
     color:
         rgba(255,255,255,.86);
+
 }
 
+
 .ending strong {
+
     display: block;
 
     font-size: 26px;
@@ -641,6 +956,7 @@ textarea::placeholder {
         25px 0;
 
     letter-spacing: .18em;
+
 }
 
 
@@ -649,62 +965,121 @@ textarea::placeholder {
 ========================= */
 
 .heart {
+
     position: relative;
 
-    width: 60px;
-    height: 60px;
+    width: 58px;
+
+    height: 58px;
 
     margin:
-        0 auto 35px;
+        0 auto 42px;
 
-    transform:
-        rotate(45deg);
+    /*
+     * 愛心本體
+     */
 
     background:
         rgba(255,255,255,.15);
 
+    /*
+     * 固定中心
+     */
+
+    transform:
+        rotate(-45deg)
+        scale(.92);
+
+    transform-origin:
+        center center;
+
     animation:
-        heartBeat 2s ease-in-out infinite;
+
+        heartBeat
+        2s
+        ease-in-out
+        infinite;
+
 }
 
-.heart::before,
+
+/* =========================
+   HEART TOP
+========================= */
+
+.heart::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 58px;
+
+    height: 58px;
+
+    left: 0;
+
+    top: -29px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.15);
+
+}
+
+
+/* =========================
+   HEART RIGHT
+========================= */
+
 .heart::after {
 
     content: "";
 
     position: absolute;
 
-    width: 60px;
-    height: 60px;
+    width: 58px;
+
+    height: 58px;
+
+    left: 29px;
+
+    top: 0;
 
     border-radius: 50%;
 
     background:
         rgba(255,255,255,.15);
+
 }
 
-.heart::before {
-    left: -30px;
-}
 
-.heart::after {
-    top: -30px;
-}
+/* =========================
+   HEART ANIMATION
+========================= */
 
 @keyframes heartBeat {
 
     0%,
     100% {
+
         transform:
-            rotate(45deg)
-            scale(.9);
+
+            rotate(-45deg)
+            scale(.92);
+
     }
 
     50% {
+
         transform:
-            rotate(45deg)
-            scale(1.05);
+
+            rotate(-45deg)
+            scale(1.04);
+
     }
+
 }
 
 
@@ -714,25 +1089,40 @@ textarea::placeholder {
 
 @media (max-width: 600px) {
 
+
     .page {
+
         padding:
             55px 20px;
+
     }
+
 
     h1 {
+
         font-size: 24px;
+
     }
+
 
     h2 {
+
         font-size: 18px;
+
     }
+
 
     .story {
+
         font-size: 14px;
+
         line-height: 2.2;
+
     }
 
+
     .transition-text {
+
         width: 88%;
 
         font-size: 14px;
@@ -740,12 +1130,85 @@ textarea::placeholder {
         letter-spacing: .16em;
 
         line-height: 2.2;
+
     }
 
+
     button {
+
         padding:
             15px 18px;
+
     }
+
+
+    /* =====================
+       MOBILE HEART
+    ===================== */
+
+    .heart {
+
+        width: 50px;
+
+        height: 50px;
+
+        margin:
+            0 auto 38px;
+
+        transform:
+            rotate(-45deg)
+            scale(.92);
+
+    }
+
+
+    .heart::before {
+
+        width: 50px;
+
+        height: 50px;
+
+        left: 0;
+
+        top: -25px;
+
+    }
+
+
+    .heart::after {
+
+        width: 50px;
+
+        height: 50px;
+
+        left: 25px;
+
+        top: 0;
+
+    }
+
+
+    @keyframes heartBeat {
+
+        0%,
+        100% {
+
+            transform:
+                rotate(-45deg)
+                scale(.92);
+
+        }
+
+        50% {
+
+            transform:
+                rotate(-45deg)
+                scale(1.04);
+
+        }
+
+    }
+
 }
 
 
@@ -755,21 +1218,18 @@ textarea::placeholder {
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
-        animation-duration:
-            .01ms !important;
+    .intro-heart,
+    .heart {
 
-        animation-iteration-count:
-            1 !important;
+        animation:
+            none !important;
 
-        transition-duration:
-            .01ms !important;
     }
+
 }
 
 </style>
+
 </head>
 
 
@@ -780,17 +1240,30 @@ textarea::placeholder {
      INTRO
 ========================= -->
 
-<div class="intro" id="intro">
+<div
+    class="intro"
+    id="intro"
+>
 
-    <div class="intro-heart"></div>
+    <div
+        class="intro-heart"
+    ></div>
 
-    <div class="intro-text">
 
-        <div class="intro-title">
+    <div
+        class="intro-text"
+    >
+
+        <div
+            class="intro-title"
+        >
             開始變得特別
         </div>
 
-        <div class="intro-subtitle">
+
+        <div
+            class="intro-subtitle"
+        >
             有些事情，是從某個瞬間開始的。
         </div>
 
@@ -799,7 +1272,9 @@ textarea::placeholder {
 </div>
 
 
-<div class="stars"></div>
+<div
+    class="stars"
+></div>
 
 
 <!-- =========================
@@ -828,26 +1303,36 @@ textarea::placeholder {
     id="page0"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             PROLOGUE
         </div>
+
 
         <h1>
             有些故事
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 不是從告白開始。
             </p>
 
+
             <p>
                 也不是從某一天，
                 突然喜歡上彼此。
             </p>
+
 
             <p>
                 而是在很多個
@@ -857,7 +1342,10 @@ textarea::placeholder {
 
         </div>
 
-        <button onclick="nextPage()">
+
+        <button
+            onclick="nextPage()"
+        >
             開始
         </button>
 
@@ -875,21 +1363,30 @@ textarea::placeholder {
     id="page1"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             CHAPTER 01｜初遇
         </div>
+
 
         <h1>
             那時候的我們
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 如果回到一開始，
             </p>
+
 
             <p>
                 妳覺得那時候的我們，
@@ -898,9 +1395,9 @@ textarea::placeholder {
 
         </div>
 
+
         <div
             class="choices"
-            id="3mqh1n"
         >
 
             <button
@@ -909,11 +1406,13 @@ textarea::placeholder {
                 只是聊天
             </button>
 
+
             <button
                 onclick="choose('特別')"
             >
                 有一點特別
             </button>
+
 
             <button
                 onclick="choose('不知道')"
@@ -937,22 +1436,31 @@ textarea::placeholder {
     id="page2"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             CHAPTER 02｜熟悉
         </div>
+
 
         <h1>
             我們是從什麼時候開始熟悉的？
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 有些習慣，
                 是自己都沒有發現的。
             </p>
+
 
             <p>
                 妳覺得，
@@ -962,9 +1470,9 @@ textarea::placeholder {
 
         </div>
 
+
         <div
             class="choices"
-            id="8yqvhw"
         >
 
             <button
@@ -973,11 +1481,13 @@ textarea::placeholder {
                 第一次聊很久的那天
             </button>
 
+
             <button
                 onclick="choose('蘆竹')"
             >
                 第一次去蘆竹見到面
             </button>
+
 
             <button
                 onclick="choose('不知道')"
@@ -1002,26 +1512,36 @@ textarea::placeholder {
     id="page3"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             CHAPTER 03｜下來台中
         </div>
+
 
         <h1>
             如果要妳選
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 在那些一起經歷過的事情裡，
             </p>
 
+
             <p>
                 哪一天，
                 是妳到現在還記得的？
             </p>
+
 
             <p>
                 不一定是最特別的，
@@ -1030,20 +1550,27 @@ textarea::placeholder {
 
         </div>
 
-        <div class="memory-box">
+
+        <div
+            class="memory-box"
+        >
 
             <textarea
                 id="memoryInput"
                 placeholder="寫下妳記得的那一天..."
             ></textarea>
 
-            <br><br>
+
+            <br>
+            <br>
+
 
             <button
                 onclick="submitMemory()"
             >
                 寫好了 →
             </button>
+
 
             <div
                 class="memory-result"
@@ -1066,20 +1593,56 @@ textarea::placeholder {
     id="page4"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner memory-enter"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             A MEMORY
         </div>
+
 
         <h1>
             妳寫下的是
         </h1>
 
+
         <div
             class="memory-result"
             id="memoryDisplay"
         ></div>
+
+
+        <div
+            class="story"
+        >
+
+            <p>
+                我也記得。
+            </p>
+
+
+            <p>
+                原來有些事情，
+                我們都沒有忘記。
+            </p>
+
+        </div>
+
+
+        <div
+            class="memory-continue"
+        >
+
+            <button
+                onclick="nextPage()"
+            >
+                繼續 →
+            </button>
+
+        </div>
 
     </div>
 
@@ -1095,22 +1658,31 @@ textarea::placeholder {
     id="page5"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             CHAPTER 04｜說好的未來
         </div>
+
 
         <h1>
             如果真的有以後
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 我們其實早就偷偷討論過
                 一些還沒發生的生活。
             </p>
+
 
             <p>
                 如果讓妳選，
@@ -1119,9 +1691,9 @@ textarea::placeholder {
 
         </div>
 
+
         <div
             class="choices"
-            id="qk9c8k"
         >
 
             <button
@@ -1130,11 +1702,13 @@ textarea::placeholder {
                 【說好買狗勾】
             </button>
 
+
             <button
                 onclick="choose('未來二')"
             >
                 【一起為了租房子討論到早上】
             </button>
+
 
             <button
                 onclick="choose('未來三')"
@@ -1158,37 +1732,49 @@ textarea::placeholder {
     id="page6"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             CHAPTER 05｜回頭看
         </div>
+
 
         <h1>
             回頭看的時候
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 才發現，
             </p>
+
 
             <p>
                 原來我們已經一起走過
                 這麼多事情了。
             </p>
 
+
             <p>
                 有些是妳記得的，
                 有些是我記得的。
             </p>
+
 
             <p>
                 但那些都是真的發生過。
             </p>
 
         </div>
+
 
         <button
             onclick="nextPage()"
@@ -1210,22 +1796,31 @@ textarea::placeholder {
     id="page7"
 >
 
-    <div class="page-inner">
+    <div
+        class="page-inner"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             THE LAST PAGE
         </div>
+
 
         <h1>
             最後一頁
         </h1>
 
-        <div class="story">
+
+        <div
+            class="story"
+        >
 
             <p>
                 如果這個故事，
                 真的只能停在這裡。
             </p>
+
 
             <p>
                 妳希望它怎麼停下來？
@@ -1233,7 +1828,10 @@ textarea::placeholder {
 
         </div>
 
-        <div class="choices">
+
+        <div
+            class="choices"
+        >
 
             <button
                 onclick="finalAnswer('完整')"
@@ -1241,11 +1839,13 @@ textarea::placeholder {
                 我想把它寫完整
             </button>
 
+
             <button
                 onclick="finalAnswer('少一點')"
             >
                 我覺得這樣就很好
             </button>
+
 
             <button
                 onclick="finalAnswer('繼續')"
@@ -1269,28 +1869,41 @@ textarea::placeholder {
     id="page8"
 >
 
-    <div class="page-inner romance-enter">
+    <div
+        class="page-inner romance-enter"
+    >
 
-        <div class="chapter">
+        <div
+            class="chapter"
+        >
             NEXT PAGE
         </div>
 
-        <div class="heart"></div>
+
+        <div
+            class="heart"
+        ></div>
+
 
         <h1>
             告白
         </h1>
 
-        <div class="ending">
+
+        <div
+            class="ending"
+        >
 
             <p>
                 如果故事還可以繼續，
             </p>
 
+
             <p>
                 那我想把下一頁，
                 留給我們。
             </p>
+
 
             <strong>
                 妳願意嗎？
@@ -1298,13 +1911,17 @@ textarea::placeholder {
 
         </div>
 
-        <div class="choices">
+
+        <div
+            class="choices"
+        >
 
             <button
                 onclick="yesAnswer()"
             >
                 ♡ 那必須阿
             </button>
+
 
             <button
                 onclick="thinkAnswer()"
@@ -1328,24 +1945,34 @@ textarea::placeholder {
     id="page9"
 >
 
-    <div class="page-inner romance-enter">
+    <div
+        class="page-inner romance-enter"
+    >
 
-        <div class="heart"></div>
+        <div
+            class="heart"
+        ></div>
+
 
         <h1>
             那必須阿
         </h1>
 
-        <div class="ending">
+
+        <div
+            class="ending"
+        >
 
             <p>
                 那就說好了。
             </p>
 
+
             <p>
                 這一次，
                 不只是我一個人在寫。
             </p>
+
 
             <strong>
                 我們一起。
@@ -1367,24 +1994,34 @@ textarea::placeholder {
     id="page10"
 >
 
-    <div class="page-inner romance-enter">
+    <div
+        class="page-inner romance-enter"
+    >
 
-        <div class="heart"></div>
+        <div
+            class="heart"
+        ></div>
+
 
         <h1>
             想一下
         </h1>
 
-        <div class="ending">
+
+        <div
+            class="ending"
+        >
 
             <p>
                 沒關係。
             </p>
 
+
             <p>
                 有些答案，
                 本來就需要一點時間。
             </p>
+
 
             <strong>
                 我會等妳。
@@ -1439,13 +2076,21 @@ let currentPage = 0;
 
 
 /* =========================
-   TRANSITION
+   TRANSITION LOCK
+========================= */
+
+let isTransitioning = false;
+
+
+/* =========================
+   TRANSITION DOM
 ========================= */
 
 const pageTransition =
     document.getElementById(
         "pageTransition"
     );
+
 
 const transitionText =
     document.getElementById(
@@ -1595,31 +2240,45 @@ function animateTransitionText(text) {
     transitionText.innerHTML = "";
 
     if (!text) {
+
         return 0;
+
     }
+
 
     const chars = [...text];
 
-    let delayPerChar = 55;
+
+    let delayPerChar;
+
 
     if (chars.length <= 20) {
 
         delayPerChar = 65;
 
     }
+
     else if (chars.length <= 35) {
 
         delayPerChar = 55;
 
     }
+
     else if (chars.length <= 50) {
 
         delayPerChar = 45;
 
     }
+
+    else if (chars.length <= 80) {
+
+        delayPerChar = 34;
+
+    }
+
     else {
 
-        delayPerChar = 38;
+        delayPerChar = 28;
 
     }
 
@@ -1632,13 +2291,16 @@ function animateTransitionText(text) {
                     "span"
                 );
 
+
             span.textContent =
                 char === " "
                     ? "\u00A0"
                     : char;
 
+
             span.style.transitionDelay =
                 `${index * delayPerChar}ms`;
+
 
             transitionText.appendChild(
                 span
@@ -1648,12 +2310,14 @@ function animateTransitionText(text) {
     );
 
 
-    const animationTime =
+    return (
+
         (chars.length - 1)
         * delayPerChar
-        + 750;
+        + 750
 
-    return animationTime;
+    );
+
 }
 
 
@@ -1667,18 +2331,38 @@ function transitionToPage(
     customText = null
 ) {
 
+
     if (
         index < 0 ||
         index >= pages.length
     ) {
+
         return;
+
     }
+
 
     if (
         index === currentPage
     ) {
+
         return;
+
     }
+
+
+    /*
+     * 防止連點
+     */
+
+    if (isTransitioning) {
+
+        return;
+
+    }
+
+
+    isTransitioning = true;
 
 
     const type =
@@ -1726,21 +2410,15 @@ function transitionToPage(
 
 
     /*
-     * 至少 1.8 秒
-     * 長句會自動延長
+     * 黑幕至少停留 2.2 秒
      */
 
     const showTime =
         Math.max(
-            1800,
-            animationTime + 500
+            2200,
+            animationTime + 700
         );
 
-
-    /*
-     * 避免連續快速點擊造成
-     * 多個 transition 疊在一起
-     */
 
     setTimeout(
         () => {
@@ -1759,6 +2437,13 @@ function transitionToPage(
                 "show"
             );
 
+
+            transitionText.innerHTML =
+                "";
+
+
+            isTransitioning = false;
+
         },
         showTime + 1200
     );
@@ -1773,18 +2458,28 @@ function transitionToPage(
 function getTransitionType(index) {
 
     if (index === 4) {
+
         return "soft";
+
     }
+
 
     if (index >= 8) {
+
         return "romance";
+
     }
+
 
     if (index === 7) {
+
         return "dark";
+
     }
 
+
     return "";
+
 }
 
 
@@ -1801,6 +2496,10 @@ function showPage(index) {
                 "active"
             );
 
+            page.classList.remove(
+                "page-enter"
+            );
+
         }
     );
 
@@ -1808,8 +2507,11 @@ function showPage(index) {
     const page =
         pages[index];
 
+
     if (!page) {
+
         return;
+
     }
 
 
@@ -1818,15 +2520,8 @@ function showPage(index) {
     );
 
 
-    /*
-     * 重新觸發進場動畫
-     */
-
-    page.classList.remove(
-        "page-enter"
-    );
-
     void page.offsetWidth;
+
 
     page.classList.add(
         "page-enter"
@@ -1837,9 +2532,9 @@ function showPage(index) {
         index;
 
 
-    /* =========================
+    /* =====================
        MEMORY PAGE
-    ========================= */
+    ===================== */
 
     if (index === 4) {
 
@@ -1849,40 +2544,12 @@ function showPage(index) {
             );
 
 
-        if (
-            memoryDisplay &&
-            answers.memory
-        ) {
+        if (memoryDisplay) {
 
             memoryDisplay.textContent =
-                answers.memory;
+                answers.memory || "";
 
         }
-
-
-        /*
-         * 「妳寫下的是」
-         *
-         * 顯示 4.2 秒後
-         * 自動進入下一章
-         */
-
-        setTimeout(
-            () => {
-
-                if (
-                    currentPage === 4
-                ) {
-
-                    transitionToPage(
-                        5
-                    );
-
-                }
-
-            },
-            4200
-        );
 
     }
 
@@ -1895,6 +2562,13 @@ function showPage(index) {
 
 function nextPage() {
 
+    if (isTransitioning) {
+
+        return;
+
+    }
+
+
     const next =
         currentPage + 1;
 
@@ -1902,7 +2576,9 @@ function nextPage() {
     if (
         next >= pages.length
     ) {
+
         return;
+
     }
 
 
@@ -1922,6 +2598,7 @@ function sendAnswer(
     answer
 ) {
 
+
     answers[type] =
         answer;
 
@@ -1935,11 +2612,14 @@ function sendAnswer(
             mode: "no-cors",
 
             headers: {
+
                 "Content-Type":
                     "text/plain;charset=utf-8"
+
             },
 
             body:
+
                 JSON.stringify({
 
                     time:
@@ -1951,6 +2631,7 @@ function sendAnswer(
                 })
 
         }
+
     )
     .catch(
         error => {
@@ -1972,8 +2653,19 @@ function sendAnswer(
 
 function choose(answer) {
 
+    if (isTransitioning) {
+
+        return;
+
+    }
+
+
     let response = "";
 
+
+    /*
+     * CHAPTER 01
+     */
 
     if (
         currentPage === 1
@@ -1984,6 +2676,7 @@ function choose(answer) {
             answer
         );
 
+
         response =
             choiceResponses
                 .chapter01[answer]
@@ -1991,6 +2684,10 @@ function choose(answer) {
 
     }
 
+
+    /*
+     * CHAPTER 02
+     */
 
     else if (
         currentPage === 2
@@ -2001,6 +2698,7 @@ function choose(answer) {
             answer
         );
 
+
         response =
             choiceResponses
                 .chapter02[answer]
@@ -2008,6 +2706,10 @@ function choose(answer) {
 
     }
 
+
+    /*
+     * CHAPTER 04
+     */
 
     else if (
         currentPage === 5
@@ -2018,6 +2720,7 @@ function choose(answer) {
             answer
         );
 
+
         response =
             choiceResponses
                 .chapter04[answer]
@@ -2025,26 +2728,6 @@ function choose(answer) {
 
     }
 
-
-    else {
-
-        console.log(
-            "選擇：",
-            answer
-        );
-
-    }
-
-
-    /*
-     * 選擇
-     * ↓
-     * 黑幕
-     * ↓
-     * 專屬回覆
-     * ↓
-     * 下一頁
-     */
 
     transitionToPage(
         currentPage + 1,
@@ -2061,25 +2744,20 @@ function choose(answer) {
 
 function submitMemory() {
 
+    if (isTransitioning) {
+
+        return;
+
+    }
+
+
     const input =
         document.getElementById(
             "memoryInput"
         );
 
-    const result =
-        document.getElementById(
-            "memoryResult"
-        );
 
-
-    if (
-        !input ||
-        !result
-    ) {
-
-        console.error(
-            "找不到 memoryInput 或 memoryResult"
-        );
+    if (!input) {
 
         return;
 
@@ -2098,22 +2776,16 @@ function submitMemory() {
             "寫一點嘛 ♡"
         );
 
+
         input.focus();
+
 
         return;
 
     }
 
 
-    /*
-     * 保存她輸入的文字
-     */
-
     answers.memory =
-        memory;
-
-
-    result.textContent =
         memory;
 
 
@@ -2122,16 +2794,6 @@ function submitMemory() {
         memory
     );
 
-
-    /*
-     * 進入：
-     *
-     * CHAPTER 03
-     * ↓
-     * 黑幕
-     * ↓
-     * A MEMORY
-     */
 
     transitionToPage(
         4,
@@ -2146,6 +2808,13 @@ function submitMemory() {
 ========================= */
 
 function finalAnswer(answer) {
+
+    if (isTransitioning) {
+
+        return;
+
+    }
+
 
     sendAnswer(
         "final",
@@ -2174,6 +2843,13 @@ function finalAnswer(answer) {
 
 function yesAnswer() {
 
+    if (isTransitioning) {
+
+        return;
+
+    }
+
+
     sendAnswer(
         "confession",
         "♡ 那必須阿"
@@ -2190,6 +2866,13 @@ function yesAnswer() {
 
 function thinkAnswer() {
 
+    if (isTransitioning) {
+
+        return;
+
+    }
+
+
     sendAnswer(
         "confession",
         "♡ 讓我想一下"
@@ -2197,7 +2880,7 @@ function thinkAnswer() {
 
 
     transitionToPage(
-        pages.length - 1,
+        10,
         "romance"
     );
 
@@ -2208,8 +2891,8 @@ function thinkAnswer() {
    INTRO
 ========================= */
 
-window.addEventListener(
-    "load",
+document.addEventListener(
+    "DOMContentLoaded",
     () => {
 
         const intro =
@@ -2217,6 +2900,18 @@ window.addEventListener(
                 "intro"
             );
 
+
+        if (!intro) {
+
+            return;
+
+        }
+
+
+        /*
+         * 正常情況：
+         * 3 秒後開始淡出。
+         */
 
         setTimeout(
             () => {
@@ -2232,7 +2927,42 @@ window.addEventListener(
     }
 );
 
+
+/* =========================
+   INTRO SAFETY FALLBACK
+========================= */
+
+/*
+ * 最後一道保險。
+ *
+ * 如果 JavaScript 初始化有任何問題，
+ * 5 秒後也強制把黑幕收掉。
+ */
+
+setTimeout(
+    () => {
+
+        const intro =
+            document.getElementById(
+                "intro"
+            );
+
+
+        if (intro) {
+
+            intro.classList.add(
+                "hide"
+            );
+
+        }
+
+    },
+    5000
+);
+
 </script>
 
 </body>
+
 </html>
+```
