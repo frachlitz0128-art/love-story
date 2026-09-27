@@ -2,8 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>我們的故事</title>
 
@@ -158,15 +157,13 @@ body {
 
     from {
         opacity: 0;
-        transform:
-            translateY(15px);
+        transform: translateY(15px);
         filter: blur(6px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0);
+        transform: translateY(0);
         filter: blur(0);
     }
 }
@@ -231,19 +228,14 @@ body {
         rgba(255,255,255,.97);
 
     text-shadow:
-        0 0 18px
-        rgba(255,255,255,.10),
-
-        0 0 35px
-        rgba(255,255,255,.05);
+        0 0 18px rgba(255,255,255,.10),
+        0 0 35px rgba(255,255,255,.05);
 
     opacity: 0;
 
     transition:
         opacity .8s ease,
-
-        transform
-        1s cubic-bezier(
+        transform 1s cubic-bezier(
             .22,
             1,
             .36,
@@ -264,13 +256,12 @@ body {
 
     transition:
         opacity .65s ease,
-        transform .75s
-            cubic-bezier(
-                .22,
-                1,
-                .36,
-                1
-            ),
+        transform .75s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        ),
         filter .75s ease;
 }
 
@@ -309,8 +300,7 @@ body {
     width: 100%;
     min-height: 100vh;
 
-    padding:
-        70px 24px;
+    padding: 70px 24px;
 
     display: none;
 
@@ -336,8 +326,7 @@ body {
 
 .page-enter {
     animation:
-        pageEnter 1.2s
-        cubic-bezier(
+        pageEnter 1.2s cubic-bezier(
             .22,
             1,
             .36,
@@ -349,15 +338,13 @@ body {
 
     from {
         opacity: 0;
-        transform:
-            translateY(25px);
+        transform: translateY(25px);
         filter: blur(6px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0);
+        transform: translateY(0);
         filter: blur(0);
     }
 }
@@ -549,8 +536,7 @@ textarea::placeholder {
 
 .memory-enter {
     animation:
-        memoryEnter 1.3s
-        cubic-bezier(
+        memoryEnter 1.3s cubic-bezier(
             .22,
             1,
             .36,
@@ -590,6 +576,8 @@ textarea::placeholder {
 
     color:
         rgba(255,255,255,.9);
+
+    white-space: pre-wrap;
 }
 
 
@@ -599,8 +587,7 @@ textarea::placeholder {
 
 .romance-enter {
     animation:
-        romanceEnter 1.6s
-        cubic-bezier(
+        romanceEnter 1.6s cubic-bezier(
             .22,
             1,
             .36,
@@ -677,8 +664,7 @@ textarea::placeholder {
         rgba(255,255,255,.15);
 
     animation:
-        heartBeat 2s
-        ease-in-out infinite;
+        heartBeat 2s ease-in-out infinite;
 }
 
 .heart::before,
@@ -1602,7 +1588,6 @@ const choiceResponses = {
 
 /* =========================
    ANIMATE TRANSITION TEXT
-   自動計算長短字幕時間
 ========================= */
 
 function animateTransitionText(text) {
@@ -1614,22 +1599,6 @@ function animateTransitionText(text) {
     }
 
     const chars = [...text];
-
-    /*
-     * 根據文字長度自動調整速度
-     *
-     * 短句：
-     * 65ms / 字
-     *
-     * 中句：
-     * 55ms / 字
-     *
-     * 長句：
-     * 45ms / 字
-     *
-     * 超長句：
-     * 38ms / 字
-     */
 
     let delayPerChar = 55;
 
@@ -1678,11 +1647,6 @@ function animateTransitionText(text) {
         }
     );
 
-
-    /*
-     * 最後一個字出現
-     * ＋ 最後一個字自己的動畫時間
-     */
 
     const animationTime =
         (chars.length - 1)
@@ -1744,10 +1708,6 @@ function transitionToPage(
     }
 
 
-    /*
-     * 這次字幕實際需要多久
-     */
-
     const animationTime =
         animateTransitionText(
             title
@@ -1766,10 +1726,8 @@ function transitionToPage(
 
 
     /*
-     * 最短停留 1.8 秒
-     *
-     * 如果字幕很長，
-     * 自動等它完整跑完。
+     * 至少 1.8 秒
+     * 長句會自動延長
      */
 
     const showTime =
@@ -1780,12 +1738,9 @@ function transitionToPage(
 
 
     /*
-     * 黑幕淡出
+     * 避免連續快速點擊造成
+     * 多個 transition 疊在一起
      */
-
-    const hideTime =
-        showTime + 1200;
-
 
     setTimeout(
         () => {
@@ -1805,7 +1760,7 @@ function transitionToPage(
             );
 
         },
-        hideTime
+        showTime + 1200
     );
 
 }
@@ -1882,9 +1837,9 @@ function showPage(index) {
         index;
 
 
-    /*
-     * MEMORY PAGE
-     */
+    /* =========================
+       MEMORY PAGE
+    ========================= */
 
     if (index === 4) {
 
@@ -1892,6 +1847,7 @@ function showPage(index) {
             document.getElementById(
                 "memoryDisplay"
             );
+
 
         if (
             memoryDisplay &&
@@ -1902,6 +1858,31 @@ function showPage(index) {
                 answers.memory;
 
         }
+
+
+        /*
+         * 「妳寫下的是」
+         *
+         * 顯示 4.2 秒後
+         * 自動進入下一章
+         */
+
+        setTimeout(
+            () => {
+
+                if (
+                    currentPage === 4
+                ) {
+
+                    transitionToPage(
+                        5
+                    );
+
+                }
+
+            },
+            4200
+        );
 
     }
 
@@ -1916,6 +1897,7 @@ function nextPage() {
 
     const next =
         currentPage + 1;
+
 
     if (
         next >= pages.length
@@ -1986,7 +1968,6 @@ function sendAnswer(
 
 /* =========================
    CHOOSE
-   選項 → 專屬字幕 → 下一頁
 ========================= */
 
 function choose(answer) {
@@ -2056,7 +2037,13 @@ function choose(answer) {
 
 
     /*
-     * 使用專屬回覆作為黑幕字幕
+     * 選擇
+     * ↓
+     * 黑幕
+     * ↓
+     * 專屬回覆
+     * ↓
+     * 下一頁
      */
 
     transitionToPage(
@@ -2118,6 +2105,14 @@ function submitMemory() {
     }
 
 
+    /*
+     * 保存她輸入的文字
+     */
+
+    answers.memory =
+        memory;
+
+
     result.textContent =
         memory;
 
@@ -2128,8 +2123,18 @@ function submitMemory() {
     );
 
 
+    /*
+     * 進入：
+     *
+     * CHAPTER 03
+     * ↓
+     * 黑幕
+     * ↓
+     * A MEMORY
+     */
+
     transitionToPage(
-        currentPage + 1,
+        4,
         "soft"
     );
 
