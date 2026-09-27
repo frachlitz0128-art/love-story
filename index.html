@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="zh-TW">
 
@@ -362,16 +361,12 @@ body {
 }
 
 
-/* 黑幕出現 */
-
 .page-transition.show {
 
     opacity: 1;
 
 }
 
-
-/* 柔和轉場 */
 
 .page-transition.soft {
 
@@ -386,8 +381,6 @@ body {
 }
 
 
-/* 深沉轉場 */
-
 .page-transition.dark {
 
     background:
@@ -400,8 +393,6 @@ body {
 
 }
 
-
-/* 浪漫轉場 */
 
 .page-transition.romance {
 
@@ -417,7 +408,7 @@ body {
 
 
 /* ============================= */
-/* 電影字幕式轉場文字 */
+/* 電影字幕 */
 /* ============================= */
 
 .transition-text {
@@ -454,8 +445,6 @@ body {
 }
 
 
-/* 每一個字 */
-
 .transition-text span {
 
     display: inline-block;
@@ -482,8 +471,6 @@ body {
 }
 
 
-/* 黑幕出現 */
-
 .page-transition.show .transition-text {
 
     opacity: 1;
@@ -494,8 +481,6 @@ body {
 
 }
 
-
-/* 一個字一個字出現 */
 
 .page-transition.show .transition-text span {
 
@@ -1339,8 +1324,8 @@ button:active {
             第一次聊很久的那天
         </button>
 
-        <button onclick="choose('出去')">
-            某一次一起出去之後
+        <button onclick="choose('蘆竹')">
+            第一次去蘆竹見到面
         </button>
 
         <button onclick="choose('不知道')">
@@ -1634,15 +1619,42 @@ button:active {
 前面的故事，
 是我們一起走過的。
 
-但下一頁開始，
+有開心的，
+有難過的，
+也有一些我們到現在都還說不清楚的瞬間。
 
-我想讓它變成
-我們一起寫的。
+<br><br>
+
+但我很確定一件事。
 
 <br><br>
 
 <strong>
-你願意陪我寫下去嗎？
+我不想只陪妳走到這裡。
+</strong>
+
+<br><br>
+
+我想陪妳走下一頁，
+再下一頁。
+
+<br><br>
+
+想陪妳養狗勾，
+陪妳討論那個還沒存在的家，
+也陪妳把那些說過的「以後」，
+一個一個變成真的。
+
+<br><br>
+
+所以這一次，
+我不想再讓妳猜了。
+
+<br><br>
+
+<strong>
+蔡宛蓁，妳願意陪我，
+把我們的故事繼續寫下去嗎？
 </strong>
 
     </div>
@@ -1680,14 +1692,27 @@ button:active {
 <br><br>
 
 從今天開始，
-
 我們的故事還有下一頁。
 
 <br><br>
 
-而且這次，
+這一次，
+不再只是我一個人寫。
 
-我想和你一起寫。
+<br><br>
+
+<strong>
+是我們一起。
+</strong>
+
+<br><br>
+
+謝謝妳，
+願意走進我的故事。
+
+<br><br>
+
+To be continued…
 
     </div>
 
@@ -1711,22 +1736,57 @@ button:active {
 
 <br><br>
 
-我只是想讓你知道，
+妳不用現在回答我。
 
 <br><br>
 
-不管你的答案是什麼，
+我知道有些答案，
+不是一句「好」或「不好」
+就能馬上決定的。
 
 <br><br>
 
-這段故事對我來說，
-
-都是真的。
+所以慢慢想。
 
 <br><br>
 
-我也不會逼妳，
-畢竟我還欠妳97次拒絕。
+我不會逼妳，
+也不會因為妳需要時間，
+就把前面的故事全部否定。
+
+<br><br>
+
+因為對我來說，
+那些一起走過的日子都是真的。
+
+<br><br>
+
+<strong>
+我會把下一頁留著。
+</strong>
+
+<br><br>
+
+等妳準備好的那一天，
+我們再一起寫下去。
+
+<br><br>
+
+至於那97次拒絕……
+
+<br><br>
+
+<strong>
+我還是會慢慢還完。 😏
+</strong>
+
+<br><br>
+
+Chapter ∞
+
+<br>
+
+To be continued…
 
     </div>
 
@@ -1892,7 +1952,7 @@ const transitionText =
 
 
 /* ============================= */
-/* 每一頁的轉場文字 */
+/* 每一頁的預設轉場文字 */
 /* ============================= */
 
 const transitionTitles = {
@@ -1918,6 +1978,135 @@ const transitionTitles = {
     9: "那就說好了",
 
     10: "沒關係，我會等妳"
+
+};
+
+
+
+/* ============================= */
+/* 選項專屬回應 */
+/* ============================= */
+
+const choiceResponses = {
+
+
+    /* ========================= */
+    /* CHAPTER 01 */
+    /* ========================= */
+
+    chapter01: {
+
+        "第一次":
+            "所以對妳來說，那時候真的只是聊天。",
+
+        "特別":
+            "原來那個時候，妳也有覺得我有一點特別。",
+
+        "不知道":
+            "妳還是這樣，什麼都不肯好好承認。嘴硬。"
+
+    },
+
+
+    /* ========================= */
+    /* CHAPTER 02 */
+    /* ========================= */
+
+    chapter02: {
+
+        "聊天":
+            "原來妳也記得，那些聊到捨不得睡的晚上。那時候的我們，好像就已經慢慢習慣彼此了。",
+
+        "蘆竹":
+            "原來有些心動，不是從一句「我喜歡妳」開始。而是第一次真的見到妳的那一刻，我才發現，原來我比自己想的還在乎妳。",
+
+        "不知道":
+            "不知道也沒關係。有些依賴，本來就不是自己發現的。只是妳啊……又嘴硬了。😏"
+
+    },
+
+
+    /* ========================= */
+    /* CHAPTER 04 */
+    /* ========================= */
+
+    chapter04: {
+
+        "未來一":
+            "妳看，我們連還沒發生的生活，都已經偷偷計畫好了。真的買下來了，我陪妳一起養。因為我需要妳，陪著我一起走下去。",
+
+        "未來二":
+            "妳看，我們連還沒住進去的房子，都可以為了它討論一整個晚上。從房租、地點，到我們以後會怎麼生活。好像那個還沒存在的家，早就已經有我們兩個的位置了。如果真的有那一天，我想和妳一起把它變成家。",
+
+        "未來三":
+            "妳總是有妳的邏輯，而我也有我想扛起來的責任。我們想事情的方式不一定一樣，但我知道一件事。如果是我們一起決定的未來，那就不該只有妳一個人在想。妳負責把未來想清楚，我負責陪妳一步一步走下去。"
+
+    },
+
+
+    /* ========================= */
+    /* THE LAST PAGE */
+    /* ========================= */
+
+    final: {
+
+        "完整":
+            "我知道。能走到這裡，已經是很珍貴的一件事。但如果真的要讓故事停在這裡，我還是會覺得有一點可惜。",
+
+        "少一點":
+            "我也一直覺得，好像還少了一頁。不是因為前面的故事不完整，而是因為我想把下一頁，留給我們。",
+
+        "繼續":
+            "那就繼續吧。只是下一頁開始，我不想再一個人寫了。我想和妳一起。"
+
+    }
+
+};
+
+
+
+/* ============================= */
+/* 回憶關鍵字回應 */
+/* ============================= */
+
+const memoryResponses = {
+
+
+    intimate: [
+        "有些事情不用說太多，身體比我們更早知道答案。"
+    ],
+
+    firstMeet: [
+        "螢幕裡的人，突然真的出現在眼前。那一刻，我才發現我們的故事真的開始了。"
+    ],
+
+    vulnerable: [
+        "如果那一天的妳需要有人陪著，我希望現在回頭看，妳知道我一直都在。"
+    ],
+
+    miss: [
+        "原來不只是我會想妳。那些沒說出口的想念，妳也一直放在心裡。"
+    ],
+
+    expectation: [
+        "原來那一天，妳也和我一樣期待。只是我們都沒有說出口。"
+    ],
+
+    nervous: [
+        "原來妳那天也緊張。只是那時候的我不知道，還以為只有我一個人在偷偷期待。"
+    ],
+
+    chat: [
+        "原來那些隔著螢幕聊過的話，最後真的把我們帶到了彼此面前。"
+    ],
+
+    happy: [
+        "妳記得的是那一天的開心，而我記得的，是看著妳開心的那個瞬間。"
+    ],
+
+    general: [
+        "原來妳記得的是這個。沒想到這段回憶，妳也偷偷留了一個位置。"
+    ]
 
 };
 
@@ -2025,10 +2214,6 @@ function animateTransitionText(text) {
                     : char;
 
 
-            /*
-             * 每個字間隔 70ms
-             */
-
             span.style.transitionDelay =
                 `${index * 70}ms`;
 
@@ -2067,7 +2252,8 @@ function showPage(index) {
                 "active",
                 "page-enter",
                 "memory-enter",
-                "romance-enter"
+                "romance-enter",
+                "final-love"
             );
 
         }
@@ -2086,11 +2272,6 @@ function showPage(index) {
     );
 
 
-    /*
-     * 強制瀏覽器重新計算，
-     * 確保動畫每次都會重新播放
-     */
-
     void targetPage.offsetWidth;
 
 
@@ -2099,21 +2280,9 @@ function showPage(index) {
     );
 
 
-    /*
-     * 最後一頁的愛心特效
-     */
-
     if (index === 9) {
 
         targetPage.classList.add(
-            "final-love"
-        );
-
-    }
-
-    else {
-
-        targetPage.classList.remove(
             "final-love"
         );
 
@@ -2129,7 +2298,8 @@ function showPage(index) {
 
 function transitionToPage(
     index,
-    customType = null
+    customType = null,
+    customText = null
 ) {
 
     if (
@@ -2157,13 +2327,13 @@ function transitionToPage(
 
 
     const title =
-        transitionTitles[index] ||
-        "";
+        customText !== null
+            ? customText
+            : (
+                transitionTitles[index] ||
+                ""
+            );
 
-
-    /*
-     * 設定轉場風格
-     */
 
     pageTransition.className =
         "page-transition";
@@ -2178,18 +2348,10 @@ function transitionToPage(
     }
 
 
-    /*
-     * 先建立逐字字幕
-     */
-
     animateTransitionText(
         title
     );
 
-
-    /*
-     * 黑幕進場
-     */
 
     requestAnimationFrame(
         () => {
@@ -2202,25 +2364,15 @@ function transitionToPage(
     );
 
 
-    /*
-     * 等文字慢慢出現，
-     * 黑幕完全蓋住後才換頁
-     */
-
     setTimeout(
         () => {
 
             showPage(index);
 
         },
-        1350
+        1800
     );
 
-
-    /*
-     * 讓完整字幕停留一下，
-     * 再慢慢退掉
-     */
 
     setTimeout(
         () => {
@@ -2230,7 +2382,7 @@ function transitionToPage(
             );
 
         },
-        2850
+        3600
     );
 
 }
@@ -2264,6 +2416,9 @@ function nextPage() {
 
 function choose(answer) {
 
+    let response = "";
+
+
     if (currentPage === 1) {
 
         sendAnswer(
@@ -2271,7 +2426,13 @@ function choose(answer) {
             answer
         );
 
+
+        response =
+            choiceResponses.chapter01[answer]
+            || "";
+
     }
+
 
     else if (currentPage === 2) {
 
@@ -2280,7 +2441,13 @@ function choose(answer) {
             answer
         );
 
+
+        response =
+            choiceResponses.chapter02[answer]
+            || "";
+
     }
+
 
     else if (currentPage === 5) {
 
@@ -2289,7 +2456,13 @@ function choose(answer) {
             answer
         );
 
+
+        response =
+            choiceResponses.chapter04[answer]
+            || "";
+
     }
+
 
     else {
 
@@ -2301,7 +2474,252 @@ function choose(answer) {
     }
 
 
-    nextPage();
+    transitionToPage(
+        currentPage + 1,
+        null,
+        response
+    );
+
+}
+
+
+
+/* ============================= */
+/* 找出回憶分類 */
+/* ============================= */
+
+function detectMemoryType(text) {
+
+    const value =
+        text.toLowerCase();
+
+
+    /*
+     * 優先順序：
+     * 親密 → 初見 → 脆弱 → 想念
+     * → 期待 → 緊張 → 聊天 → 幸福
+     * → 通用
+     */
+
+
+    if (
+        /抱|牽|牽手|靠|擁抱|抱抱|親|親密/.test(value)
+    ) {
+
+        return "intimate";
+
+    }
+
+
+    if (
+        /第一次|初次|見面|看到你|看到妳|見到你|見到妳|出現在眼前/.test(value)
+    ) {
+
+        return "firstMeet";
+
+    }
+
+
+    if (
+        /哭|眼淚|流淚|難過|委屈|脆弱|害怕/.test(value)
+    ) {
+
+        return "vulnerable";
+
+    }
+
+
+    if (
+        /想你|想妳|想念|思念|捨不得|舍不得/.test(value)
+    ) {
+
+        return "miss";
+
+    }
+
+
+    if (
+        /期待|期待見面|想見|想见|等你|等妳|等著|等着/.test(value)
+    ) {
+
+        return "expectation";
+
+    }
+
+
+    if (
+        /緊張|紧张|害羞|害怕|不敢|忐忑|心跳/.test(value)
+    ) {
+
+        return "nervous";
+
+    }
+
+
+    if (
+        /聊天|聊天聊|電話|电话|訊息|信息|傳訊|传讯|晚安|通話|通话/.test(value)
+    ) {
+
+        return "chat";
+
+    }
+
+
+    if (
+        /開心|开心|快樂|快乐|幸福|高興|高兴|好開心|好开心/.test(value)
+    ) {
+
+        return "happy";
+
+    }
+
+
+    return "general";
+
+}
+
+
+
+/* ============================= */
+/* 取得回憶回應 */
+/* ============================= */
+
+function getMemoryResponse(text) {
+
+    const type =
+        detectMemoryType(text);
+
+
+    const list =
+        memoryResponses[type]
+        || memoryResponses.general;
+
+
+    return list[
+        Math.floor(
+            Math.random() * list.length
+        )
+    ];
+
+}
+
+
+
+/* ============================= */
+/* 回憶三段式字幕 */
+/* ============================= */
+
+function playMemoryResponse(
+    memory
+) {
+
+    const response =
+        getMemoryResponse(
+            memory
+        );
+
+
+    /*
+     * 第一幕
+     */
+
+    transitionToPage(
+        currentPage + 1,
+        "soft",
+        "妳寫下的這些，我都看到了。"
+    );
+
+
+    /*
+     * 第二幕
+     * 等第一幕完成後，
+     * 顯示專屬回應
+     */
+
+    setTimeout(
+        () => {
+
+            pageTransition.className =
+                "page-transition soft";
+
+
+            animateTransitionText(
+                response
+            );
+
+
+            requestAnimationFrame(
+                () => {
+
+                    pageTransition.classList.add(
+                        "show"
+                    );
+
+                }
+            );
+
+        },
+        4200
+    );
+
+
+    /*
+     * 第三幕
+     */
+
+    setTimeout(
+        () => {
+
+            pageTransition.className =
+                "page-transition soft";
+
+
+            animateTransitionText(
+                "有些故事，從見面的那一刻開始。"
+            );
+
+
+            requestAnimationFrame(
+                () => {
+
+                    pageTransition.classList.add(
+                        "show"
+                    );
+
+                }
+            );
+
+        },
+        7600
+    );
+
+
+    /*
+     * 最後正式進入 A MEMORY
+     */
+
+    setTimeout(
+        () => {
+
+            showPage(
+                currentPage + 1
+            );
+
+        },
+        10100
+    );
+
+
+    setTimeout(
+        () => {
+
+            pageTransition.classList.remove(
+                "show"
+            );
+
+        },
+        11600
+    );
 
 }
 
@@ -2368,9 +2786,8 @@ function submitMemory() {
     );
 
 
-    transitionToPage(
-        currentPage + 1,
-        "soft"
+    playMemoryResponse(
+        memory
     );
 
 }
@@ -2389,9 +2806,15 @@ function finalAnswer(answer) {
     );
 
 
+    const response =
+        choiceResponses.final[answer]
+        || "";
+
+
     transitionToPage(
         currentPage + 1,
-        "dark"
+        "dark",
+        response
     );
 
 }
@@ -2412,7 +2835,8 @@ function yesAnswer() {
 
     transitionToPage(
         currentPage + 1,
-        "romance"
+        "romance",
+        "那就說好了。"
     );
 
 }
@@ -2433,7 +2857,8 @@ function thinkAnswer() {
 
     transitionToPage(
         pages.length - 1,
-        "romance"
+        "romance",
+        "沒關係，我會等妳。"
     );
 
 }
@@ -2444,4 +2869,3 @@ function thinkAnswer() {
 </body>
 
 </html>
-```
