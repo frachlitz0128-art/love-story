@@ -78,9 +78,11 @@ body::after {
     inset: 0;
     background: #000;
     z-index: 9999;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     transition:
         opacity 1.4s ease,
         visibility 1.4s ease;
@@ -93,8 +95,11 @@ body::after {
 
 .intro-text {
     text-align: center;
+
     opacity: 0;
-    animation: introText 2.4s ease forwards;
+
+    animation:
+        introText 2.4s ease forwards;
 }
 
 .intro-text .small {
@@ -105,20 +110,25 @@ body::after {
 }
 
 .intro-text .main {
-    font-size: clamp(28px, 6vw, 52px);
+    font-size:
+        clamp(28px, 6vw, 52px);
+
     letter-spacing: 8px;
     font-weight: 300;
 }
 
 @keyframes introText {
+
     0% {
         opacity: 0;
-        transform: translateY(12px);
+        transform:
+            translateY(12px);
     }
 
     35% {
         opacity: 1;
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     75% {
@@ -138,7 +148,9 @@ body::after {
 .page-transition {
     position: fixed;
     inset: 0;
+
     background: #000;
+
     z-index: 9000;
 
     display: flex;
@@ -147,8 +159,13 @@ body::after {
 
     opacity: 0;
     visibility: hidden;
+
     pointer-events: none;
 
+    /*
+     * 只負責黑幕淡入淡出。
+     * 字幕本身由 JS 控制。
+     */
     transition:
         opacity .8s ease,
         visibility .8s ease;
@@ -161,7 +178,9 @@ body::after {
 }
 
 .transition-inner {
-    width: min(850px, 88%);
+    width:
+        min(850px, 88%);
+
     text-align: center;
 }
 
@@ -169,19 +188,22 @@ body::after {
     width: 35px;
     height: 1px;
 
-    background: rgba(255,255,255,.5);
+    background:
+        rgba(255,255,255,.5);
 
     margin:
         0 auto 28px;
 
-    transform: scaleX(0);
+    transform:
+        scaleX(0);
 
     transition:
         transform .9s ease;
 }
 
 .page-transition.active .transition-line {
-    transform: scaleX(1);
+    transform:
+        scaleX(1);
 }
 
 .transition-text {
@@ -254,6 +276,7 @@ body::after {
 #app {
     position: relative;
     z-index: 2;
+
     min-height: 100vh;
 }
 
@@ -1112,19 +1135,16 @@ textarea::placeholder {
 
     .eyebrow {
         letter-spacing: 4px;
-
         margin-bottom: 25px;
     }
 
     .title {
         letter-spacing: 5px;
-
         margin-bottom: 30px;
     }
 
     .story {
         font-size: 14px;
-
         line-height: 2.15;
     }
 
@@ -1155,7 +1175,6 @@ textarea::placeholder {
 
     .transition-text {
         font-size: 18px;
-
         line-height: 1.9;
     }
 }
@@ -1714,7 +1733,6 @@ textarea::placeholder {
 
 <!-- =====================================================
      PAGE 9
-     YES
 ===================================================== -->
 
 <section
@@ -1739,12 +1757,12 @@ textarea::placeholder {
         </h1>
 
         <div class="ending-message">
-            那就說好了。
+那就說好了。
 
-            這一次，
-            不只是我一個人在寫。
+這一次，
+不只是我一個人在寫。
 
-            我們一起。
+我們一起。
         </div>
 
         <div class="ending-final">
@@ -1770,7 +1788,6 @@ textarea::placeholder {
 
 <!-- =====================================================
      PAGE 10
-     THINK
 ===================================================== -->
 
 <section
@@ -1795,15 +1812,15 @@ textarea::placeholder {
         </h1>
 
         <div class="ending-message">
-            沒關係。
+沒關係。
 
-            有些答案，
-            本來就需要一點時間。
+有些答案，
+本來就需要一點時間。
 
-            所以這一頁，
-            我先替妳留著。
+所以這一頁，
+我先替妳留著。
 
-            我會等妳。
+我會等妳。
         </div>
 
         <div class="ending-final">
@@ -1829,7 +1846,6 @@ textarea::placeholder {
 
 <!-- =====================================================
      PAGE 11
-     回顧
 ===================================================== -->
 
 <section
@@ -1941,7 +1957,6 @@ textarea::placeholder {
 
 <!-- =====================================================
      PAGE 12
-     收藏
 ===================================================== -->
 
 <section
@@ -2051,7 +2066,6 @@ textarea::placeholder {
 
 
             <div class="keepsake-quote">
-
                 故事還沒結束，
                 <br>
                 這只是我們寫下的第一章。
@@ -2059,7 +2073,6 @@ textarea::placeholder {
                 <span>
                     THE END IS NOT THE END
                 </span>
-
             </div>
 
         </div>
@@ -2082,7 +2095,6 @@ textarea::placeholder {
 
 <script>
 
-
 /* =====================================================
    GOOGLE APPS SCRIPT
 ===================================================== */
@@ -2092,7 +2104,7 @@ const GOOGLE_SCRIPT_URL =
 
 
 /* =====================================================
-   故事答案
+   答案
 ===================================================== */
 
 let answers = {
@@ -2116,17 +2128,16 @@ let currentPage = 0;
 
 
 /*
- * 防止連續快速點擊。
+ * 防止快速連點
  */
 let isTransitioning = false;
 
 
 /* =====================================================
-   每個選項專屬字幕
+   每個選項的專屬回話
 ===================================================== */
 
 const choiceResponses = {
-
 
     chapter01: {
 
@@ -2254,7 +2265,7 @@ const choiceResponses = {
 
 
 /* =====================================================
-   頁面轉場標題
+   一般頁面轉場標題
 ===================================================== */
 
 const transitionTitles = {
@@ -2294,6 +2305,10 @@ const transitionTitles = {
 
 function showPage(index) {
 
+    /*
+     * 先把所有頁面完全關掉
+     */
+
     document
         .querySelectorAll(".page")
         .forEach(page => {
@@ -2309,8 +2324,14 @@ function showPage(index) {
         );
 
 
-    if (!target) return;
+    if (!target) {
+        return;
+    }
 
+
+    /*
+     * 再開新的頁面
+     */
 
     target.classList.add("active");
 
@@ -2362,10 +2383,25 @@ function animateTransitionText(text) {
         );
 
 
+    /*
+     * ★★★ 核心防殘影 ★★★
+     *
+     * 每次建立字幕前，
+     * 先徹底清除上一段。
+     */
+
     container.innerHTML = "";
 
-
     sub.classList.remove("show");
+
+
+    /*
+     * 沒文字就直接結束
+     */
+
+    if (!text) {
+        return;
+    }
 
 
     const lines =
@@ -2378,9 +2414,7 @@ function animateTransitionText(text) {
     lines.forEach(
         (line, lineIndex) => {
 
-
             [...line].forEach(char => {
-
 
                 const span =
                     document.createElement(
@@ -2394,13 +2428,15 @@ function animateTransitionText(text) {
                         : char;
 
 
-                container.appendChild(span);
+                container.appendChild(
+                    span
+                );
 
 
                 /*
-                 * 85ms 一個字。
-                 * 比之前慢很多。
+                 * 每個字 85ms
                  */
+
                 const delay =
                     charIndex * 85;
 
@@ -2423,16 +2459,23 @@ function animateTransitionText(text) {
 
 
             /*
-             * 換行時增加停頓。
+             * 每行之間增加停頓
              */
+
             if (
                 lineIndex <
                 lines.length - 1
             ) {
 
+                const br =
+                    document.createElement(
+                        "br"
+                    );
+
                 container.appendChild(
-                    document.createElement("br")
+                    br
                 );
+
 
                 charIndex += 5;
 
@@ -2454,14 +2497,14 @@ function animateTransitionText(text) {
             );
 
         },
-        totalTime + 300
+        totalTime + 400
     );
 
 }
 
 
 /* =====================================================
-   核心電影轉場
+   ★★★ 核心電影轉場 ★★★
 ===================================================== */
 
 function transitionToPage(
@@ -2469,15 +2512,12 @@ function transitionToPage(
     customText = ""
 ) {
 
-
     /*
-     * 已經在轉場時，
-     * 完全禁止再次觸發。
+     * 防止連點
      */
+
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2490,6 +2530,56 @@ function transitionToPage(
         );
 
 
+    const container =
+        document.getElementById(
+            "transitionText"
+        );
+
+
+    const sub =
+        document.getElementById(
+            "transitionSub"
+        );
+
+
+    /*
+     * =================================================
+     * 第一件事：
+     * 立刻清除上一段字幕
+     * =================================================
+     */
+
+    container.innerHTML = "";
+
+    sub.classList.remove("show");
+
+
+    /*
+     * =================================================
+     * 清除黑幕狀態
+     * =================================================
+     */
+
+    overlay.classList.remove("active");
+
+
+    /*
+     * ★ 強制瀏覽器重新計算
+     *
+     * 這可以避免：
+     *
+     * 舊字幕
+     * ↓
+     * active
+     * ↓
+     * 新字幕
+     *
+     * 被瀏覽器合併成一次渲染。
+     */
+
+    void overlay.offsetWidth;
+
+
     const text =
         customText ||
         transitionTitles[index] ||
@@ -2497,88 +2587,111 @@ function transitionToPage(
 
 
     /*
-     * ---------------------------------
-     * ① 黑幕立刻蓋住原本頁面
-     * ---------------------------------
+     * =================================================
+     * 第二件事：
+     * 黑幕立刻出現
+     * =================================================
      */
 
-    overlay.classList.add(
-        "active"
-    );
+    overlay.classList.add("active");
 
 
     /*
-     * ---------------------------------
-     * ② 等黑幕完全蓋住後，
-     *    才開始字幕
-     * ---------------------------------
+     * =================================================
+     * 第三件事：
+     * 等黑幕完全蓋住畫面
+     * =================================================
+     *
+     * 注意：
+     *
+     * 這段時間畫面中絕對沒有字幕。
      */
 
     setTimeout(
         () => {
+
+            /*
+             * 再清一次。
+             *
+             * 雙重保險。
+             */
+
+            container.innerHTML = "";
+
+            sub.classList.remove("show");
+
+
+            /*
+             * 現在才建立新字幕
+             */
 
             animateTransitionText(
                 text
             );
 
         },
-        800
+        850
     );
 
 
     /*
-     * ---------------------------------
-     * 計算字幕需要多少時間
-     * ---------------------------------
+     * =================================================
+     * 計算整個字幕動畫時間
+     * =================================================
      */
-
-    const textLines =
-        text.split("\n");
-
 
     const characterCount =
         [...text].length;
 
 
+    const lineCount =
+        text.split("\n").length;
+
+
     /*
-     * 85ms / 字
-     *
-     * 加上換行停頓、
-     * 字幕前等待、
-     * 最後停留時間。
+     * 每字 85ms
      */
 
     const typingTime =
         characterCount * 85;
 
 
+    /*
+     * 每次換行增加 425ms
+     */
+
     const linePause =
         Math.max(
             0,
-            (textLines.length - 1) * 425
-        );
-
-
-    const totalTransitionTime =
-        Math.max(
-            3600,
-            800 +
-            typingTime +
-            linePause +
-            1200
+            (lineCount - 1) * 425
         );
 
 
     /*
-     * ---------------------------------
-     * ③
+     * 字幕結束後，
+     * 再停留 1400ms。
+     */
+
+    const totalTransitionTime =
+        Math.max(
+            3800,
+            850 +
+            typingTime +
+            linePause +
+            1400
+        );
+
+
+    /*
+     * =================================================
+     * 第四件事：
      *
-     * 注意：
-     * 這裡才切換頁面。
+     * 黑幕還在的時候換頁
      *
-     * 此時黑幕仍然 100% 蓋住畫面。
-     * 所以不會看到上一頁閃出來。
-     * ---------------------------------
+     * 所以使用者完全看不到
+     * 舊頁面 → 新頁面
+     * 的瞬間。
+     * =================================================
      */
 
     setTimeout(
@@ -2592,33 +2705,38 @@ function transitionToPage(
 
 
     /*
-     * ---------------------------------
-     * ④
+     * =================================================
+     * 第五件事：
      *
-     * 頁面已經換好後，
-     * 再讓黑幕慢慢淡掉。
-     * ---------------------------------
+     * 新頁面已經準備完成，
+     * 黑幕才開始消失。
+     * =================================================
      */
 
     setTimeout(
         () => {
+
+            /*
+             * 在淡出之前，
+             * 再確認字幕狀態。
+             */
 
             overlay.classList.remove(
                 "active"
             );
 
         },
-        totalTransitionTime + 500
+        totalTransitionTime + 600
     );
 
 
     /*
-     * ---------------------------------
-     * ⑤
+     * =================================================
+     * 第六件事：
      *
-     * 整個動畫完全結束後，
-     * 才重新允許操作。
-     * ---------------------------------
+     * 黑幕完全消失後，
+     * 才重新允許點擊。
+     * =================================================
      */
 
     setTimeout(
@@ -2627,7 +2745,7 @@ function transitionToPage(
             isTransitioning = false;
 
         },
-        totalTransitionTime + 1500
+        totalTransitionTime + 1600
     );
 
 }
@@ -2640,16 +2758,12 @@ function transitionToPage(
 function nextPage() {
 
     if (isTransitioning) {
-
         return;
-
     }
 
 
     if (currentPage >= 12) {
-
         return;
-
     }
 
 
@@ -2670,11 +2784,8 @@ function nextPage() {
 
 function choose(choice) {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2752,11 +2863,8 @@ function choose(choice) {
 
 function submitMemory() {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2808,11 +2916,8 @@ ${value}
 
 function chooseFinal(choice) {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2838,7 +2943,6 @@ function chooseFinal(choice) {
 ===================================================== */
 
 function updateRecap() {
-
 
     document
         .getElementById(
@@ -2888,16 +2992,13 @@ function updateRecap() {
 
 
 /* =====================================================
-   前往告白
+   告白
 ===================================================== */
 
 function goToConfession() {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2922,11 +3023,8 @@ function goToConfession() {
 
 function yesAnswer() {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2956,11 +3054,8 @@ function yesAnswer() {
 
 function thinkAnswer() {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -2993,11 +3088,8 @@ function thinkAnswer() {
 
 function goToKeepsake() {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -3020,7 +3112,6 @@ function goToKeepsake() {
 ===================================================== */
 
 function updateKeepsake() {
-
 
     document
         .getElementById(
@@ -3084,7 +3175,6 @@ function updateKeepsake() {
 
 function sendAnswer() {
 
-
     const payload = {
 
         time:
@@ -3133,10 +3223,8 @@ function sendAnswer() {
             mode: "no-cors",
 
             headers: {
-
                 "Content-Type":
                     "text/plain;charset=utf-8"
-
             },
 
             body:
@@ -3179,7 +3267,6 @@ let toastTimer;
 
 function showToast(message) {
 
-
     const toast =
         document.getElementById(
             "toast"
@@ -3221,11 +3308,8 @@ function showToast(message) {
 
 function restartStory() {
 
-
     if (isTransitioning) {
-
         return;
-
     }
 
 
@@ -3278,7 +3362,6 @@ function restartStory() {
 document.addEventListener(
     "DOMContentLoaded",
     () => {
-
 
         const intro =
             document.getElementById(
