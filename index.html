@@ -1,524 +1,79 @@
-```html
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =========================
+   HEART
+========================= */
 
-<title>我們的故事</title>
+.heart {
+    position: relative;
 
-<style>
+    width: 58px;
+    height: 58px;
 
-* {
-    box-sizing: border-box;
-}
+    margin:
+        0 auto 42px;
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
     background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(255,255,255,.035),
-            transparent 40%
-        ),
-        #05070c;
+        rgba(255,255,255,.15);
 
-    color: #fff;
+    transform:
+        rotate(-45deg);
 
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Noto Sans TC",
-        "Microsoft JhengHei",
-        sans-serif;
+    animation:
+        heartBeat 2s ease-in-out infinite;
 
-    overflow-x: hidden;
+    /*
+     * 讓愛心的旋轉中心固定在正中央
+     */
+    transform-origin:
+        center center;
 }
 
+.heart::before,
+.heart::after {
 
-/* =========================
-   星空
-========================= */
+    content: "";
 
-.stars {
-    position: fixed;
-    inset: 0;
-
-    pointer-events: none;
-    z-index: 0;
-
-    background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.45) 1px,
-            transparent 1px
-        );
-
-    background-size: 80px 80px;
-
-    opacity: .12;
-}
-
-
-/* =========================
-   INTRO
-========================= */
-
-.intro {
-    position: fixed;
-    inset: 0;
-
-    z-index: 10000;
-
-    background: #000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition:
-        opacity 1.5s ease,
-        visibility 1.5s ease;
-}
-
-.intro.hide {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.intro-heart {
     position: absolute;
 
-    width: 120px;
-    height: 120px;
+    width: 58px;
+    height: 58px;
 
     border-radius: 50%;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.08),
-            transparent 65%
-        );
-
-    animation:
-        introHeart 3s ease-in-out infinite;
+        rgba(255,255,255,.15);
 }
 
-@keyframes introHeart {
+.heart::before {
+
+    left: 0;
+    top: -29px;
+}
+
+.heart::after {
+
+    left: 29px;
+    top: 0;
+}
+
+
+/* =========================
+   HEART ANIMATION
+========================= */
+
+@keyframes heartBeat {
 
     0%,
     100% {
-        transform: scale(.9);
-        opacity: .4;
+
+        transform:
+            rotate(-45deg)
+            scale(.92);
     }
 
     50% {
-        transform: scale(1.1);
-        opacity: .8;
-    }
-}
-
-.intro-text {
-    position: relative;
-    z-index: 2;
-
-    text-align: center;
-
-    letter-spacing: .35em;
-}
-
-.intro-title {
-    font-size: 25px;
-
-    margin-bottom: 22px;
-
-    opacity: 0;
-
-    animation:
-        introText 1.5s ease forwards .5s;
-}
-
-.intro-subtitle {
-    font-size: 13px;
-
-    opacity: 0;
-
-    letter-spacing: .2em;
-
-    color:
-        rgba(255,255,255,.65);
-
-    animation:
-        introText 1.5s ease forwards 1s;
-}
-
-@keyframes introText {
-
-    from {
-        opacity: 0;
 
         transform:
-            translateY(15px);
-
-        filter: blur(6px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-        filter: blur(0);
+            rotate(-45deg)
+            scale(1.05);
     }
 }
-
-
-/* =========================
-   PAGE TRANSITION
-========================= */
-
-.page-transition {
-    position: fixed;
-    inset: 0;
-
-    z-index: 9990;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(5,7,12,.035),
-            rgba(0,0,0,.998) 58%
-        ),
-        #000;
-
-    transition:
-        opacity 1s cubic-bezier(
-            .65,
-            0,
-            .35,
-            1
-        );
-}
-
-.page-transition.show {
-    opacity: 1;
-}
-
-.transition-text {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%)
-        translateY(18px);
-
-    width: 90%;
-
-    text-align: center;
-
-    font-size: 16px;
-
-    letter-spacing: .28em;
-
-    line-height: 2;
-
-    color:
-        rgba(255,255,255,.97);
-
-    text-shadow:
-        0 0 18px rgba(255,255,255,.10),
-        0 0 35px rgba(255,255,255,.05);
-
-    opacity: 0;
-
-    transition:
-        opacity .8s ease,
-        transform 1s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        );
-}
-
-.transition-text span {
-    display: inline-block;
-
-    opacity: 0;
-
-    transform:
-        translateY(14px)
-        scale(.96);
-
-    filter: blur(5px);
-
-    transition:
-        opacity .65s ease,
-        transform .75s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        ),
-        filter .75s ease;
-}
-
-.page-transition.show
-.transition-text {
-
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        translateY(0);
-}
-
-.page-transition.show
-.transition-text span {
-
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    filter: blur(0);
-}
-
-
-/* =========================
-   PAGE
-========================= */
-
-.page {
-    position: relative;
-
-    z-index: 2;
-
-    width: 100%;
-
-    min-height: 100vh;
-
-    padding:
-        70px 24px;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-}
-
-.page.active {
-    display: flex;
-}
-
-.page-inner {
-    width: 100%;
-
-    max-width: 680px;
-}
-
-
-/* =========================
-   PAGE ENTER
-========================= */
-
-.page-enter {
-    animation:
-        pageEnter 1.2s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        );
-}
-
-@keyframes pageEnter {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(25px);
-
-        filter: blur(6px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-        filter: blur(0);
-    }
-}
-
-
-/* =========================
-   TITLES
-========================= */
-
-.chapter {
-    font-size: 12px;
-
-    letter-spacing: .35em;
-
-    color:
-        rgba(255,255,255,.42);
-
-    margin-bottom: 18px;
-}
-
-h1 {
-    font-size: 28px;
-
-    font-weight: 400;
-
-    letter-spacing: .15em;
-
-    margin:
-        0 0 30px;
-}
-
-h2 {
-    font-size: 20px;
-
-    font-weight: 400;
-
-    letter-spacing: .1em;
-
-    margin:
-        0 0 24px;
-}
-
-
-/* =========================
-   STORY
-========================= */
-
-.story {
-    font-size: 15px;
-
-    line-height: 2.3;
-
-    letter-spacing: .08em;
-
-    color:
-        rgba(255,255,255,.82);
-
-    margin-bottom: 42px;
-}
-
-.story p {
-    margin:
-        0 0 22px;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.choices {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 14px;
-
-    width: 100%;
-}
-
-button {
-    appearance: none;
-
-    border:
-        1px solid
-        rgba(255,255,255,.16);
-
-    background:
-        rgba(255,255,255,.035);
-
-    color: #fff;
-
-    padding:
-        16px 22px;
-
-    border-radius: 12px;
-
-    font-size: 14px;
-
-    letter-spacing: .12em;
-
-    cursor: pointer;
-
-    transition:
-        background .3s ease,
-        border-color .3s ease,
-        transform .3s ease,
-        box-shadow .3s ease;
-}
-
-button:hover {
-    background:
-        rgba(255,255,255,.09);
-
-    border-color:
-        rgba(255,255,255,.32);
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.25);
-}
-
-button:active {
-    transform:
-        translateY(0);
-}
-
-
-/* =========================
-   INPUT
-========================= */
-
-.memory-box {
-    width: 100%;
-}
-
-textarea {
-    width: 100%;
-
-    min-height: 170px;
-
-    resize: vertical;
-
-    border:
-        1px solid
-        rgba(255,255,255,.14);
-
-    border-radius: 14px;
-
-    background:
-        rgba(255,255,255,.035)
-```
