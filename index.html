@@ -2,1010 +2,891 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>我們的故事</title>
 
-
 <style>
-
-/* =====================================================
-   基本設定
-===================================================== */
-
 * {
     box-sizing: border-box;
 }
 
 html,
 body {
+    margin: 0;
+    padding: 0;
     width: 100%;
     min-height: 100%;
-    margin: 0;
+    font-family:
+        "Noto Serif TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        serif;
+    background: #050505;
+    color: #fff;
 }
 
 body {
-    background: #05070c;
-    color: #fff;
-
-    font-family:
-        "Noto Sans TC",
-        "PingFang TC",
-        "Microsoft JhengHei",
-        sans-serif;
-
     overflow-x: hidden;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.05), transparent 28%),
+        radial-gradient(circle at 80% 70%, rgba(255,190,210,.04), transparent 30%),
+        #050505;
 }
 
+/* =========================
+   星空
+========================= */
 
-/* =====================================================
-   星空背景
-===================================================== */
-
-.stars {
+body::before,
+body::after {
+    content: "";
     position: fixed;
     inset: 0;
-
-    z-index: 0;
-
     pointer-events: none;
+    z-index: 0;
+}
 
+body::before {
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.65) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.35) 1px, transparent 1.5px);
+    background-size: 140px 140px, 220px 220px;
+    background-position: 0 0, 70px 100px;
+    opacity: .28;
+    animation: starMove 35s linear infinite;
+}
+
+body::after {
     background:
-
-        radial-gradient(
-            2px 2px at 5% 12%,
-            rgba(255,255,255,.9),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 10% 42%,
-            rgba(255,255,255,.65),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 15% 78%,
-            rgba(255,255,255,.8),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 21% 22%,
-            rgba(255,255,255,.55),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 27% 55%,
-            rgba(255,255,255,.9),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 32% 87%,
-            rgba(255,255,255,.7),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 38% 30%,
-            rgba(255,255,255,.85),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 43% 68%,
-            rgba(255,255,255,.65),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 49% 10%,
-            rgba(255,255,255,.9),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 54% 46%,
-            rgba(255,255,255,.6),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 59% 82%,
-            rgba(255,255,255,.85),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 64% 25%,
-            rgba(255,255,255,.7),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 69% 59%,
-            rgba(255,255,255,.9),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 74% 91%,
-            rgba(255,255,255,.6),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 80% 18%,
-            rgba(255,255,255,.85),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 85% 43%,
-            rgba(255,255,255,.65),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            2px 2px at 90% 73%,
-            rgba(255,255,255,.9),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 96% 32%,
-            rgba(255,255,255,.65),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 8% 92%,
-            rgba(255,255,255,.5),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 24% 8%,
-            rgba(255,255,255,.55),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 47% 58%,
-            rgba(255,255,255,.5),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 71% 8%,
-            rgba(255,255,255,.55),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            1px 1px at 93% 52%,
-            rgba(255,255,255,.55),
-            transparent 60%
-        );
-
-    animation: starMove 20s ease-in-out infinite;
+        radial-gradient(circle at center, transparent 25%, rgba(0,0,0,.55) 100%);
 }
 
 @keyframes starMove {
-
-    0% {
-        transform:
-            translate3d(0,0,0)
-            scale(1);
+    from {
+        transform: translateY(0);
     }
-
-    50% {
-        transform:
-            translate3d(-8px,-5px,0)
-            scale(1.015);
-    }
-
-    100% {
-        transform:
-            translate3d(0,0,0)
-            scale(1);
+    to {
+        transform: translateY(-140px);
     }
 }
 
-
-/* =====================================================
-   開場黑幕
-===================================================== */
+/* =========================
+   Intro
+========================= */
 
 .intro {
     position: fixed;
     inset: 0;
-
-    z-index: 10000;
-
+    background: #000;
+    z-index: 9999;
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    background: #000;
-
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    animation:
-        introAutoHide
-        4.5s
-        ease
-        forwards;
-}
-
-.intro-content {
-    text-align: center;
-
-    padding: 30px;
-}
-
-.intro-title {
-
-    font-size: 13px;
-
-    letter-spacing: 6px;
-
-    opacity: .55;
-
-    margin-bottom: 24px;
-}
-
-.intro-main {
-
-    font-size: 28px;
-
-    letter-spacing: 4px;
-
-    font-weight: 300;
-}
-
-.intro-sub {
-
-    margin-top: 18px;
-
-    font-size: 13px;
-
-    letter-spacing: 3px;
-
-    opacity: .5;
-}
-
-@keyframes introAutoHide {
-
-    0%,
-    62% {
-
-        opacity: 1;
-
-        visibility: visible;
-    }
-
-    100% {
-
-        opacity: 0;
-
-        visibility: hidden;
-
-        pointer-events: none;
-    }
+    transition: opacity 1.4s ease, visibility 1.4s ease;
 }
 
 .intro.hide {
-
     opacity: 0;
-
     visibility: hidden;
-
-    pointer-events: none;
-
-    animation: none;
 }
 
+.intro-text {
+    text-align: center;
+    opacity: 0;
+    animation: introText 2.4s ease forwards;
+}
 
-/* =====================================================
-   黑幕電影轉場
-===================================================== */
+.intro-text .small {
+    font-size: 11px;
+    letter-spacing: 6px;
+    opacity: .55;
+    margin-bottom: 22px;
+}
+
+.intro-text .main {
+    font-size: clamp(28px, 6vw, 52px);
+    letter-spacing: 8px;
+    font-weight: 300;
+}
+
+@keyframes introText {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    35% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* =========================
+   Page transition
+========================= */
 
 .page-transition {
-
     position: fixed;
-
     inset: 0;
-
-    z-index: 9990;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
     background: #000;
-
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-
     visibility: hidden;
-
-    pointer-events: none;
-
-    transition:
-        opacity .8s ease,
-        visibility .8s ease;
+    transition: opacity .7s ease, visibility .7s ease;
 }
 
-.page-transition.show {
-
+.page-transition.active {
     opacity: 1;
-
     visibility: visible;
 }
 
-.transition-text {
-
-    width: min(90%, 700px);
-
+.transition-inner {
+    width: min(850px, 88%);
     text-align: center;
+}
 
-    font-size: 20px;
+.transition-line {
+    width: 35px;
+    height: 1px;
+    background: rgba(255,255,255,.5);
+    margin: 0 auto 28px;
+    transform: scaleX(0);
+    transition: transform .8s ease;
+}
 
+.page-transition.active .transition-line {
+    transform: scaleX(1);
+}
+
+.transition-text {
+    min-height: 100px;
+    font-size: clamp(19px, 4vw, 30px);
     line-height: 2;
-
     letter-spacing: 3px;
-
     font-weight: 300;
 }
 
 .transition-text span {
-
     display: inline-block;
-
     opacity: 0;
-
     transform: translateY(10px);
-
-    animation:
-        transitionChar
-        .65s
-        ease
-        forwards;
 }
 
-@keyframes transitionChar {
+.transition-text span.show {
+    animation: charShow .55s ease forwards;
+}
 
-    0% {
-
-        opacity: 0;
-
-        transform: translateY(10px);
-    }
-
-    100% {
-
+@keyframes charShow {
+    to {
         opacity: 1;
-
         transform: translateY(0);
     }
 }
 
+.transition-sub {
+    margin-top: 24px;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,.35);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
 
-/* =====================================================
-   頁面
-===================================================== */
+.transition-sub.show {
+    opacity: 1;
+}
+
+/* =========================
+   Main
+========================= */
+
+#app {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+}
 
 .page {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: 100%;
-
     min-height: 100vh;
-
     display: none;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 70px 24px;
-
-    animation: none;
 }
 
 .page.active {
-
     display: flex;
+    animation: pageIn 1.1s ease forwards;
 }
 
-.page-enter {
-
-    animation:
-        pageEnter
-        .9s
-        ease
-        both;
-}
-
-@keyframes pageEnter {
-
+@keyframes pageIn {
     from {
-
         opacity: 0;
-
-        transform:
-            translateY(18px);
+        transform: translateY(20px);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
-
-/* =====================================================
-   故事內容
-===================================================== */
-
-.story {
-
-    width: min(680px, 100%);
-
+.content {
+    width: min(720px, 100%);
     text-align: center;
 }
 
-.chapter {
-
-    margin-bottom: 22px;
-
-    font-size: 11px;
-
-    letter-spacing: 5px;
-
-    color:
-        rgba(255,255,255,.45);
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,.38);
+    margin-bottom: 32px;
 }
 
 .title {
-
-    margin-bottom: 34px;
-
-    font-size:
-        clamp(
-            28px,
-            6vw,
-            42px
-        );
-
+    font-size: clamp(30px, 7vw, 58px);
     font-weight: 300;
-
-    letter-spacing: 4px;
+    letter-spacing: 7px;
+    line-height: 1.4;
+    margin: 0 0 38px;
 }
 
-.story-text {
-
-    font-size: 16px;
-
-    line-height: 2.3;
-
-    letter-spacing: 1.5px;
-
-    color:
-        rgba(255,255,255,.82);
-
-    white-space: pre-line;
-}
-
-.story-text strong {
-
-    color: #fff;
-
-    font-weight: 400;
-}
-
-
-/* =====================================================
-   按鈕
-===================================================== */
-
-button {
-
-    appearance: none;
-
-    margin-top: 42px;
-
-    padding:
-        13px
-        28px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.28);
-
-    border-radius: 999px;
-
-    background:
-        rgba(255,255,255,.04);
-
-    color: #fff;
-
-    font-family: inherit;
-
-    font-size: 14px;
-
+.subtitle {
+    font-size: clamp(19px, 4vw, 27px);
+    font-weight: 300;
+    line-height: 2;
     letter-spacing: 2px;
+    margin-bottom: 22px;
+}
 
+.story {
+    color: rgba(255,255,255,.7);
+    font-size: 15px;
+    line-height: 2.25;
+    letter-spacing: 1.5px;
+    white-space: pre-line;
+    margin-bottom: 38px;
+}
+
+.muted {
+    color: rgba(255,255,255,.4);
+}
+
+/* =========================
+   Button
+========================= */
+
+.btn {
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.025);
+    color: #fff;
+    padding: 14px 35px;
+    min-width: 145px;
+    border-radius: 999px;
     cursor: pointer;
-
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 3px;
     transition:
-        background .3s ease,
-        border-color .3s ease,
-        transform .3s ease;
+        background .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
 }
 
-button:hover {
-
-    background:
-        rgba(255,255,255,.12);
-
-    border-color:
-        rgba(255,255,255,.55);
-
-    transform:
-        translateY(-2px);
+.btn:hover {
+    background: rgba(255,255,255,.1);
+    border-color: rgba(255,255,255,.7);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(255,255,255,.06);
 }
 
-button:active {
-
-    transform:
-        translateY(0);
+.btn:active {
+    transform: translateY(0);
 }
 
-
-/* =====================================================
-   選項
-===================================================== */
+/* =========================
+   Choices
+========================= */
 
 .choices {
-
     display: flex;
-
     flex-direction: column;
-
-    align-items: center;
-
-    gap: 14px;
-
-    margin-top: 42px;
+    gap: 13px;
+    width: min(530px, 100%);
+    margin: 0 auto;
 }
 
-.choices button {
-
-    width: min(420px,100%);
-
-    margin-top: 0;
+.choice {
+    width: 100%;
+    padding: 17px 22px;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.025);
+    color: rgba(255,255,255,.88);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    transition:
+        .35s ease;
 }
 
+.choice:hover {
+    border-color: rgba(255,255,255,.65);
+    background: rgba(255,255,255,.08);
+    transform: translateY(-2px);
+}
 
-/* =====================================================
-   回憶
-===================================================== */
+.choice.selected {
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.8);
+}
+
+/* =========================
+   Memory
+========================= */
 
 .memory-box {
-
-    margin-top: 36px;
+    width: min(600px, 100%);
+    margin: 0 auto 24px;
 }
 
 textarea {
-
-    display: block;
-
     width: 100%;
-
-    min-height: 150px;
-
-    padding: 20px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.2);
-
-    border-radius: 16px;
-
-    outline: none;
-
+    min-height: 190px;
     resize: vertical;
-
-    background:
-        rgba(255,255,255,.04);
-
+    padding: 24px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.15);
+    outline: none;
+    background: rgba(255,255,255,.035);
     color: #fff;
-
     font-family: inherit;
-
     font-size: 15px;
-
-    line-height: 1.9;
-
-    transition:
-        border-color .3s ease;
+    line-height: 2;
+    letter-spacing: 1px;
+    transition: border-color .3s ease, background .3s ease;
 }
 
 textarea:focus {
-
-    border-color:
-        rgba(255,255,255,.5);
+    border-color: rgba(255,255,255,.5);
+    background: rgba(255,255,255,.06);
 }
 
 textarea::placeholder {
-
-    color:
-        rgba(255,255,255,.35);
+    color: rgba(255,255,255,.25);
 }
 
-.memory-result {
+/* =========================
+   Memory card
+========================= */
 
-    margin-top: 38px;
+.memory-card {
+    width: min(620px, 100%);
+    margin: 0 auto 32px;
+    padding: 38px 30px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+    box-shadow: 0 25px 80px rgba(0,0,0,.35);
+}
 
-    padding: 25px;
+.memory-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 24px;
+}
 
-    border-top:
-        1px solid
-        rgba(255,255,255,.12);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.12);
-
-    font-size: 17px;
-
-    line-height: 2;
-
-    color:
-        rgba(255,255,255,.85);
-
+.memory-display {
+    font-size: 18px;
+    line-height: 2.1;
+    letter-spacing: 1.5px;
     white-space: pre-line;
 }
 
+.memory-bottom {
+    margin-top: 28px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.35);
+}
 
-/* =====================================================
-   結尾
-===================================================== */
+/* =========================
+   Recap
+========================= */
 
-.ending {
+.recap-card {
+    width: min(650px, 100%);
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 24px;
+    background: rgba(255,255,255,.025);
+    text-align: left;
+}
 
+.recap-item {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.recap-item:last-child {
+    border-bottom: 0;
+}
+
+.recap-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 10px;
+}
+
+.recap-value {
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(255,255,255,.82);
+    white-space: pre-line;
+}
+
+.recap-ending {
+    margin-top: 32px;
     text-align: center;
+    font-size: 17px;
+    line-height: 2;
+    letter-spacing: 2px;
 }
 
-.ending strong {
+/* =========================
+   Heart
+========================= */
 
-    display: block;
-
-    margin-top: 30px;
-
-    font-size: 23px;
-
-    font-weight: 300;
-
-    letter-spacing: 3px;
+.heart-wrap {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: heartFloat 4s ease-in-out infinite;
 }
-
-
-/* =====================================================
-   愛心
-===================================================== */
 
 .heart {
-
     position: relative;
-
-    width: 58px;
-
-    height: 58px;
-
-    margin:
-        0
-        auto
-        42px;
-
-    background:
-        rgba(255,255,255,.15);
-
-    transform:
-        rotate(-45deg);
-
-    transform-origin:
-        center center;
-
-    animation:
-        heartBeat
-        2s
-        ease-in-out
-        infinite;
+    width: 70px;
+    height: 70px;
+    transform: rotate(45deg);
+    background: rgba(255,255,255,.9);
+    box-shadow:
+        0 0 35px rgba(255,255,255,.18),
+        0 0 80px rgba(255,200,220,.08);
 }
 
 .heart::before,
 .heart::after {
-
     content: "";
-
     position: absolute;
-
-    width: 58px;
-
-    height: 58px;
-
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.15);
+    background: inherit;
 }
 
 .heart::before {
-
-    left: 0;
-
-    top: -29px;
-}
-
-.heart::after {
-
-    left: 29px;
-
+    left: -35px;
     top: 0;
 }
 
-@keyframes heartBeat {
+.heart::after {
+    top: -35px;
+    left: 0;
+}
 
+@keyframes heartFloat {
     0%,
     100% {
-
-        transform:
-            rotate(-45deg)
-            scale(.92);
+        transform: translateY(0) scale(1);
     }
 
     50% {
-
-        transform:
-            rotate(-45deg)
-            scale(1.05);
+        transform: translateY(-7px) scale(1.03);
     }
 }
 
+/* =========================
+   Confession
+========================= */
 
-/* =====================================================
-   手機版
-===================================================== */
+.confession-page {
+    overflow: hidden;
+}
+
+.confession-page .content {
+    position: relative;
+}
+
+.confession-label {
+    font-size: 11px;
+    letter-spacing: 7px;
+    color: rgba(255,255,255,.4);
+    margin-bottom: 26px;
+    opacity: 0;
+    animation: revealUp 1s 0.4s forwards;
+}
+
+.confession-title {
+    font-size: clamp(32px, 8vw, 65px);
+    letter-spacing: 10px;
+    font-weight: 300;
+    margin-bottom: 35px;
+    opacity: 0;
+    animation: revealUp 1s .8s forwards;
+}
+
+.confession-line {
+    font-size: 17px;
+    line-height: 2.2;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.72);
+    opacity: 0;
+    animation: revealUp 1s 1.4s forwards;
+}
+
+.confession-question {
+    margin-top: 15px;
+    font-size: 22px;
+    letter-spacing: 4px;
+    opacity: 0;
+    animation: revealUp 1s 2s forwards;
+}
+
+.confession-choices {
+    margin-top: 45px;
+    opacity: 0;
+    animation: revealUp 1s 2.6s forwards;
+}
+
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   Ending
+========================= */
+
+.ending-message {
+    font-size: 19px;
+    line-height: 2.3;
+    letter-spacing: 2px;
+    white-space: pre-line;
+    color: rgba(255,255,255,.78);
+}
+
+.ending-final {
+    margin-top: 38px;
+    font-size: clamp(27px, 6vw, 46px);
+    letter-spacing: 7px;
+    font-weight: 300;
+}
+
+.ending-small {
+    margin-top: 30px;
+    color: rgba(255,255,255,.35);
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+/* =========================
+   Keepsake
+========================= */
+
+.keepsake {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    padding: 38px 30px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 28px;
+    background:
+        linear-gradient(
+            160deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.012)
+        );
+    box-shadow: 0 30px 100px rgba(0,0,0,.4);
+}
+
+.keepsake-top {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.keepsake-title {
+    font-size: clamp(28px, 6vw, 45px);
+    letter-spacing: 7px;
+    font-weight: 300;
+    margin-bottom: 12px;
+}
+
+.keepsake-sub {
+    color: rgba(255,255,255,.35);
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+.keepsake-section {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.keepsake-section:last-of-type {
+    border-bottom: 0;
+}
+
+.keepsake-label {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,.3);
+    margin-bottom: 10px;
+}
+
+.keepsake-value {
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(255,255,255,.78);
+    white-space: pre-line;
+}
+
+.keepsake-quote {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 16px;
+    line-height: 2.2;
+    letter-spacing: 2px;
+}
+
+.keepsake-quote span {
+    display: block;
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,.35);
+    letter-spacing: 4px;
+}
+
+/* =========================
+   Restart
+========================= */
+
+.restart {
+    margin-top: 30px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,.32);
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color .3s ease;
+}
+
+.restart:hover {
+    color: rgba(255,255,255,.75);
+}
+
+/* =========================
+   Toast
+========================= */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(20px);
+    padding: 12px 20px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 999px;
+    background: rgba(0,0,0,.8);
+    backdrop-filter: blur(10px);
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.7);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10000;
+    transition: .4s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =========================
+   Mobile
+========================= */
 
 @media (max-width: 600px) {
 
     .page {
-
-        padding:
-            55px
-            20px;
+        padding: 55px 18px;
     }
 
-    .intro-main {
-
-        font-size: 23px;
-    }
-
-    .transition-text {
-
-        font-size: 17px;
-
-        line-height: 2;
-
-        letter-spacing: 2px;
-    }
-
-    .story-text {
-
-        font-size: 15px;
-
-        line-height: 2.15;
+    .eyebrow {
+        letter-spacing: 4px;
+        margin-bottom: 25px;
     }
 
     .title {
-
-        margin-bottom: 28px;
+        letter-spacing: 5px;
+        margin-bottom: 30px;
     }
 
-    .heart {
-
-        width: 50px;
-
-        height: 50px;
-
-        margin-bottom: 38px;
+    .story {
+        font-size: 14px;
+        line-height: 2.15;
     }
 
-    .heart::before,
-    .heart::after {
-
-        width: 50px;
-
-        height: 50px;
+    .choice {
+        padding: 16px 18px;
+        font-size: 13px;
     }
 
-    .heart::before {
-
-        top: -25px;
+    .memory-card,
+    .recap-card,
+    .keepsake {
+        padding: 28px 20px;
     }
 
-    .heart::after {
-
-        left: 25px;
+    .heart-wrap {
+        margin-bottom: 35px;
+        transform: scale(.85);
     }
 
-    textarea {
+    .confession-question {
+        font-size: 19px;
+    }
 
-        min-height: 140px;
+    .transition-text {
+        font-size: 18px;
+        line-height: 1.9;
     }
 }
 
-
-/* =====================================================
-   減少動畫
-===================================================== */
+/* =========================
+   Reduced motion
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
-
-        animation-duration:
-            .01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        scroll-behavior:
-            auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
     }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     星空
-===================================================== -->
-
-<div class="stars"></div>
-
-
-<!-- =====================================================
+<!-- =========================
      開場
-===================================================== -->
+========================= -->
 
-<div
-    class="intro"
-    id="intro"
->
+<div class="intro" id="intro">
+    <div class="intro-text">
+        <div class="small">A STORY ABOUT US</div>
+        <div class="main">我們的故事</div>
+    </div>
+</div>
 
-    <div class="intro-content">
+<!-- =========================
+     電影字幕轉場
+========================= -->
 
-        <div class="intro-title">
+<div class="page-transition" id="pageTransition">
+    <div class="transition-inner">
+        <div class="transition-line"></div>
+        <div class="transition-text" id="transitionText"></div>
+        <div class="transition-sub" id="transitionSub">
             OUR STORY
         </div>
-
-        <div class="intro-main">
-            有些故事
-        </div>
-
-        <div class="intro-sub">
-            不是從告白開始
-        </div>
-
     </div>
-
 </div>
 
+<div class="toast" id="toast"></div>
 
-<!-- =====================================================
-     黑幕轉場
-===================================================== -->
+<div id="app">
 
-<div
-    class="page-transition"
-    id="pageTransition"
->
-
-    <div
-        class="transition-text"
-        id="transitionText"
-    ></div>
-
-</div>
-
-
-<!-- =====================================================
+<!-- =========================
      PAGE 0
-===================================================== -->
+========================= -->
 
-<section
-    class="page active"
-    data-page="0"
->
+<section class="page active" id="page0">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">PROLOGUE</div>
 
-        <div class="chapter">
-            PROLOGUE
+        <h1 class="title">有些故事</h1>
+
+        <div class="subtitle">
+            不是從告白開始。
         </div>
 
-        <div class="title">
-            有些故事
-        </div>
-
-        <div class="story-text">
-不是從告白開始。
-
+        <div class="story">
 也不是從某一天，突然喜歡上彼此。
 
-而是在很多個看似普通的瞬間裡，慢慢變得不普通。
+而是在很多個看似普通的瞬間裡，
+慢慢變得不普通。
         </div>
 
-        <button onclick="nextPage()">
+        <button class="btn" onclick="nextPage()">
             開始
         </button>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 1
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="1"
->
+<section class="page" id="page1">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">CHAPTER 01｜初遇</div>
 
-        <div class="chapter">
-            CHAPTER 01｜初遇
-        </div>
+        <h1 class="title">那時候的我們</h1>
 
-        <div class="title">
-            那時候的我們
-        </div>
-
-        <div class="story-text">
+        <div class="story">
 如果回到一開始，
 
 妳覺得那時候的我們，到底算什麼？
@@ -1013,448 +894,617 @@ textarea::placeholder {
 
         <div class="choices">
 
-            <button
-                onclick="choose('第一次')"
-            >
+            <button class="choice"
+                onclick="choose('第一次')">
                 只是聊天
             </button>
 
-            <button
-                onclick="choose('特別')"
-            >
+            <button class="choice"
+                onclick="choose('特別')">
                 有一點特別
             </button>
 
-            <button
-                onclick="choose('不知道')"
-            >
+            <button class="choice"
+                onclick="choose('不知道')">
                 誰知道呢
             </button>
 
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 2
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="2"
->
+<section class="page" id="page2">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">CHAPTER 02｜熟悉</div>
 
-        <div class="chapter">
-            CHAPTER 02｜熟悉
-        </div>
+        <h1 class="title">我們是從什麼時候開始熟悉的？</h1>
 
-        <div class="title">
-            我們是從什麼時候開始熟悉的？
-        </div>
-
-        <div class="story-text">
+        <div class="story">
 有些習慣，是自己都沒有發現的。
 
-妳覺得，我們是哪一個瞬間開始，慢慢習慣彼此的？
+妳覺得，我們是哪一個瞬間開始，
+慢慢習慣彼此的？
         </div>
 
         <div class="choices">
 
-            <button
-                onclick="choose('聊天')"
-            >
+            <button class="choice"
+                onclick="choose('聊天')">
                 第一次聊很久的那天
             </button>
 
-            <button
-                onclick="choose('蘆竹')"
-            >
+            <button class="choice"
+                onclick="choose('蘆竹')">
                 第一次去蘆竹見到面
             </button>
 
-            <button
-                onclick="choose('不知道')"
-            >
+            <button class="choice"
+                onclick="choose('不知道')">
                 其實我也不知道
             </button>
 
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 3
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="3"
->
+<section class="page" id="page3">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">CHAPTER 03｜下來台中</div>
 
-        <div class="chapter">
-            CHAPTER 03｜下來台中
-        </div>
+        <h1 class="title">如果要妳選</h1>
 
-        <div class="title">
-            如果要妳選
-        </div>
-
-        <div class="story-text">
+        <div class="story">
 在那些一起經歷過的事情裡，
 
 哪一天，是妳到現在還記得的？
 
-不一定是最特別的，但一定是妳記得的。
+不一定是最特別的，
+但一定是妳記得的。
         </div>
 
         <div class="memory-box">
 
             <textarea
                 id="memoryInput"
-                placeholder="寫下妳記得的那一天..."
+                placeholder="把那一天寫下來吧……"
             ></textarea>
-
-            <button
-                onclick="submitMemory()"
-            >
-                寫好了 →
-            </button>
 
         </div>
 
-        <div
-            class="memory-result"
-            id="memoryResult"
-        ></div>
+        <button class="btn" onclick="submitMemory()">
+            寫好了 →
+        </button>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 4
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="4"
->
+<section class="page" id="page4">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">A MEMORY</div>
 
-        <div class="chapter">
-            A MEMORY
+        <h1 class="title">妳寫下的是</h1>
+
+        <div class="memory-card">
+
+            <div class="memory-label">
+                THAT DAY
+            </div>
+
+            <div class="memory-display" id="memoryDisplay">
+            </div>
+
+            <div class="memory-bottom">
+                這一天，被我們留下來了。
+            </div>
+
         </div>
 
-        <div class="title">
-            妳寫下的是
-        </div>
-
-        <div
-            class="memory-result"
-            id="memoryDisplay"
-        ></div>
-
-        <button
-            onclick="nextPage()"
-        >
+        <button class="btn" onclick="nextPage()">
             繼續 →
         </button>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 5
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="5"
->
+<section class="page" id="page5">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">CHAPTER 04｜說好的未來</div>
 
-        <div class="chapter">
-            CHAPTER 04｜說好的未來
-        </div>
+        <h1 class="title">如果真的有以後</h1>
 
-        <div class="title">
-            如果真的有以後
-        </div>
+        <div class="story">
+我們其實早就偷偷討論過一些
+還沒發生的生活。
 
-        <div class="story-text">
-我們其實早就偷偷討論過一些還沒發生的生活。
-
-如果讓妳選，妳最記得哪一個？
+如果讓妳選，
+妳最記得哪一個？
         </div>
 
         <div class="choices">
 
-            <button
-                onclick="choose('未來一')"
-            >
+            <button class="choice"
+                onclick="choose('未來一')">
                 【說好買狗勾】
             </button>
 
-            <button
-                onclick="choose('未來二')"
-            >
+            <button class="choice"
+                onclick="choose('未來二')">
                 【一起為了租房子討論到早上】
             </button>
 
-            <button
-                onclick="choose('未來三')"
-            >
+            <button class="choice"
+                onclick="choose('未來三')">
                 【妳有邏輯 我有責任】
             </button>
 
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 6
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="6"
->
+<section class="page" id="page6">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">CHAPTER 05｜回頭看</div>
 
-        <div class="chapter">
-            CHAPTER 05｜回頭看
-        </div>
+        <h1 class="title">回頭看的時候</h1>
 
-        <div class="title">
-            回頭看的時候
-        </div>
-
-        <div class="story-text">
+        <div class="story">
 才發現，
 
 原來我們已經一起走過這麼多事情了。
 
-有些是妳記得的，有些是我記得的。
+有些是妳記得的，
+有些是我記得的。
 
 但那些都是真的發生過。
         </div>
 
-        <button
-            onclick="nextPage()"
-        >
+        <button class="btn" onclick="nextPage()">
             繼續
         </button>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 7
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="7"
->
+<section class="page" id="page7">
+    <div class="content">
 
-    <div class="story">
+        <div class="eyebrow">THE LAST PAGE</div>
 
-        <div class="chapter">
-            THE LAST PAGE
-        </div>
+        <h1 class="title">最後一頁</h1>
 
-        <div class="title">
-            最後一頁
-        </div>
-
-        <div class="story-text">
-如果這個故事，真的只能停在這裡。
+        <div class="story">
+如果這個故事，
+真的只能停在這裡。
 
 妳希望它怎麼停下來？
         </div>
 
         <div class="choices">
 
-            <button
-                onclick="finalAnswer('完整')"
-            >
+            <button class="choice"
+                onclick="chooseFinal('完整')">
                 我想把它寫完整
             </button>
 
-            <button
-                onclick="finalAnswer('少一點')"
-            >
+            <button class="choice"
+                onclick="chooseFinal('少一點')">
                 我覺得這樣就很好
             </button>
 
-            <button
-                onclick="finalAnswer('繼續')"
-            >
+            <button class="choice"
+                onclick="chooseFinal('繼續')">
                 我想繼續
             </button>
 
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 8
-===================================================== -->
+========================= -->
 
-<section
-    class="page"
-    data-page="8"
->
+<section class="page confession-page" id="page8">
+    <div class="content">
 
-    <div class="story ending">
+        <div class="heart-wrap">
+            <div class="heart"></div>
+        </div>
 
-        <div class="heart"></div>
-
-        <div class="chapter">
+        <div class="confession-label">
             NEXT PAGE
         </div>
 
-        <div class="title">
+        <h1 class="confession-title">
             告白
+        </h1>
+
+        <div class="confession-line">
+            如果故事還可以繼續，
         </div>
 
-        <div class="story-text">
-如果故事還可以繼續，
-
-那我想把下一頁，留給我們。
-
-<strong>妳願意嗎？</strong>
+        <div class="confession-line">
+            那我想把下一頁，留給我們。
         </div>
 
-        <div class="choices">
+        <div class="confession-question">
+            妳願意嗎？
+        </div>
 
-            <button
-                onclick="yesAnswer()"
-            >
+        <div class="choices confession-choices">
+
+            <button class="choice"
+                onclick="yesAnswer()">
                 ♡ 那必須阿
             </button>
 
-            <button
-                onclick="thinkAnswer()"
-            >
+            <button class="choice"
+                onclick="thinkAnswer()">
                 ♡ 讓我想一下
             </button>
 
         </div>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 9
-===================================================== -->
+     YES ENDING
+========================= -->
 
-<section
-    class="page"
-    data-page="9"
->
+<section class="page" id="page9">
+    <div class="content">
 
-    <div class="story ending">
-
-        <div class="heart"></div>
-
-        <div class="chapter">
-            THE NEXT CHAPTER
+        <div class="heart-wrap">
+            <div class="heart"></div>
         </div>
 
-        <div class="title">
+        <div class="eyebrow">
+            THE ANSWER
+        </div>
+
+        <h1 class="title">
             那必須阿
+        </h1>
+
+        <div class="ending-message">
+            那就說好了。
+
+            這一次，
+            不只是我一個人在寫。
+
+            我們一起。
         </div>
 
-        <div class="story-text">
-那就說好了。
-
-這一次，不只是我一個人在寫。
-
-<strong>我們一起。</strong>
+        <div class="ending-final">
+            我們一起。
         </div>
+
+        <div class="ending-small">
+            THE STORY IS NOT OVER
+        </div>
+
+        <button class="btn" style="margin-top:40px;"
+            onclick="goToKeepsake()">
+            看看我們的故事 →
+        </button>
 
     </div>
-
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      PAGE 10
-===================================================== -->
+     THINK ENDING
+========================= -->
 
-<section
-    class="page"
-    data-page="10"
->
+<section class="page" id="page10">
+    <div class="content">
 
-    <div class="story ending">
+        <div class="heart-wrap">
+            <div class="heart"></div>
+        </div>
 
-        <div class="heart"></div>
-
-        <div class="chapter">
+        <div class="eyebrow">
             TAKE YOUR TIME
         </div>
 
-        <div class="title">
+        <h1 class="title">
             想一下
+        </h1>
+
+        <div class="ending-message">
+            沒關係。
+
+            有些答案，
+            本來就需要一點時間。
+
+            所以這一頁，
+            我先替妳留著。
+
+            我會等妳。
         </div>
 
-        <div class="story-text">
-沒關係。
-
-有些答案，本來就需要一點時間。
-
-<strong>我會等妳。</strong>
+        <div class="ending-final">
+            我會等妳。
         </div>
+
+        <div class="ending-small">
+            SOME STORIES NEED TIME
+        </div>
+
+        <button class="btn" style="margin-top:40px;"
+            onclick="goToKeepsake()">
+            看看我們的故事 →
+        </button>
 
     </div>
-
 </section>
 
+
+<!-- =========================
+     PAGE 11
+     RECAP
+========================= -->
+
+<section class="page" id="page11">
+    <div class="content">
+
+        <div class="eyebrow">
+            BEFORE THE NEXT PAGE
+        </div>
+
+        <h1 class="title">
+            原來妳一路選到了這裡
+        </h1>
+
+        <div class="story">
+            如果把剛才的每一個選擇放回來看，
+            才發現我們其實已經走了很遠。
+        </div>
+
+        <div class="recap-card">
+
+            <div class="recap-item">
+                <div class="recap-label">
+                    CHAPTER 01
+                </div>
+
+                <div class="recap-value"
+                     id="recapChapter01">
+                </div>
+            </div>
+
+            <div class="recap-item">
+                <div class="recap-label">
+                    CHAPTER 02
+                </div>
+
+                <div class="recap-value"
+                     id="recapChapter02">
+                </div>
+            </div>
+
+            <div class="recap-item">
+                <div class="recap-label">
+                    THAT MEMORY
+                </div>
+
+                <div class="recap-value"
+                     id="recapMemory">
+                </div>
+            </div>
+
+            <div class="recap-item">
+                <div class="recap-label">
+                    THE FUTURE
+                </div>
+
+                <div class="recap-value"
+                     id="recapChapter04">
+                </div>
+            </div>
+
+            <div class="recap-item">
+                <div class="recap-label">
+                    THE LAST PAGE
+                </div>
+
+                <div class="recap-value"
+                     id="recapFinal">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="recap-ending">
+            原來妳真的，
+            一路走到了這裡。
+        </div>
+
+        <button class="btn"
+                style="margin-top:35px;"
+                onclick="goToConfession()">
+            下一頁 →
+        </button>
+
+    </div>
+</section>
+
+
+<!-- =========================
+     PAGE 12
+     KEEPSAKE
+========================= -->
+
+<section class="page" id="page12">
+    <div class="content">
+
+        <div class="keepsake">
+
+            <div class="keepsake-top">
+
+                <div class="keepsake-title">
+                    我們的故事
+                </div>
+
+                <div class="keepsake-sub">
+                    A STORY WRITTEN BY TWO PEOPLE
+                </div>
+
+            </div>
+
+            <div class="keepsake-section">
+
+                <div class="keepsake-label">
+                    初遇
+                </div>
+
+                <div class="keepsake-value"
+                     id="keepChapter01">
+                </div>
+
+            </div>
+
+            <div class="keepsake-section">
+
+                <div class="keepsake-label">
+                    熟悉
+                </div>
+
+                <div class="keepsake-value"
+                     id="keepChapter02">
+                </div>
+
+            </div>
+
+            <div class="keepsake-section">
+
+                <div class="keepsake-label">
+                    那一天
+                </div>
+
+                <div class="keepsake-value"
+                     id="keepMemory">
+                </div>
+
+            </div>
+
+            <div class="keepsake-section">
+
+                <div class="keepsake-label">
+                    說好的未來
+                </div>
+
+                <div class="keepsake-value"
+                     id="keepChapter04">
+                </div>
+
+            </div>
+
+            <div class="keepsake-section">
+
+                <div class="keepsake-label">
+                    最後一頁
+                </div>
+
+                <div class="keepsake-value"
+                     id="keepFinal">
+                </div>
+
+            </div>
+
+            <div class="keepsake-section">
+
+                <div class="keepsake-label">
+                    妳的答案
+                </div>
+
+                <div class="keepsake-value"
+                     id="keepConfession">
+                </div>
+
+            </div>
+
+            <div class="keepsake-quote">
+                故事還沒結束，
+                <br>
+                這只是我們寫下的第一章。
+                <span>
+                    THE END IS NOT THE END
+                </span>
+            </div>
+
+        </div>
+
+        <button class="restart"
+                onclick="restartStory()">
+            ↻ 再看一次
+        </button>
+
+    </div>
+</section>
+
+</div>
 
 
 <script>
 
 /* =====================================================
-   Google Apps Script
+   GOOGLE APPS SCRIPT
 ===================================================== */
 
 const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxVMPiDif1EIWmsTzs-Ef6QwZC64dEma3aPE6Li1VvEBCiwdULHm2-fqDziYefaP1mV-g/exec";
+"https://script.google.com/macros/s/AKfycbxVMPiDif1EIWmsTzs-Ef6QwZC64dEma3aPE6Li1VvEBCiwdULHm2-fqDziYefaP1mV-g/exec";
 
 
 /* =====================================================
-   所有答案
+   故事資料
 ===================================================== */
 
-const answers = {
+let answers = {
 
     chapter01: "",
 
@@ -1470,31 +1520,144 @@ const answers = {
 
 };
 
-
-/* =====================================================
-   頁面
-===================================================== */
-
-const pages = [
-    ...document.querySelectorAll(".page")
-];
-
 let currentPage = 0;
-
-
-/* =====================================================
-   防止重複點擊
-===================================================== */
 
 let isTransitioning = false;
 
-let transitionTimer = null;
 
-let hideTransitionTimer = null;
+/* =====================================================
+   每個選項專屬回應
+===================================================== */
+
+const choiceResponses = {
+
+    chapter01: {
+
+        "第一次":
+`所以對妳來說，
+那時候真的只是聊天。
+
+只是我現在回頭看，
+好像有些事情，
+從那個時候就已經開始了。`,
+
+        "特別":
+`原來那個時候，
+妳也有覺得我有一點特別。
+
+只是那時候的我們，
+好像都沒有說出口。`,
+
+        "不知道":
+`妳還是這樣，
+什麼都不肯好好承認。
+
+嘴硬。
+
+但沒關係，
+我記得就好了。`
+
+    },
+
+
+    chapter02: {
+
+        "聊天":
+`原來妳也記得，
+那些聊到捨不得睡的晚上。
+
+那時候的我們，
+好像就已經慢慢習慣彼此了。`,
+
+        "蘆竹":
+`原來那一次去蘆竹見到妳，
+不只是第一次見面。
+
+好像也是從那一天開始，
+妳慢慢走進了我的生活。`,
+
+        "不知道":
+`不知道也沒關係。
+
+有些依賴，
+本來就不是自己發現的。
+
+只是妳啊……
+
+又嘴硬了。 😏`
+
+    },
+
+
+    chapter04: {
+
+        "未來一":
+`妳看，
+
+我們連還沒發生的生活，
+都已經偷偷計畫好了。
+
+真的買下來了，
+我陪妳一起養。
+
+因為我需要妳，
+陪著我走下去。`,
+
+        "未來二":
+`連還沒發生的生活，
+我們都可以討論到天亮。
+
+原來所謂的以後，
+不是想像而已。
+
+是我們真的有想過。`,
+
+        "未來三":
+`妳負責想清楚，
+
+我負責把我們說過的事情，
+一件一件做到。
+
+這好像就是我們最適合的樣子。`
+
+    },
+
+
+    final: {
+
+        "完整":
+`我知道。
+
+只是如果故事停在這裡，
+我總覺得還有一點可惜。
+
+因為我們好像，
+還有很多事情沒有寫完。`,
+
+        "少一點":
+`我也是這麼想的。
+
+所以我才把這一頁，
+留給妳。
+
+至少我們走過的這些，
+都是真的。`,
+
+        "繼續":
+`那就繼續吧。
+
+但下一頁開始，
+我不想再一個人寫了。
+
+我想跟妳一起。`
+
+    }
+
+};
 
 
 /* =====================================================
-   黑幕標題
+   黑幕轉場標題
 ===================================================== */
 
 const transitionTitles = {
@@ -1519,102 +1682,57 @@ const transitionTitles = {
 
     9: "那就說好了",
 
-    10: "沒關係，我會等妳"
+    10: "沒關係，我會等妳",
+
+    11: "原來妳一路選到了這裡",
+
+    12: "把這些故事，好好留下來"
 
 };
 
 
 /* =====================================================
-   每個選項專屬回話
+   顯示頁面
 ===================================================== */
 
-const choiceResponses = {
+function showPage(index) {
 
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
 
-    chapter01: {
+    const target =
+        document.getElementById("page" + index);
 
-        "第一次":
-`所以對妳來說，
-那時候真的只是聊天。`,
+    if (!target) return;
 
-        "特別":
-`原來那個時候，
-妳也有覺得我有一點特別。`,
+    target.classList.add("active");
 
-        "不知道":
-`妳還是這樣，
-什麼都不肯好好承認！嘴硬！`
+    currentPage = index;
 
-    },
+    if (index === 4) {
 
-
-    chapter02: {
-
-        "聊天":
-`原來妳也記得，
-那些聊到捨不得睡的晚上。
-那時候的我們，
-好像就已經慢慢習慣彼此了。`,
-
-        "蘆竹":
-`原來那一次去蘆竹見到妳，
-不只是第一次見面。
-好像也是從那一天開始，
-妳慢慢走進了我的生活。`,
-
-        "不知道":
-`不知道也沒關係。
-有些依賴，本來就不是自己發現的。
-只是妳啊……
-又嘴硬了。 😏`
-
-    },
-
-
-    chapter04: {
-
-        "未來一":
-`妳看，
-我們連還沒發生的生活，
-都已經偷偷計畫好了。
-
-真的買下來了，
-我陪妳一起養，
-因為我需要妳陪著我走下去。`,
-
-        "未來二":
-`連還沒發生的生活，
-我們都可以討論到天亮。
-原來所謂的以後，
-不是想像而已。`,
-
-        "未來三":
-`妳負責想清楚，
-我負責把我們說過的事情，
-一件一件做到。`
-
-    },
-
-
-    final: {
-
-        "完整":
-`我知道。
-只是如果故事停在這裡，
-我總覺得還有一點可惜。`,
-
-        "少一點":
-`我也是這麼想的，
-所以我才把這一頁留給妳。`,
-
-        "繼續":
-`那就繼續吧。
-但下一頁開始，
-我不想再一個人寫了。`
+        document.getElementById("memoryDisplay")
+            .textContent =
+            answers.memory || "";
 
     }
 
-};
+    if (index === 11) {
+
+        updateRecap();
+
+    }
+
+    if (index === 12) {
+
+        updateKeepsake();
+
+    }
+
+}
 
 
 /* =====================================================
@@ -1624,324 +1742,106 @@ const choiceResponses = {
 function animateTransitionText(text) {
 
     const container =
-        document.getElementById(
-            "transitionText"
-        );
+        document.getElementById("transitionText");
+
+    const sub =
+        document.getElementById("transitionSub");
 
     container.innerHTML = "";
 
+    sub.classList.remove("show");
 
-    if (!text) {
+    const lines =
+        text.split("\n");
 
-        return 700;
+    lines.forEach((line, lineIndex) => {
 
-    }
-
-
-    const chars = [...text];
-
-
-    let delayPerChar;
-
-
-    if (chars.length <= 20) {
-
-        delayPerChar = 65;
-
-    }
-
-    else if (chars.length <= 35) {
-
-        delayPerChar = 55;
-
-    }
-
-    else if (chars.length <= 50) {
-
-        delayPerChar = 45;
-
-    }
-
-    else if (chars.length <= 80) {
-
-        delayPerChar = 34;
-
-    }
-
-    else {
-
-        delayPerChar = 28;
-
-    }
-
-
-    chars.forEach(
-        (char, index) => {
+        [...line].forEach(char => {
 
             const span =
-                document.createElement(
-                    "span"
-                );
+                document.createElement("span");
 
             span.textContent =
-                char === "\n"
-                    ? " "
-                    : char;
+                char === " "
+                ? "\u00A0"
+                : char;
 
-            span.style.animationDelay =
-                `${index * delayPerChar}ms`;
+            container.appendChild(span);
+
+            setTimeout(() => {
+
+                span.classList.add("show");
+
+            },
+            45 * container.children.length);
+
+        });
+
+        if (lineIndex < lines.length - 1) {
 
             container.appendChild(
-                span
+                document.createElement("br")
             );
 
         }
-    );
 
+    });
 
-    return Math.min(
-        (chars.length - 1)
-            * delayPerChar
-            + 750,
+    setTimeout(() => {
 
-        6500
-    );
-}
+        sub.classList.add("show");
 
-
-/* =====================================================
-   轉場類型
-===================================================== */
-
-function getTransitionType(index) {
-
-    if (index === 4) {
-
-        return "soft";
-
-    }
-
-
-    if (index >= 8) {
-
-        return "romance";
-
-    }
-
-
-    if (index === 7) {
-
-        return "dark";
-
-    }
-
-
-    return "";
+    }, Math.max(1000, text.length * 45 + 300));
 
 }
 
 
 /* =====================================================
-   顯示頁面
-===================================================== */
-
-function showPage(index) {
-
-    pages.forEach(
-        page => {
-
-            page.classList.remove(
-                "active",
-                "page-enter"
-            );
-
-        }
-    );
-
-
-    const page =
-        pages[index];
-
-
-    if (!page) {
-
-        return;
-
-    }
-
-
-    page.classList.add(
-        "active"
-    );
-
-
-    requestAnimationFrame(
-        () => {
-
-            page.classList.add(
-                "page-enter"
-            );
-
-        }
-    );
-
-
-    currentPage =
-        index;
-
-
-    /* 回憶頁 */
-
-    if (index === 4) {
-
-        const display =
-            document.getElementById(
-                "memoryDisplay"
-            );
-
-
-        if (display) {
-
-            display.textContent =
-                answers.memory || "";
-
-        }
-
-    }
-
-
-    isTransitioning =
-        false;
-}
-
-
-/* =====================================================
-   黑幕轉場
+   電影轉場
 ===================================================== */
 
 function transitionToPage(
     index,
-    customType = null,
-    customText = null
+    customText = ""
 ) {
 
-    if (
-        index < 0 ||
-        index >= pages.length
-    ) {
+    if (isTransitioning) return;
 
-        return;
-
-    }
-
-
-    if (
-        index === currentPage
-    ) {
-
-        return;
-
-    }
-
-
-    if (isTransitioning) {
-
-        return;
-
-    }
-
-
-    isTransitioning =
-        true;
-
-
-    clearTimeout(
-        transitionTimer
-    );
-
-    clearTimeout(
-        hideTransitionTimer
-    );
-
+    isTransitioning = true;
 
     const overlay =
-        document.getElementById(
-            "pageTransition"
-        );
-
+        document.getElementById("pageTransition");
 
     const text =
         customText ||
         transitionTitles[index] ||
         "";
 
+    overlay.classList.add("active");
 
-    const type =
-        customType ||
-        getTransitionType(index);
+    setTimeout(() => {
 
+        animateTransitionText(text);
 
-    overlay.className =
-        "page-transition";
+    }, 400);
 
+    setTimeout(() => {
 
-    if (type) {
+        showPage(index);
 
-        overlay.classList.add(
-            type
-        );
+    }, 1800);
 
-    }
+    setTimeout(() => {
 
+        overlay.classList.remove("active");
 
-    const animationTime =
-        animateTransitionText(
-            text
-        );
+    }, 2900);
 
+    setTimeout(() => {
 
-    requestAnimationFrame(
-        () => {
+        isTransitioning = false;
 
-            overlay.classList.add(
-                "show"
-            );
-
-        }
-    );
-
-
-    const showTime =
-        Math.max(
-            1800,
-            animationTime + 500
-        );
-
-
-    transitionTimer =
-        setTimeout(
-            () => {
-
-                showPage(index);
-
-
-                hideTransitionTimer =
-                    setTimeout(
-                        () => {
-
-                            overlay.classList.remove(
-                                "show"
-                            );
-
-                        },
-
-                        900
-                    );
-
-            },
-
-            showTime
-        );
+    }, 3500);
 
 }
 
@@ -1952,101 +1852,67 @@ function transitionToPage(
 
 function nextPage() {
 
-    if (isTransitioning) {
+    if (currentPage >= 12) return;
 
-        return;
+    let next = currentPage + 1;
 
-    }
-
-
-    if (
-        currentPage <
-        pages.length - 1
-    ) {
-
-        transitionToPage(
-            currentPage + 1
-        );
-
-    }
+    transitionToPage(next);
 
 }
 
 
 /* =====================================================
-   選擇
+   一般選擇
 ===================================================== */
 
 function choose(choice) {
 
-    if (isTransitioning) {
-
-        return;
-
-    }
-
-
-    let response = "";
-
-
-    /* CHAPTER 01 */
-
     if (currentPage === 1) {
 
-        answers.chapter01 =
-            choice;
+        answers.chapter01 = choice;
 
+        const response =
+            choiceResponses.chapter01[choice];
 
-        response =
-            choiceResponses
-                .chapter01[choice];
+        transitionToPage(
+            2,
+            response
+        );
 
+        return;
     }
 
 
-    /* CHAPTER 02 */
+    if (currentPage === 2) {
 
-    else if (
-        currentPage === 2
-    ) {
+        answers.chapter02 = choice;
 
-        answers.chapter02 =
-            choice;
+        const response =
+            choiceResponses.chapter02[choice];
 
+        transitionToPage(
+            3,
+            response
+        );
 
-        response =
-            choiceResponses
-                .chapter02[choice];
-
+        return;
     }
 
 
-    /* CHAPTER 04 */
+    if (currentPage === 5) {
 
-    else if (
-        currentPage === 5
-    ) {
+        answers.chapter04 = choice;
 
-        answers.chapter04 =
-            choice;
+        const response =
+            choiceResponses.chapter04[choice];
 
+        transitionToPage(
+            6,
+            response
+        );
 
-        response =
-            choiceResponses
-                .chapter04[choice];
-
+        return;
     }
-
-
-    transitionToPage(
-
-        currentPage + 1,
-
-        null,
-
-        response
-
-    );
 
 }
 
@@ -2057,34 +1923,15 @@ function choose(choice) {
 
 function submitMemory() {
 
-    if (isTransitioning) {
-
-        return;
-
-    }
-
-
     const input =
-        document.getElementById(
-            "memoryInput"
-        );
-
-
-    const result =
-        document.getElementById(
-            "memoryResult"
-        );
-
+        document.getElementById("memoryInput");
 
     const value =
         input.value.trim();
 
-
     if (!value) {
 
-        alert(
-            "寫一點妳記得的事情吧。"
-        );
+        showToast("先寫下一點回憶吧。");
 
         input.focus();
 
@@ -2092,141 +1939,196 @@ function submitMemory() {
 
     }
 
-
-    answers.memory =
-        value;
-
-
-    result.textContent =
-        value;
-
+    answers.memory = value;
 
     transitionToPage(
-
         4,
+        `原來妳記得的是……
 
-        "soft",
+${value}
 
-        "有些回憶，我們都記得"
-
+有些回憶，
+就是這樣留下來的。`
     );
 
 }
 
 
 /* =====================================================
-   最後一頁
+   最後一頁選擇
 ===================================================== */
 
-function finalAnswer(choice) {
+function chooseFinal(choice) {
 
-    if (isTransitioning) {
-
-        return;
-
-    }
-
-
-    answers.final =
-        choice;
-
+    answers.final = choice;
 
     const response =
-        choiceResponses
-            .final[choice];
-
+        choiceResponses.final[choice];
 
     transitionToPage(
-
-        8,
-
-        "dark",
-
+        11,
         response
-
     );
 
 }
 
 
 /* =====================================================
-   那必須阿
+   更新回顧
+===================================================== */
+
+function updateRecap() {
+
+    document.getElementById("recapChapter01")
+        .textContent =
+        answers.chapter01 || "—";
+
+    document.getElementById("recapChapter02")
+        .textContent =
+        answers.chapter02 || "—";
+
+    document.getElementById("recapMemory")
+        .textContent =
+        answers.memory || "—";
+
+    document.getElementById("recapChapter04")
+        .textContent =
+        answers.chapter04 || "—";
+
+    document.getElementById("recapFinal")
+        .textContent =
+        answers.final || "—";
+
+}
+
+
+/* =====================================================
+   前往告白
+===================================================== */
+
+function goToConfession() {
+
+    transitionToPage(
+        8,
+        `故事走到這裡，
+
+我還是想把下一頁，
+交給妳。
+
+所以……
+
+妳願意嗎？`
+    );
+
+}
+
+
+/* =====================================================
+   YES
 ===================================================== */
 
 function yesAnswer() {
 
-    if (isTransitioning) {
-
-        return;
-
-    }
-
-
     answers.confession =
         "那必須阿";
 
-
-    /*
-       到最後才真正送出
-       一整份完整答案
-    */
-
     sendAnswer();
 
-
     transitionToPage(
-
         9,
+        `那就說好了。
 
-        "romance",
+這一次，
+不只是我一個人在寫。
 
-        "那就說好了"
-
+我們一起。`
     );
 
 }
 
 
 /* =====================================================
-   讓我想一下
+   THINK
 ===================================================== */
 
 function thinkAnswer() {
 
-    if (isTransitioning) {
-
-        return;
-
-    }
-
-
     answers.confession =
         "讓我想一下";
 
-
-    /*
-       到最後才真正送出
-       一整份完整答案
-    */
-
     sendAnswer();
 
-
     transitionToPage(
-
         10,
+        `沒關係。
 
-        "romance",
+有些答案，
+本來就需要一點時間。
 
-        "沒關係，我會等妳"
+所以這一頁，
+我先替妳留著。
 
+我會等妳。`
     );
 
 }
 
 
 /* =====================================================
-   傳送完整資料到 Google 試算表
+   收藏頁
+===================================================== */
+
+function goToKeepsake() {
+
+    transitionToPage(
+        12,
+        `那些妳選過的，
+
+那些妳寫下的，
+
+那些我們一起走過的。
+
+我想把它們留下來。`
+    );
+
+}
+
+
+/* =====================================================
+   更新收藏頁
+===================================================== */
+
+function updateKeepsake() {
+
+    document.getElementById("keepChapter01")
+        .textContent =
+        answers.chapter01 || "—";
+
+    document.getElementById("keepChapter02")
+        .textContent =
+        answers.chapter02 || "—";
+
+    document.getElementById("keepMemory")
+        .textContent =
+        answers.memory || "—";
+
+    document.getElementById("keepChapter04")
+        .textContent =
+        answers.chapter04 || "—";
+
+    document.getElementById("keepFinal")
+        .textContent =
+        answers.final || "—";
+
+    document.getElementById("keepConfession")
+        .textContent =
+        answers.confession || "—";
+
+}
+
+
+/* =====================================================
+   Google 試算表
 ===================================================== */
 
 function sendAnswer() {
@@ -2256,64 +2158,123 @@ function sendAnswer() {
 
     };
 
-
     console.log(
         "準備送出資料：",
         payload
     );
 
-
     fetch(
         GOOGLE_SCRIPT_URL,
         {
-
             method: "POST",
 
             mode: "no-cors",
 
             headers: {
-
                 "Content-Type":
                     "text/plain;charset=utf-8"
-
             },
 
             body:
-                JSON.stringify(
-                    payload
-                )
-
-        }
-
-    )
-
-    .then(
-        () => {
-
-            console.log(
-                "愛情故事資料已送出",
-                payload
-            );
+                JSON.stringify(payload)
 
         }
     )
+    .then(() => {
 
-    .catch(
-        error => {
+        console.log(
+            "愛情故事資料已送出",
+            payload
+        );
 
-            console.error(
-                "Google 試算表資料傳送失敗：",
-                error
-            );
+    })
+    .catch(error => {
 
-        }
+        console.error(
+            "Google 試算表資料傳送失敗：",
+            error
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   Toast
+===================================================== */
+
+let toastTimer;
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2500);
+
+}
+
+
+/* =====================================================
+   重新開始
+===================================================== */
+
+function restartStory() {
+
+    if (isTransitioning) return;
+
+    answers = {
+
+        chapter01: "",
+
+        chapter02: "",
+
+        memory: "",
+
+        chapter04: "",
+
+        final: "",
+
+        confession: ""
+
+    };
+
+    const memoryInput =
+        document.getElementById("memoryInput");
+
+    if (memoryInput) {
+
+        memoryInput.value = "";
+
+    }
+
+    transitionToPage(
+        0,
+        `有些故事，
+
+不管重新看幾次，
+
+都還是會從同一個地方開始。`
     );
 
 }
 
 
 /* =====================================================
-   開場黑幕
+   開場
 ===================================================== */
 
 document.addEventListener(
@@ -2321,42 +2282,20 @@ document.addEventListener(
     () => {
 
         const intro =
-            document.getElementById(
-                "intro"
-            );
+            document.getElementById("intro");
 
+        setTimeout(() => {
 
-        if (!intro) {
+            intro.classList.add("hide");
 
-            return;
+        }, 3000);
 
-        }
-
-
-        setTimeout(
-            () => {
-
-                intro.classList.add(
-                    "hide"
-                );
-
-            },
-
-            3000
-        );
+        showPage(0);
 
     }
 );
 
-
-/* =====================================================
-   確保第一頁顯示
-===================================================== */
-
-showPage(0);
-
 </script>
-
 
 </body>
 </html>
