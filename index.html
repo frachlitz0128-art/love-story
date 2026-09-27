@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-
+<html lang="zh-Hant">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>如果故事有下一頁</title>
-
+<title>我們的故事</title>
 
 <style>
 
@@ -16,324 +13,171 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
 
 body {
-
-    margin: 0;
-
-    min-height: 100vh;
-
     background:
         radial-gradient(
             circle at 50% 20%,
-            #26344d 0%,
-            #111827 35%,
-            #080b12 75%
-        );
+            rgba(255,255,255,.035),
+            transparent 40%
+        ),
+        #05070c;
 
-    color: #f5f5f5;
+    color: #fff;
 
     font-family:
-        "Noto Serif TC",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Noto Sans TC",
         "Microsoft JhengHei",
-        serif;
+        sans-serif;
 
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
-/* ============================= */
-/* 開場動畫 */
-/* ============================= */
+/* =========================
+   星空
+========================= */
 
-.intro {
-
+.stars {
     position: fixed;
-
     inset: 0;
-
-    z-index: 99999;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(255,255,255,.08),
-            transparent 35%
-        ),
-        #050505;
-
-    overflow: hidden;
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transition:
-        opacity 1.3s ease,
-        visibility 1.3s ease;
-}
-
-
-.intro::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
     pointer-events: none;
-
-    opacity: .035;
+    z-index: 0;
 
     background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-
-}
-
-
-.intro-content {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: 100%;
-
-    padding: 30px;
-
-    text-align: center;
-
-}
-
-
-.intro-title {
-
-    font-size:
-        clamp(
-            40px,
-            11vw,
-            72px
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.45) 1px,
+            transparent 1px
         );
 
-    font-weight: 300;
-
-    letter-spacing: .12em;
-
-    opacity: 0;
-
-    transform:
-        translateY(35px)
-        scale(.96);
-
-    transition:
-        opacity 1.3s ease,
-        transform 1.3s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        );
-
+    background-size: 80px 80px;
+    opacity: .12;
 }
 
 
-.intro-subtitle {
+/* =========================
+   INTRO
+========================= */
 
-    margin-top: 22px;
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
 
-    font-size: 15px;
+    background: #000;
 
-    line-height: 2;
-
-    letter-spacing: .12em;
-
-    color:
-        rgba(255,255,255,.72);
-
-    opacity: 0;
-
-    transform:
-        translateY(20px);
-
-    transition:
-        opacity 1.2s ease .45s,
-        transform 1.2s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        ) .45s;
-
-}
-
-
-.intro-line {
-
-    width: 0;
-
-    height: 1px;
-
-    margin: 28px auto 0;
-
-    background:
-        rgba(255,255,255,.45);
-
-    transition:
-        width 1.2s ease .8s;
-
-}
-
-
-.intro-heart {
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 50%;
-
-    z-index: 1;
-
-    font-size: 20px;
-
-    color:
-        rgba(255,255,255,.5);
-
-    opacity: 0;
-
-    transform:
-        translate(-50%, -50%)
-        scale(.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     transition:
         opacity 1.5s ease,
-        transform 2s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        );
-
+        visibility 1.5s ease;
 }
-
-
-.intro.show .intro-title {
-
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-}
-
-
-.intro.show .intro-subtitle {
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
-
-}
-
-
-.intro.show .intro-line {
-
-    width: 75px;
-
-}
-
-
-.intro.show .intro-heart {
-
-    opacity: .16;
-
-    transform:
-        translate(-50%, -50%)
-        scale(9);
-
-}
-
 
 .intro.hide {
-
     opacity: 0;
-
     visibility: hidden;
-
-    pointer-events: none;
-
 }
 
+.intro-heart {
+    position: absolute;
 
-/* ============================= */
-/* 星星 */
-/* ============================= */
+    width: 120px;
+    height: 120px;
 
-.stars {
+    border-radius: 50%;
 
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    opacity: .6;
-
-    background-image:
-
+    background:
         radial-gradient(
-            2px 2px at 20% 30%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 70% 20%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            2px 2px at 80% 70%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 30% 80%,
-            white,
-            transparent
-        ),
-
-        radial-gradient(
-            1px 1px at 55% 55%,
-            white,
-            transparent
+            circle,
+            rgba(255,255,255,.08),
+            transparent 65%
         );
 
-    background-size:
-        300px 300px;
+    animation:
+        introHeart 3s ease-in-out infinite;
+}
 
+@keyframes introHeart {
+
+    0%,
+    100% {
+        transform: scale(.9);
+        opacity: .4;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: .8;
+    }
+}
+
+.intro-text {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+
+    letter-spacing: .35em;
+}
+
+.intro-title {
+    font-size: 25px;
+    margin-bottom: 22px;
+    opacity: 0;
+
+    animation:
+        introText 1.5s ease forwards .5s;
+}
+
+.intro-subtitle {
+    font-size: 13px;
+    opacity: 0;
+
+    letter-spacing: .2em;
+
+    color:
+        rgba(255,255,255,.65);
+
+    animation:
+        introText 1.5s ease forwards 1s;
+}
+
+@keyframes introText {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(15px);
+        filter: blur(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+        filter: blur(0);
+    }
 }
 
 
-/* ============================= */
-/* 電影式換頁黑幕 */
-/* ============================= */
+/* =========================
+   PAGE TRANSITION
+========================= */
 
 .page-transition {
-
     position: fixed;
-
     inset: 0;
 
     z-index: 9990;
@@ -357,66 +201,16 @@ body {
             .35,
             1
         );
-
 }
-
 
 .page-transition.show {
-
     opacity: 1;
-
 }
-
-
-.page-transition.soft {
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(10,12,16,.035),
-            rgba(0,0,0,.998) 62%
-        ),
-        #000;
-
-}
-
-
-.page-transition.dark {
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(2,3,5,.02),
-            rgba(0,0,0,1) 58%
-        ),
-        #000;
-
-}
-
-
-.page-transition.romance {
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(18,13,18,.035),
-            rgba(0,0,0,.998) 60%
-        ),
-        #000;
-
-}
-
-
-/* ============================= */
-/* 電影字幕 */
-/* ============================= */
 
 .transition-text {
-
     position: absolute;
 
     left: 50%;
-
     top: 50%;
 
     transform:
@@ -437,16 +231,27 @@ body {
         rgba(255,255,255,.97);
 
     text-shadow:
-        0 0 18px rgba(255,255,255,.10),
-        0 0 35px rgba(255,255,255,.05);
+        0 0 18px
+        rgba(255,255,255,.10),
+
+        0 0 35px
+        rgba(255,255,255,.05);
 
     opacity: 0;
 
+    transition:
+        opacity .8s ease,
+
+        transform
+        1s cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
 }
 
-
 .transition-text span {
-
     display: inline-block;
 
     opacity: 0;
@@ -455,34 +260,32 @@ body {
         translateY(14px)
         scale(.96);
 
-    filter:
-        blur(5px);
+    filter: blur(5px);
 
     transition:
         opacity .65s ease,
-        transform .75s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        ),
+        transform .75s
+            cubic-bezier(
+                .22,
+                1,
+                .36,
+                1
+            ),
         filter .75s ease;
-
 }
 
-
-.page-transition.show .transition-text {
+.page-transition.show
+.transition-text {
 
     opacity: 1;
 
     transform:
         translate(-50%, -50%)
         translateY(0);
-
 }
 
-
-.page-transition.show .transition-text span {
+.page-transition.show
+.transition-text span {
 
     opacity: 1;
 
@@ -490,619 +293,460 @@ body {
         translateY(0)
         scale(1);
 
-    filter:
-        blur(0);
-
+    filter: blur(0);
 }
 
 
-/* ============================= */
-/* 容器 */
-/* ============================= */
-
-.container {
-
-    position: relative;
-
-    width: 100%;
-
-    max-width: 700px;
-
-    height: 100vh;
-
-    margin: auto;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 30px;
-
-}
-
-
-/* ============================= */
-/* 頁面 */
-/* ============================= */
+/* =========================
+   PAGE
+========================= */
 
 .page {
+    position: relative;
+
+    z-index: 2;
 
     width: 100%;
+    min-height: 100vh;
 
-    text-align: center;
-
-    opacity: 0;
-
-    transform:
-        translateY(25px)
-        scale(.985);
+    padding:
+        70px 24px;
 
     display: none;
 
-}
+    align-items: center;
+    justify-content: center;
 
+    text-align: center;
+}
 
 .page.active {
+    display: flex;
+}
 
-    display: block;
-
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
+.page-inner {
+    width: 100%;
+    max-width: 680px;
 }
 
 
-/* ============================= */
-/* 新頁面的進場動畫 */
-/* ============================= */
+/* =========================
+   PAGE ENTER
+========================= */
 
-.page.page-enter {
-
+.page-enter {
     animation:
-        pageEnter .85s cubic-bezier(
+        pageEnter 1.2s
+        cubic-bezier(
             .22,
             1,
             .36,
             1
-        ) both;
-
+        );
 }
-
 
 @keyframes pageEnter {
 
     from {
-
         opacity: 0;
-
         transform:
-            translateY(30px)
-            scale(.985);
-
-        filter:
-            blur(4px);
-
+            translateY(25px);
+        filter: blur(6px);
     }
 
     to {
-
         opacity: 1;
-
         transform:
-            translateY(0)
-            scale(1);
-
-        filter:
-            blur(0);
-
+            translateY(0);
+        filter: blur(0);
     }
-
 }
 
 
-/* ============================= */
-/* 特殊：回憶頁 */
-/* ============================= */
-
-.page.memory-enter {
-
-    animation:
-        memoryEnter 1.2s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        ) both;
-
-}
-
-
-@keyframes memoryEnter {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px)
-            scale(.98);
-
-        filter:
-            blur(7px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:
-            blur(0);
-
-    }
-
-}
-
-
-/* ============================= */
-/* 特殊：告白頁 */
-/* ============================= */
-
-.page.romance-enter {
-
-    animation:
-        romanceEnter 1.4s cubic-bezier(
-            .22,
-            1,
-            .36,
-            1
-        ) both;
-
-}
-
-
-@keyframes romanceEnter {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            translateY(25px)
-            scale(.97);
-
-        filter:
-            blur(8px);
-
-    }
-
-    60% {
-
-        opacity: .8;
-
-        transform:
-            translateY(5px)
-            scale(.995);
-
-        filter:
-            blur(1px);
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-        filter:
-            blur(0);
-
-    }
-
-}
-
-
-/* ============================= */
-/* 章節 */
-/* ============================= */
+/* =========================
+   TITLES
+========================= */
 
 .chapter {
+    font-size: 12px;
+
+    letter-spacing: .35em;
+
+    color:
+        rgba(255,255,255,.42);
+
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 28px;
+
+    font-weight: 400;
+
+    letter-spacing: .15em;
+
+    margin:
+        0 0 30px;
+}
+
+h2 {
+    font-size: 20px;
+
+    font-weight: 400;
+
+    letter-spacing: .1em;
+
+    margin:
+        0 0 24px;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story {
+    font-size: 15px;
+
+    line-height: 2.3;
+
+    letter-spacing: .08em;
+
+    color:
+        rgba(255,255,255,.82);
+
+    margin-bottom: 42px;
+}
+
+.story p {
+    margin:
+        0 0 22px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.choices {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    width: 100%;
+}
+
+button {
+    appearance: none;
+
+    border: 1px solid
+        rgba(255,255,255,.16);
+
+    background:
+        rgba(255,255,255,.035);
+
+    color: #fff;
+
+    padding:
+        16px 22px;
+
+    border-radius: 12px;
 
     font-size: 14px;
 
-    letter-spacing: 4px;
-
-    color: #aebbd0;
-
-    margin-bottom: 25px;
-
-}
-
-
-h1 {
-
-    font-size:
-        clamp(
-            32px,
-            8vw,
-            55px
-        );
-
-    font-weight: 400;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 35px;
-
-}
-
-
-h2 {
-
-    font-size:
-        clamp(
-            25px,
-            6vw,
-            38px
-        );
-
-    font-weight: 400;
-
-    margin-bottom: 30px;
-
-}
-
-
-/* ============================= */
-/* 故事 */
-/* ============================= */
-
-.story {
-
-    font-size: 17px;
-
-    line-height: 2.2;
-
-    color: #d9dee8;
-
-    white-space: pre-line;
-
-    margin-bottom: 40px;
-
-}
-
-
-.story p {
-
-    margin: 0;
-
-}
-
-
-/* ============================= */
-/* 按鈕 */
-/* ============================= */
-
-button {
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    background:
-        rgba(255,255,255,.06);
-
-    color: white;
-
-    padding: 13px 25px;
-
-    border-radius: 30px;
-
-    font-size: 15px;
-
-    font-family: inherit;
+    letter-spacing: .12em;
 
     cursor: pointer;
 
-    transition: .3s;
-
-    margin: 6px;
-
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
-
 button:hover {
-
     background:
-        rgba(255,255,255,.16);
+        rgba(255,255,255,.09);
+
+    border-color:
+        rgba(255,255,255,.32);
 
     transform:
         translateY(-2px);
 
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.25);
 }
-
 
 button:active {
-
     transform:
-        translateY(0)
-        scale(.97);
-
+        translateY(0);
 }
 
 
-.choice-area {
+/* =========================
+   INPUT
+========================= */
 
-    margin-top: 30px;
-
+.memory-box {
+    width: 100%;
 }
 
+textarea {
+    width: 100%;
 
-/* ============================= */
-/* 輸入區 */
-/* ============================= */
+    min-height: 170px;
 
-.question {
-
-    margin-top: 10px;
-
-    margin-bottom: 20px;
-
-}
-
-
-.question-line {
-
-    font-size: 22px;
-
-    color: #ffffff;
-
-}
-
-
-.question-sub {
-
-    margin-top: 8px;
-
-    font-size: 14px;
-
-    color: #aebbd0;
-
-}
-
-
-.input-area {
-
-    margin-top: 10px;
-
-}
-
-
-.input-area input {
-
-    width: 90%;
-
-    max-width: 450px;
-
-    padding: 13px 20px;
-
-    border-radius: 30px;
+    resize: vertical;
 
     border:
         1px solid
-        rgba(255,255,255,.25);
+        rgba(255,255,255,.14);
+
+    border-radius: 14px;
 
     background:
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.035);
 
-    color: white;
+    color: #fff;
+
+    padding: 20px;
 
     outline: none;
 
     font-size: 15px;
 
-    font-family: inherit;
-
-    text-align: center;
-
-}
-
-
-.input-area input::placeholder {
-
-    color: #8993a5;
-
-}
-
-
-.input-area input:focus {
-
-    border-color:
-        rgba(255,255,255,.55);
-
-}
-
-
-/* ============================= */
-/* 對方寫下的回憶 */
-/* ============================= */
-
-.user-memory {
-
-    color: #ffffff;
-
-    font-size: 20px;
-
-    line-height: 1.9;
-
-    padding: 20px;
-
-    margin: 20px auto;
-
-    max-width: 500px;
-
-    border-left:
-        1px solid
-        rgba(255,255,255,.35);
-
-    border-right:
-        1px solid
-        rgba(255,255,255,.35);
-
-}
-
-
-/* ============================= */
-/* 結尾 */
-/* ============================= */
-
-.ending {
-
-    font-size: 20px;
-
     line-height: 2;
 
-    color: #f5f5f5;
+    letter-spacing: .06em;
 
+    transition:
+        border-color .3s ease,
+        background .3s ease;
 }
 
+textarea:focus {
+    border-color:
+        rgba(255,255,255,.35);
+
+    background:
+        rgba(255,255,255,.055);
+}
+
+textarea::placeholder {
+    color:
+        rgba(255,255,255,.28);
+}
+
+
+/* =========================
+   MEMORY
+========================= */
+
+.memory-enter {
+    animation:
+        memoryEnter 1.3s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
+}
+
+@keyframes memoryEnter {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(35px)
+            scale(.98);
+
+        filter: blur(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+.memory-result {
+    margin-top: 35px;
+
+    font-size: 16px;
+
+    line-height: 2.2;
+
+    letter-spacing: .08em;
+
+    color:
+        rgba(255,255,255,.9);
+}
+
+
+/* =========================
+   ROMANCE
+========================= */
+
+.romance-enter {
+    animation:
+        romanceEnter 1.6s
+        cubic-bezier(
+            .22,
+            1,
+            .36,
+            1
+        );
+}
+
+@keyframes romanceEnter {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(.94);
+
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================
+   ENDING
+========================= */
+
+.ending {
+    font-size: 16px;
+
+    line-height: 2.5;
+
+    letter-spacing: .12em;
+
+    color:
+        rgba(255,255,255,.86);
+}
+
+.ending strong {
+    display: block;
+
+    font-size: 26px;
+
+    font-weight: 400;
+
+    margin:
+        25px 0;
+
+    letter-spacing: .18em;
+}
+
+
+/* =========================
+   HEART
+========================= */
 
 .heart {
+    position: relative;
 
-    font-size: 35px;
+    width: 60px;
+    height: 60px;
 
-    margin: 25px;
+    margin:
+        0 auto 35px;
+
+    transform:
+        rotate(45deg);
+
+    background:
+        rgba(255,255,255,.15);
 
     animation:
-        heartbeat 1.5s infinite;
-
+        heartBeat 2s
+        ease-in-out infinite;
 }
 
+.heart::before,
+.heart::after {
 
-@keyframes heartbeat {
+    content: "";
+
+    position: absolute;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.15);
+}
+
+.heart::before {
+    left: -30px;
+}
+
+.heart::after {
+    top: -30px;
+}
+
+@keyframes heartBeat {
 
     0%,
     100% {
-
         transform:
-            scale(1);
-
+            rotate(45deg)
+            scale(.9);
     }
 
     50% {
-
         transform:
-            scale(1.15);
-
+            rotate(45deg)
+            scale(1.05);
     }
-
 }
 
 
-/* ============================= */
-/* 最後一頁特殊愛心 */
-/* ============================= */
-
-.page.final-love .heart {
-
-    animation:
-        finalHeart 1.8s ease-in-out infinite;
-
-}
-
-
-@keyframes finalHeart {
-
-    0%,
-    100% {
-
-        transform:
-            scale(1);
-
-        text-shadow:
-            0 0 0 rgba(255,255,255,0);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.3);
-
-        text-shadow:
-            0 0 35px rgba(255,255,255,.45);
-
-    }
-
-}
-
-
-/* ============================= */
-/* 手機 */
-/* ============================= */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
-    .intro-content {
-
-        padding: 25px;
-
+    .page {
+        padding:
+            55px 20px;
     }
 
-    .intro-title {
-
-        font-size: 42px;
-
-        letter-spacing: .08em;
-
+    h1 {
+        font-size: 24px;
     }
 
-    .intro-subtitle {
-
-        font-size: 14px;
-
-        line-height: 2;
-
-        letter-spacing: .08em;
-
-    }
-
-    .container {
-
-        padding: 25px 22px;
-
+    h2 {
+        font-size: 18px;
     }
 
     .story {
-
-        font-size: 16px;
-
-        line-height: 2.05;
-
-    }
-
-    .ending {
-
-        font-size: 18px;
-
-        line-height: 1.9;
-
+        font-size: 14px;
+        line-height: 2.2;
     }
 
     .transition-text {
-
         width: 88%;
 
         font-size: 14px;
@@ -1110,58 +754,51 @@ button:active {
         letter-spacing: .16em;
 
         line-height: 2.2;
-
     }
 
     button {
-
-        padding: 12px 21px;
-
+        padding:
+            15px 18px;
     }
-
 }
 
 
-/* ============================= */
-/* 減少動畫 */
-/* ============================= */
+/* =========================
+   REDUCED MOTION
+========================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
+        animation-duration:
+            .01ms !important;
 
-        animation: none !important;
+        animation-iteration-count:
+            1 !important;
 
-        transition: none !important;
-
+        transition-duration:
+            .01ms !important;
     }
-
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- ============================= -->
-<!-- 開場 -->
-<!-- ============================= -->
+<!-- =========================
+     INTRO
+========================= -->
 
-<div
-    class="intro"
-    id="intro"
->
+<div class="intro" id="intro">
 
-    <div class="intro-heart">
-        ♡
-    </div>
+    <div class="intro-heart"></div>
 
-    <div class="intro-content">
+    <div class="intro-text">
 
         <div class="intro-title">
             開始變得特別
@@ -1171,16 +808,17 @@ button:active {
             有些事情，是從某個瞬間開始的。
         </div>
 
-        <div class="intro-line"></div>
-
     </div>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- 換頁黑幕 -->
-<!-- ============================= -->
+<div class="stars"></div>
+
+
+<!-- =========================
+     TRANSITION
+========================= -->
 
 <div
     class="page-transition"
@@ -1195,217 +833,381 @@ button:active {
 </div>
 
 
-<div class="stars"></div>
+<!-- =========================
+     PAGE 0
+========================= -->
 
+<section
+    class="page active"
+    id="page0"
+>
 
-<div class="container">
+    <div class="page-inner">
 
-
-<!-- ============================= -->
-<!-- 序章 -->
-<!-- ============================= -->
-
-<section class="page active">
-
-    <div class="chapter">
-        PROLOGUE
-    </div>
-
-    <h1>
-        如果故事有下一頁
-    </h1>
-
-    <div class="story">
-有些故事，
-一開始並不知道它會走多遠。
-
-可能只是一次普通的遇見，
-一段普通的對話。
-
-可是不知道從什麼時候開始，
-妳開始慢慢變得不普通了。
-
-而這個故事，
-是從妳開始的。
-    </div>
-
-    <button onclick="nextPage()">
-        按我一下! →
-    </button>
-
-</section>
-
-
-
-<!-- ============================= -->
-<!-- 初遇 -->
-<!-- ============================= -->
-
-<section class="page">
-
-    <div class="chapter">
-        CHAPTER 01
-    </div>
-
-    <h2>
-        初遇
-    </h2>
-
-    <div class="story">
-我還記得第一次遇見妳的時候。
-
-那時候的我們，
-應該都沒有想過，
-
-有一天會一起走過這麼多事情。
-
-如果把時間拉回開始的那一天，
-妳覺得那時候的我們是什麼？
-    </div>
-
-    <div class="choice-area">
-
-        <button onclick="choose('第一次')">
-            只是聊天
-        </button>
-
-        <button onclick="choose('特別')">
-            有一點特別
-        </button>
-
-        <button onclick="choose('不知道')">
-            誰知道呢
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<!-- ============================= -->
-<!-- 熟悉 -->
-<!-- ============================= -->
-
-<section class="page">
-
-    <div class="chapter">
-        CHAPTER 02
-    </div>
-
-    <h2>
-        熟悉
-    </h2>
-
-    <div class="story">
-後來，
-我們開始慢慢熟悉。
-
-從不知道聊什麼，
-到什麼都可以聊。
-
-從一句「晚安」，
-變成一天裡習慣等待的訊息。
-
-很奇怪。
-
-好像沒有哪一天特別宣布過
-「我們變熟了」。
-
-但某天回頭看，
-
-妳卻已經變成我生活中，
-無法缺少的一部分。
-    </div>
-
-    <div class="choice-area">
-
-        <button onclick="choose('聊天')">
-            第一次聊很久的那天
-        </button>
-
-        <button onclick="choose('蘆竹')">
-            第一次去蘆竹見到面
-        </button>
-
-        <button onclick="choose('不知道')">
-            其實我也不知道(妳不想承認的依賴)
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<!-- ============================= -->
-<!-- 下來台中 -->
-<!-- ============================= -->
-
-<section class="page">
-
-    <div class="chapter">
-        CHAPTER 03
-    </div>
-
-    <h2>
-        下來台中
-    </h2>
-
-    <div class="story">
-
-        <p>
-            知道妳能下來台中後，
-            其實我超開心。
-            但後來又取消了。
-            其實我那時候真的超委屈，
-            但我不太敢表現，
-            因為我很怕情緒影響妳。
-            不過後來又聽說妳要下來一個月。
-            老實說，
-            我回家作夢都是有關妳要下來，
-            我們要去哪裡玩哈哈
-            直到那天，
-            妳真的下來了。
-            其實那天我超級緊張，
-            甚至都不太敢正眼看妳，
-            因為很害羞哈哈。
-            還記得那天我真的騎超級快回家換衣服，
-            趕快跑回來，
-            還噴香水哈哈。
-        </p>
-
-    </div>
-
-
-    <div class="question">
-
-        <div class="question-line">
-            那對妳來說呢？
+        <div class="chapter">
+            PROLOGUE
         </div>
 
-        <div class="question-sub">
-            記憶最深
+        <h1>
+            有些故事
+        </h1>
+
+        <div class="story">
+
+            <p>
+                不是從告白開始。
+            </p>
+
+            <p>
+                也不是從某一天，
+                突然喜歡上彼此。
+            </p>
+
+            <p>
+                而是在很多個
+                看似普通的瞬間裡，
+                慢慢變得不普通。
+            </p>
+
         </div>
+
+        <button onclick="nextPage()">
+            開始
+        </button>
 
     </div>
 
+</section>
 
-    <div class="input-area">
 
-        <input
-            type="text"
-            id="memoryInput"
-            placeholder="寫下妳記得的那一天..."
+<!-- =========================
+     PAGE 1
+========================= -->
+
+<section
+    class="page"
+    id="page1"
+>
+
+    <div class="page-inner">
+
+        <div class="chapter">
+            CHAPTER 01｜初遇
+        </div>
+
+        <h1>
+            那時候的我們
+        </h1>
+
+        <div class="story">
+
+            <p>
+                如果回到一開始，
+            </p>
+
+            <p>
+                妳覺得那時候的我們，
+                到底算什麼？
+            </p>
+
+        </div>
+
+        <div
+            class="choices"
+            id="3mqh1n"
         >
 
-        <br>
+            <button
+                onclick="choose('第一次')"
+            >
+                只是聊天
+            </button>
+
+            <button
+                onclick="choose('特別')"
+            >
+                有一點特別
+            </button>
+
+            <button
+                onclick="choose('不知道')"
+            >
+                誰知道呢
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<section
+    class="page"
+    id="page2"
+>
+
+    <div class="page-inner">
+
+        <div class="chapter">
+            CHAPTER 02｜熟悉
+        </div>
+
+        <h1>
+            我們是從什麼時候開始熟悉的？
+        </h1>
+
+        <div class="story">
+
+            <p>
+                有些習慣，
+                是自己都沒有發現的。
+            </p>
+
+            <p>
+                妳覺得，
+                我們是哪一個瞬間開始，
+                慢慢習慣彼此的？
+            </p>
+
+        </div>
+
+        <div
+            class="choices"
+            id="8yqvhw"
+        >
+
+            <button
+                onclick="choose('聊天')"
+            >
+                第一次聊很久的那天
+            </button>
+
+            <button
+                onclick="choose('蘆竹')"
+            >
+                第一次去蘆竹見到面
+            </button>
+
+            <button
+                onclick="choose('不知道')"
+            >
+                其實我也不知道
+                (妳不想承認的依賴)
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 3
+========================= -->
+
+<section
+    class="page"
+    id="page3"
+>
+
+    <div class="page-inner">
+
+        <div class="chapter">
+            CHAPTER 03｜下來台中
+        </div>
+
+        <h1>
+            如果要妳選
+        </h1>
+
+        <div class="story">
+
+            <p>
+                在那些一起經歷過的事情裡，
+            </p>
+
+            <p>
+                哪一天，
+                是妳到現在還記得的？
+            </p>
+
+            <p>
+                不一定是最特別的，
+                但一定是妳記得的。
+            </p>
+
+        </div>
+
+        <div class="memory-box">
+
+            <textarea
+                id="memoryInput"
+                placeholder="寫下妳記得的那一天..."
+            ></textarea>
+
+            <br><br>
+
+            <button
+                onclick="submitMemory()"
+            >
+                寫好了 →
+            </button>
+
+            <div
+                class="memory-result"
+                id="memoryResult"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 4
+========================= -->
+
+<section
+    class="page"
+    id="page4"
+>
+
+    <div class="page-inner">
+
+        <div class="chapter">
+            A MEMORY
+        </div>
+
+        <h1>
+            妳寫下的是
+        </h1>
+
+        <div
+            class="memory-result"
+            id="memoryDisplay"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 5
+========================= -->
+
+<section
+    class="page"
+    id="page5"
+>
+
+    <div class="page-inner">
+
+        <div class="chapter">
+            CHAPTER 04｜說好的未來
+        </div>
+
+        <h1>
+            如果真的有以後
+        </h1>
+
+        <div class="story">
+
+            <p>
+                我們其實早就偷偷討論過
+                一些還沒發生的生活。
+            </p>
+
+            <p>
+                如果讓妳選，
+                妳最記得哪一個？
+            </p>
+
+        </div>
+
+        <div
+            class="choices"
+            id="qk9c8k"
+        >
+
+            <button
+                onclick="choose('未來一')"
+            >
+                【說好買狗勾】
+            </button>
+
+            <button
+                onclick="choose('未來二')"
+            >
+                【一起為了租房子討論到早上】
+            </button>
+
+            <button
+                onclick="choose('未來三')"
+            >
+                【妳有邏輯 我有責任】
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 6
+========================= -->
+
+<section
+    class="page"
+    id="page6"
+>
+
+    <div class="page-inner">
+
+        <div class="chapter">
+            CHAPTER 05｜回頭看
+        </div>
+
+        <h1>
+            回頭看的時候
+        </h1>
+
+        <div class="story">
+
+            <p>
+                才發現，
+            </p>
+
+            <p>
+                原來我們已經一起走過
+                這麼多事情了。
+            </p>
+
+            <p>
+                有些是妳記得的，
+                有些是我記得的。
+            </p>
+
+            <p>
+                但那些都是真的發生過。
+            </p>
+
+        </div>
 
         <button
-            type="button"
-            onclick="submitMemory()"
+            onclick="nextPage()"
         >
-            寫好了 →
+            繼續
         </button>
 
     </div>
@@ -1413,436 +1215,215 @@ button:active {
 </section>
 
 
+<!-- =========================
+     PAGE 7
+========================= -->
 
-<!-- ============================= -->
-<!-- 回憶 -->
-<!-- ============================= -->
+<section
+    class="page"
+    id="page7"
+>
 
-<section class="page">
+    <div class="page-inner">
 
-    <div class="chapter">
-        A MEMORY
-    </div>
+        <div class="chapter">
+            THE LAST PAGE
+        </div>
 
-    <h2>
-        妳寫下的是
-    </h2>
+        <h1>
+            最後一頁
+        </h1>
 
-    <div class="user-memory">
+        <div class="story">
 
-        <span id="memoryResult"></span>
+            <p>
+                如果這個故事，
+                真的只能停在這裡。
+            </p>
 
-    </div>
+            <p>
+                妳希望它怎麼停下來？
+            </p>
 
-    <div class="story">
+        </div>
 
-        <p>
-            我也記得。
-        </p>
+        <div class="choices">
 
-        <p>
-            原來有些事情，
-            我們都沒有忘記。
-        </p>
+            <button
+                onclick="finalAnswer('完整')"
+            >
+                我想把它寫完整
+            </button>
 
-    </div>
+            <button
+                onclick="finalAnswer('少一點')"
+            >
+                我覺得這樣就很好
+            </button>
 
-    <button onclick="nextPage()">
-        繼續 →
-    </button>
+            <button
+                onclick="finalAnswer('繼續')"
+            >
+                我想繼續
+            </button>
 
-</section>
-
-
-
-<!-- ============================= -->
-<!-- 說好的未來 -->
-<!-- ============================= -->
-
-<section class="page">
-
-    <div class="chapter">
-        CHAPTER 04
-    </div>
-
-    <h2>
-        說好的未來
-    </h2>
-
-    <div class="story">
-我們好像說過很多個「以後」。
-
-以後要去哪裡。
-
-以後要一起做什麼。
-
-以後有機會的話，
-一定要……
-
-有些只是隨口說說，
-有些我們真的記得。
-
-但我很喜歡那些「以後」。
-
-因為那代表妳的未來裡一直都有我
-現在也在一步一步完成，
-想都不敢想那些期待，真的慢慢實現
-但最重要的東西是妳在我身邊，因為有妳
-賦予了這些所有的事情意義。
-    </div>
-
-
-    <div class="choice-area">
-
-        <button onclick="choose('未來一')">
-            【說好買狗勾】
-        </button>
-
-        <button onclick="choose('未來二')">
-            【一起為了租房子討論到早上】
-        </button>
-
-        <button onclick="choose('未來三')">
-            【妳有邏輯 我有責任】
-        </button>
+        </div>
 
     </div>
 
 </section>
 
 
+<!-- =========================
+     PAGE 8
+========================= -->
 
-<!-- ============================= -->
-<!-- 回頭看 -->
-<!-- ============================= -->
+<section
+    class="page"
+    id="page8"
+>
 
-<section class="page">
+    <div class="page-inner romance-enter">
 
-    <div class="chapter">
-        CHAPTER 05
-    </div>
+        <div class="chapter">
+            NEXT PAGE
+        </div>
 
-    <h2>
-        回頭看
-    </h2>
+        <div class="heart"></div>
 
-    <div class="story">
-其實現在回頭看，
+        <h1>
+            告白
+        </h1>
 
-才發現我們已經走了這麼遠。
+        <div class="ending">
 
-從第一次見面，
-到慢慢熟悉，
+            <p>
+                如果故事還可以繼續，
+            </p>
 
-從妳下來台中到妳回去，
-從第一次吃飯到看過妳落淚
-從討論買車租房到現在真的擁有了一台車
-從以前常常讓妳生氣，
-不懂事一直跟妳頂嘴，
-雖然到現在還是常常惹妳生氣
+            <p>
+                那我想把下一頁，
+                留給我們。
+            </p>
 
-可是不管發生了什麼。
-我都很喜歡也不後悔
-因為每一頁回憶裡面，
+            <strong>
+                妳願意嗎？
+            </strong>
 
-那個人都是妳 蔡宛蓁。
-    </div>
+        </div>
 
-    <button onclick="nextPage()">
-        下一頁 →
-    </button>
+        <div class="choices">
 
-</section>
+            <button
+                onclick="yesAnswer()"
+            >
+                ♡ 那必須阿
+            </button>
 
+            <button
+                onclick="thinkAnswer()"
+            >
+                ♡ 讓我想一下
+            </button>
 
-
-<!-- ============================= -->
-<!-- 最後選擇 -->
-<!-- ============================= -->
-
-<section class="page">
-
-    <div class="chapter">
-        THE LAST PAGE
-    </div>
-
-    <h2>
-        最後一頁
-    </h2>
-
-    <div class="story">
-如果這本故事現在停在這裡，
-
-你會覺得它已經完整了嗎？
-    </div>
-
-    <div class="choice-area">
-
-        <button onclick="finalAnswer('完整')">
-            嗯，已經很好了
-        </button>
-
-        <button onclick="finalAnswer('少一點')">
-            好像還少了一點什麼
-        </button>
-
-        <button onclick="finalAnswer('繼續')">
-            我想繼續看
-        </button>
+        </div>
 
     </div>
 
 </section>
 
 
+<!-- =========================
+     PAGE 9
+========================= -->
 
-<!-- ============================= -->
-<!-- 告白 -->
-<!-- ============================= -->
+<section
+    class="page"
+    id="page9"
+>
 
-<section class="page">
+    <div class="page-inner romance-enter">
 
-    <div class="chapter">
-        NEXT PAGE
-    </div>
+        <div class="heart"></div>
 
-    <div class="heart">
-        ♡
-    </div>
+        <h1>
+            那必須阿
+        </h1>
 
-    <div class="ending">
+        <div class="ending">
 
-那我們不要停在這裡。
+            <p>
+                那就說好了。
+            </p>
 
-<br><br>
+            <p>
+                這一次，
+                不只是我一個人在寫。
+            </p>
 
-前面的故事，
-是我們一起走過的。
+            <strong>
+                我們一起。
+            </strong>
 
-有開心的，
-有難過的，
-也有一些我們到現在都還說不清楚的瞬間。
-
-<br><br>
-
-但我很確定一件事。
-
-<br><br>
-
-<strong>
-我不想只陪妳走到這裡。
-</strong>
-
-<br><br>
-
-我想陪妳走下一頁，
-再下一頁。
-
-<br><br>
-
-想陪妳養狗勾，
-陪妳討論那個還沒存在的家，
-也陪妳把那些說過的「以後」，
-一個一個變成真的。
-
-<br><br>
-
-所以這一次，
-我不想再讓妳猜了。
-
-<br><br>
-
-<strong>
-蔡宛蓁，妳願意陪我，
-把我們的故事繼續寫下去嗎？
-</strong>
-
-    </div>
-
-    <div class="choice-area">
-
-        <button onclick="yesAnswer()">
-            ♡ 那必須阿
-        </button>
-
-        <button onclick="thinkAnswer()">
-            ♡ 讓我想一下
-        </button>
+        </div>
 
     </div>
 
 </section>
 
 
+<!-- =========================
+     PAGE 10
+========================= -->
 
-<!-- ============================= -->
-<!-- 那必須阿 -->
-<!-- ============================= -->
+<section
+    class="page"
+    id="page10"
+>
 
-<section class="page">
+    <div class="page-inner romance-enter">
 
-    <div class="heart">
-        ♥
-    </div>
+        <div class="heart"></div>
 
-    <div class="ending">
+        <h1>
+            想一下
+        </h1>
 
-那就說好了。
+        <div class="ending">
 
-<br><br>
+            <p>
+                沒關係。
+            </p>
 
-從今天開始，
-我們的故事還有下一頁。
+            <p>
+                有些答案，
+                本來就需要一點時間。
+            </p>
 
-<br><br>
+            <strong>
+                我會等妳。
+            </strong>
 
-這一次，
-不再只是我一個人寫。
-
-<br><br>
-
-<strong>
-是我們一起。
-</strong>
-
-<br><br>
-
-謝謝妳，
-願意走進我的故事。
-
-<br><br>
-
-To be continued…
+        </div>
 
     </div>
 
 </section>
-
-
-
-<!-- ============================= -->
-<!-- 想一下 -->
-<!-- ============================= -->
-
-<section class="page">
-
-    <div class="heart">
-        ♡
-    </div>
-
-    <div class="ending">
-
-沒關係。
-
-<br><br>
-
-妳不用現在回答我。
-
-<br><br>
-
-我知道有些答案，
-不是一句「好」或「不好」
-就能馬上決定的。
-
-<br><br>
-
-所以慢慢想。
-
-<br><br>
-
-我不會逼妳，
-也不會因為妳需要時間，
-就把前面的故事全部否定。
-
-<br><br>
-
-因為對我來說，
-那些一起走過的日子都是真的。
-
-<br><br>
-
-<strong>
-我會把下一頁留著。
-</strong>
-
-<br><br>
-
-等妳準備好的那一天，
-我們再一起寫下去。
-
-<br><br>
-
-至於那97次拒絕……
-
-<br><br>
-
-<strong>
-我還是會慢慢還完。 😏
-</strong>
-
-<br><br>
-
-Chapter ∞
-
-<br>
-
-To be continued…
-
-    </div>
-
-</section>
-
-
-</div>
-
 
 
 <script>
 
-
-/* ============================= */
-/* 開場動畫 */
-/* ============================= */
-
-const intro =
-    document.getElementById("intro");
-
-
-window.addEventListener(
-    "load",
-    () => {
-
-        setTimeout(
-            () => {
-
-                intro.classList.add("show");
-
-            },
-            300
-        );
-
-
-        setTimeout(
-            () => {
-
-                intro.classList.add("hide");
-
-            },
-            4000
-        );
-
-    }
-);
-
-
-
-/* ============================= */
-/* Google 試算表 */
-/* ============================= */
+/* =========================
+   GOOGLE APPS SCRIPT
+========================= */
 
 const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbwNJRCa6o5GI-_lES0frYR7mtsZ9PkFv-IUGQpiPg014UhGCtPtF8Utzivx-OldXQXzmQ/exec";
 
+
+/* =========================
+   ANSWERS
+========================= */
 
 const answers = {
 
@@ -1861,88 +1442,24 @@ const answers = {
 };
 
 
-function sendAnswer(type, answer) {
+/* =========================
+   PAGE
+========================= */
 
-    answers[type] = answer;
-
-
-    if (
-        !GOOGLE_SCRIPT_URL ||
-        GOOGLE_SCRIPT_URL.includes("請把你的")
-    ) {
-
-        console.log(
-            "尚未設定 Google 試算表網址：",
-            type,
-            answer
-        );
-
-        return;
-
-    }
-
-
-    const payload = {
-
-        time:
-            new Date().toISOString(),
-
-        ...answers
-
-    };
-
-
-    fetch(
-        GOOGLE_SCRIPT_URL,
-        {
-
-            method: "POST",
-
-            mode: "no-cors",
-
-            headers: {
-
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-
-            },
-
-            body:
-                JSON.stringify(payload)
-
-        }
-
-    ).catch(
-        error => {
-
-            console.error(
-                "回傳選擇失敗：",
-                error
-            );
-
-        }
-    );
-
-}
-
-
-
-/* ============================= */
-/* 頁面控制 */
-/* ============================= */
+const pages =
+    [...document.querySelectorAll(".page")];
 
 let currentPage = 0;
 
 
-const pages =
-    document.querySelectorAll(".page");
-
+/* =========================
+   TRANSITION
+========================= */
 
 const pageTransition =
     document.getElementById(
         "pageTransition"
     );
-
 
 const transitionText =
     document.getElementById(
@@ -1950,253 +1467,192 @@ const transitionText =
     );
 
 
-
-/* ============================= */
-/* 每一頁的預設轉場文字 */
-/* ============================= */
+/* =========================
+   TRANSITION TITLES
+========================= */
 
 const transitionTitles = {
 
     0: "",
 
-    1: "故事，從這裡開始",
+    1:
+        "故事，從這裡開始",
 
-    2: "我們開始變得熟悉",
+    2:
+        "我們開始變得熟悉",
 
-    3: "然後，妳真的來了",
+    3:
+        "然後，妳真的來了",
 
-    4: "有些回憶，我們都記得",
+    4:
+        "有些回憶，我們都記得",
 
-    5: "那些說過的以後",
+    5:
+        "那些說過的以後",
 
-    6: "回頭看，才發現已經走了這麼遠",
+    6:
+        "回頭看，才發現已經走了這麼遠",
 
-    7: "如果故事停在這裡呢？",
+    7:
+        "如果故事停在這裡呢？",
 
-    8: "那就不要停下來",
+    8:
+        "那就不要停下來",
 
-    9: "那就說好了",
+    9:
+        "那就說好了",
 
-    10: "沒關係，我會等妳"
+    10:
+        "沒關係，我會等妳"
 
 };
 
 
-
-/* ============================= */
-/* 選項專屬回應 */
-/* ============================= */
+/* =========================
+   CHOICE RESPONSES
+========================= */
 
 const choiceResponses = {
-
-
-    /* ========================= */
-    /* CHAPTER 01 */
-    /* ========================= */
 
     chapter01: {
 
         "第一次":
-            "所以對妳來說，那時候真的只是聊天。",
+            `所以對妳來說，
+那時候真的只是聊天。`,
 
         "特別":
-            "原來那個時候，妳也有覺得我有一點特別。",
+            `原來那個時候，
+妳也有覺得我有一點特別。`,
 
         "不知道":
-            "妳還是這樣，什麼都不肯好好承認。嘴硬。"
+            `妳還是這樣，
+什麼都不肯好好承認！嘴硬！`
 
     },
 
-
-    /* ========================= */
-    /* CHAPTER 02 */
-    /* ========================= */
 
     chapter02: {
 
         "聊天":
-            "原來妳也記得，那些聊到捨不得睡的晚上。那時候的我們，好像就已經慢慢習慣彼此了。",
+            `原來妳也記得，
+那些聊到捨不得睡的晚上。
+那時候的我們，
+好像就已經慢慢習慣彼此了。`,
 
         "蘆竹":
-            "原來有些心動，不是從一句「我喜歡妳」開始。而是第一次真的見到妳的那一刻，我才發現，原來我比自己想的還在乎妳。",
+            `原來那一次去蘆竹見到妳，
+不只是第一次見面。
+好像也是從那一天開始，
+妳慢慢走進了我的生活。`,
 
         "不知道":
-            "不知道也沒關係。有些依賴，本來就不是自己發現的。只是妳啊……又嘴硬了。😏"
+            `不知道也沒關係。
+有些依賴，本來就不是自己發現的。
+只是妳啊……
+又嘴硬了。 😏`
 
     },
 
-
-    /* ========================= */
-    /* CHAPTER 04 */
-    /* ========================= */
 
     chapter04: {
 
         "未來一":
-            "妳看，我們連還沒發生的生活，都已經偷偷計畫好了。真的買下來了，我陪妳一起養。因為我需要妳，陪著我一起走下去。",
+            `妳看，
+我們連還沒發生的生活，
+都已經偷偷計畫好了。
+
+真的買下來了，
+我陪妳一起養，
+因為我需要妳陪著我走下去。`,
 
         "未來二":
-            "妳看，我們連還沒住進去的房子，都可以為了它討論一整個晚上。從房租、地點，到我們以後會怎麼生活。好像那個還沒存在的家，早就已經有我們兩個的位置了。如果真的有那一天，我想和妳一起把它變成家。",
+            `連還沒發生的生活，
+我們都可以討論到天亮。
+原來所謂的以後，
+不是想像而已。`,
 
         "未來三":
-            "妳總是有妳的邏輯，而我也有我想扛起來的責任。我們想事情的方式不一定一樣，但我知道一件事。如果是我們一起決定的未來，那就不該只有妳一個人在想。妳負責把未來想清楚，我負責陪妳一步一步走下去。"
+            `妳負責想清楚，
+我負責把我們說過的事情，
+一件一件做到。`
 
     },
 
 
-    /* ========================= */
-    /* THE LAST PAGE */
-    /* ========================= */
-
     final: {
 
         "完整":
-            "我知道。能走到這裡，已經是很珍貴的一件事。但如果真的要讓故事停在這裡，我還是會覺得有一點可惜。",
+            `我知道。
+只是如果故事停在這裡，
+我總覺得還有一點可惜。`,
 
         "少一點":
-            "我也一直覺得，好像還少了一頁。不是因為前面的故事不完整，而是因為我想把下一頁，留給我們。",
+            `我也是這麼想的，
+所以我才把這一頁留給妳。`,
 
         "繼續":
-            "那就繼續吧。只是下一頁開始，我不想再一個人寫了。我想和妳一起。"
+            `那就繼續吧。
+但下一頁開始，
+我不想再一個人寫了。`
 
     }
 
 };
 
 
-
-/* ============================= */
-/* 回憶關鍵字回應 */
-/* ============================= */
-
-const memoryResponses = {
-
-
-    intimate: [
-        "有些事情不用說太多，身體比我們更早知道答案。"
-    ],
-
-    firstMeet: [
-        "螢幕裡的人，突然真的出現在眼前。那一刻，我才發現我們的故事真的開始了。"
-    ],
-
-    vulnerable: [
-        "如果那一天的妳需要有人陪著，我希望現在回頭看，妳知道我一直都在。"
-    ],
-
-    miss: [
-        "原來不只是我會想妳。那些沒說出口的想念，妳也一直放在心裡。"
-    ],
-
-    expectation: [
-        "原來那一天，妳也和我一樣期待。只是我們都沒有說出口。"
-    ],
-
-    nervous: [
-        "原來妳那天也緊張。只是那時候的我不知道，還以為只有我一個人在偷偷期待。"
-    ],
-
-    chat: [
-        "原來那些隔著螢幕聊過的話，最後真的把我們帶到了彼此面前。"
-    ],
-
-    happy: [
-        "妳記得的是那一天的開心，而我記得的，是看著妳開心的那個瞬間。"
-    ],
-
-    general: [
-        "原來妳記得的是這個。沒想到這段回憶，妳也偷偷留了一個位置。"
-    ]
-
-};
-
-
-
-/* ============================= */
-/* 取得轉場類型 */
-/* ============================= */
-
-function getTransitionType(index) {
-
-    if (index === 4) {
-
-        return "soft";
-
-    }
-
-
-    if (index === 7) {
-
-        return "dark";
-
-    }
-
-
-    if (
-        index === 8 ||
-        index === 9 ||
-        index === 10
-    ) {
-
-        return "romance";
-
-    }
-
-
-    return "";
-
-}
-
-
-
-/* ============================= */
-/* 取得新頁面動畫 */
-/* ============================= */
-
-function getPageAnimation(index) {
-
-    if (index === 4) {
-
-        return "memory-enter";
-
-    }
-
-
-    if (
-        index === 8 ||
-        index === 9 ||
-        index === 10
-    ) {
-
-        return "romance-enter";
-
-    }
-
-
-    return "page-enter";
-
-}
-
-
-
-/* ============================= */
-/* 電影字幕：逐字產生 */
-/* ============================= */
+/* =========================
+   ANIMATE TRANSITION TEXT
+   自動計算長短字幕時間
+========================= */
 
 function animateTransitionText(text) {
 
     transitionText.innerHTML = "";
 
-
     if (!text) {
-
-        return;
-
+        return 0;
     }
 
+    const chars = [...text];
 
-    const chars =
-        [...text];
+    /*
+     * 根據文字長度自動調整速度
+     *
+     * 短句：
+     * 65ms / 字
+     *
+     * 中句：
+     * 55ms / 字
+     *
+     * 長句：
+     * 45ms / 字
+     *
+     * 超長句：
+     * 38ms / 字
+     */
+
+    let delayPerChar = 55;
+
+    if (chars.length <= 20) {
+
+        delayPerChar = 65;
+
+    }
+    else if (chars.length <= 35) {
+
+        delayPerChar = 55;
+
+    }
+    else if (chars.length <= 50) {
+
+        delayPerChar = 45;
+
+    }
+    else {
+
+        delayPerChar = 38;
+
+    }
 
 
     chars.forEach(
@@ -2207,16 +1663,13 @@ function animateTransitionText(text) {
                     "span"
                 );
 
-
             span.textContent =
                 char === " "
                     ? "\u00A0"
                     : char;
 
-
             span.style.transitionDelay =
-                `${index * 70}ms`;
-
+                `${index * delayPerChar}ms`;
 
             transitionText.appendChild(
                 span
@@ -2225,76 +1678,24 @@ function animateTransitionText(text) {
         }
     );
 
+
+    /*
+     * 最後一個字出現
+     * ＋ 最後一個字自己的動畫時間
+     */
+
+    const animationTime =
+        (chars.length - 1)
+        * delayPerChar
+        + 750;
+
+    return animationTime;
 }
 
 
-
-/* ============================= */
-/* 立即顯示頁面 */
-/* ============================= */
-
-function showPage(index) {
-
-    if (
-        index < 0 ||
-        index >= pages.length
-    ) {
-
-        return;
-
-    }
-
-
-    pages.forEach(
-        page => {
-
-            page.classList.remove(
-                "active",
-                "page-enter",
-                "memory-enter",
-                "romance-enter",
-                "final-love"
-            );
-
-        }
-    );
-
-
-    currentPage = index;
-
-
-    const targetPage =
-        pages[currentPage];
-
-
-    targetPage.classList.add(
-        "active"
-    );
-
-
-    void targetPage.offsetWidth;
-
-
-    targetPage.classList.add(
-        getPageAnimation(index)
-    );
-
-
-    if (index === 9) {
-
-        targetPage.classList.add(
-            "final-love"
-        );
-
-    }
-
-}
-
-
-
-/* ============================= */
-/* 電影式換頁 */
-/* ============================= */
+/* =========================
+   TRANSITION TO PAGE
+========================= */
 
 function transitionToPage(
     index,
@@ -2306,18 +1707,13 @@ function transitionToPage(
         index < 0 ||
         index >= pages.length
     ) {
-
         return;
-
     }
-
 
     if (
         index === currentPage
     ) {
-
         return;
-
     }
 
 
@@ -2330,8 +1726,8 @@ function transitionToPage(
         customText !== null
             ? customText
             : (
-                transitionTitles[index] ||
-                ""
+                transitionTitles[index]
+                || ""
             );
 
 
@@ -2348,9 +1744,14 @@ function transitionToPage(
     }
 
 
-    animateTransitionText(
-        title
-    );
+    /*
+     * 這次字幕實際需要多久
+     */
+
+    const animationTime =
+        animateTransitionText(
+            title
+        );
 
 
     requestAnimationFrame(
@@ -2364,13 +1765,35 @@ function transitionToPage(
     );
 
 
+    /*
+     * 最短停留 1.8 秒
+     *
+     * 如果字幕很長，
+     * 自動等它完整跑完。
+     */
+
+    const showTime =
+        Math.max(
+            1800,
+            animationTime + 500
+        );
+
+
+    /*
+     * 黑幕淡出
+     */
+
+    const hideTime =
+        showTime + 1200;
+
+
     setTimeout(
         () => {
 
             showPage(index);
 
         },
-        1800
+        showTime
     );
 
 
@@ -2382,83 +1805,241 @@ function transitionToPage(
             );
 
         },
-        3600
+        hideTime
     );
 
 }
 
 
+/* =========================
+   TRANSITION TYPE
+========================= */
 
-/* ============================= */
-/* 下一頁 */
-/* ============================= */
+function getTransitionType(index) {
 
-function nextPage() {
+    if (index === 4) {
+        return "soft";
+    }
 
-    if (
-        currentPage <
-        pages.length - 1
-    ) {
+    if (index >= 8) {
+        return "romance";
+    }
 
-        transitionToPage(
-            currentPage + 1
-        );
+    if (index === 7) {
+        return "dark";
+    }
+
+    return "";
+}
+
+
+/* =========================
+   SHOW PAGE
+========================= */
+
+function showPage(index) {
+
+    pages.forEach(
+        page => {
+
+            page.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    const page =
+        pages[index];
+
+    if (!page) {
+        return;
+    }
+
+
+    page.classList.add(
+        "active"
+    );
+
+
+    /*
+     * 重新觸發進場動畫
+     */
+
+    page.classList.remove(
+        "page-enter"
+    );
+
+    void page.offsetWidth;
+
+    page.classList.add(
+        "page-enter"
+    );
+
+
+    currentPage =
+        index;
+
+
+    /*
+     * MEMORY PAGE
+     */
+
+    if (index === 4) {
+
+        const memoryDisplay =
+            document.getElementById(
+                "memoryDisplay"
+            );
+
+        if (
+            memoryDisplay &&
+            answers.memory
+        ) {
+
+            memoryDisplay.textContent =
+                answers.memory;
+
+        }
 
     }
 
 }
 
 
+/* =========================
+   NEXT PAGE
+========================= */
 
-/* ============================= */
-/* 選項 */
-/* ============================= */
+function nextPage() {
+
+    const next =
+        currentPage + 1;
+
+    if (
+        next >= pages.length
+    ) {
+        return;
+    }
+
+
+    transitionToPage(
+        next
+    );
+
+}
+
+
+/* =========================
+   SEND ANSWER
+========================= */
+
+function sendAnswer(
+    type,
+    answer
+) {
+
+    answers[type] =
+        answer;
+
+
+    fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+
+            body:
+                JSON.stringify({
+
+                    time:
+                        new Date()
+                            .toISOString(),
+
+                    ...answers
+
+                })
+
+        }
+    )
+    .catch(
+        error => {
+
+            console.error(
+                "資料送出失敗：",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   CHOOSE
+   選項 → 專屬字幕 → 下一頁
+========================= */
 
 function choose(answer) {
 
     let response = "";
 
 
-    if (currentPage === 1) {
+    if (
+        currentPage === 1
+    ) {
 
         sendAnswer(
             "chapter01",
             answer
         );
 
-
         response =
-            choiceResponses.chapter01[answer]
+            choiceResponses
+                .chapter01[answer]
             || "";
 
     }
 
 
-    else if (currentPage === 2) {
+    else if (
+        currentPage === 2
+    ) {
 
         sendAnswer(
             "chapter02",
             answer
         );
 
-
         response =
-            choiceResponses.chapter02[answer]
+            choiceResponses
+                .chapter02[answer]
             || "";
 
     }
 
 
-    else if (currentPage === 5) {
+    else if (
+        currentPage === 5
+    ) {
 
         sendAnswer(
             "chapter04",
             answer
         );
 
-
         response =
-            choiceResponses.chapter04[answer]
+            choiceResponses
+                .chapter04[answer]
             || "";
 
     }
@@ -2474,6 +2055,10 @@ function choose(answer) {
     }
 
 
+    /*
+     * 使用專屬回覆作為黑幕字幕
+     */
+
     transitionToPage(
         currentPage + 1,
         null,
@@ -2483,251 +2068,9 @@ function choose(answer) {
 }
 
 
-
-/* ============================= */
-/* 找出回憶分類 */
-/* ============================= */
-
-function detectMemoryType(text) {
-
-    const value =
-        text.toLowerCase();
-
-
-    /*
-     * 優先順序：
-     * 親密 → 初見 → 脆弱 → 想念
-     * → 期待 → 緊張 → 聊天 → 幸福
-     * → 通用
-     */
-
-
-    if (
-        /抱|牽|牽手|靠|擁抱|抱抱|親|親密/.test(value)
-    ) {
-
-        return "intimate";
-
-    }
-
-
-    if (
-        /第一次|初次|見面|看到你|看到妳|見到你|見到妳|出現在眼前/.test(value)
-    ) {
-
-        return "firstMeet";
-
-    }
-
-
-    if (
-        /哭|眼淚|流淚|難過|委屈|脆弱|害怕/.test(value)
-    ) {
-
-        return "vulnerable";
-
-    }
-
-
-    if (
-        /想你|想妳|想念|思念|捨不得|舍不得/.test(value)
-    ) {
-
-        return "miss";
-
-    }
-
-
-    if (
-        /期待|期待見面|想見|想见|等你|等妳|等著|等着/.test(value)
-    ) {
-
-        return "expectation";
-
-    }
-
-
-    if (
-        /緊張|紧张|害羞|害怕|不敢|忐忑|心跳/.test(value)
-    ) {
-
-        return "nervous";
-
-    }
-
-
-    if (
-        /聊天|聊天聊|電話|电话|訊息|信息|傳訊|传讯|晚安|通話|通话/.test(value)
-    ) {
-
-        return "chat";
-
-    }
-
-
-    if (
-        /開心|开心|快樂|快乐|幸福|高興|高兴|好開心|好开心/.test(value)
-    ) {
-
-        return "happy";
-
-    }
-
-
-    return "general";
-
-}
-
-
-
-/* ============================= */
-/* 取得回憶回應 */
-/* ============================= */
-
-function getMemoryResponse(text) {
-
-    const type =
-        detectMemoryType(text);
-
-
-    const list =
-        memoryResponses[type]
-        || memoryResponses.general;
-
-
-    return list[
-        Math.floor(
-            Math.random() * list.length
-        )
-    ];
-
-}
-
-
-
-/* ============================= */
-/* 回憶三段式字幕 */
-/* ============================= */
-
-function playMemoryResponse(
-    memory
-) {
-
-    const response =
-        getMemoryResponse(
-            memory
-        );
-
-
-    /*
-     * 第一幕
-     */
-
-    transitionToPage(
-        currentPage + 1,
-        "soft",
-        "妳寫下的這些，我都看到了。"
-    );
-
-
-    /*
-     * 第二幕
-     * 等第一幕完成後，
-     * 顯示專屬回應
-     */
-
-    setTimeout(
-        () => {
-
-            pageTransition.className =
-                "page-transition soft";
-
-
-            animateTransitionText(
-                response
-            );
-
-
-            requestAnimationFrame(
-                () => {
-
-                    pageTransition.classList.add(
-                        "show"
-                    );
-
-                }
-            );
-
-        },
-        4200
-    );
-
-
-    /*
-     * 第三幕
-     */
-
-    setTimeout(
-        () => {
-
-            pageTransition.className =
-                "page-transition soft";
-
-
-            animateTransitionText(
-                "有些故事，從見面的那一刻開始。"
-            );
-
-
-            requestAnimationFrame(
-                () => {
-
-                    pageTransition.classList.add(
-                        "show"
-                    );
-
-                }
-            );
-
-        },
-        7600
-    );
-
-
-    /*
-     * 最後正式進入 A MEMORY
-     */
-
-    setTimeout(
-        () => {
-
-            showPage(
-                currentPage + 1
-            );
-
-        },
-        10100
-    );
-
-
-    setTimeout(
-        () => {
-
-            pageTransition.classList.remove(
-                "show"
-            );
-
-        },
-        11600
-    );
-
-}
-
-
-
-/* ============================= */
-/* 回憶輸入 */
-/* ============================= */
+/* =========================
+   SUBMIT MEMORY
+========================= */
 
 function submitMemory() {
 
@@ -2735,7 +2078,6 @@ function submitMemory() {
         document.getElementById(
             "memoryInput"
         );
-
 
     const result =
         document.getElementById(
@@ -2786,17 +2128,17 @@ function submitMemory() {
     );
 
 
-    playMemoryResponse(
-        memory
+    transitionToPage(
+        currentPage + 1,
+        "soft"
     );
 
 }
 
 
-
-/* ============================= */
-/* 最後選擇 */
-/* ============================= */
+/* =========================
+   FINAL ANSWER
+========================= */
 
 function finalAnswer(answer) {
 
@@ -2807,7 +2149,8 @@ function finalAnswer(answer) {
 
 
     const response =
-        choiceResponses.final[answer]
+        choiceResponses
+            .final[answer]
         || "";
 
 
@@ -2820,10 +2163,9 @@ function finalAnswer(answer) {
 }
 
 
-
-/* ============================= */
-/* 我願意 */
-/* ============================= */
+/* =========================
+   CONFESSION
+========================= */
 
 function yesAnswer() {
 
@@ -2835,17 +2177,11 @@ function yesAnswer() {
 
     transitionToPage(
         currentPage + 1,
-        "romance",
-        "那就說好了。"
+        "romance"
     );
 
 }
 
-
-
-/* ============================= */
-/* 讓我想一下 */
-/* ============================= */
 
 function thinkAnswer() {
 
@@ -2857,15 +2193,41 @@ function thinkAnswer() {
 
     transitionToPage(
         pages.length - 1,
-        "romance",
-        "沒關係，我會等妳。"
+        "romance"
     );
 
 }
 
+
+/* =========================
+   INTRO
+========================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        const intro =
+            document.getElementById(
+                "intro"
+            );
+
+
+        setTimeout(
+            () => {
+
+                intro.classList.add(
+                    "hide"
+                );
+
+            },
+            3000
+        );
+
+    }
+);
+
 </script>
 
-
 </body>
-
 </html>
